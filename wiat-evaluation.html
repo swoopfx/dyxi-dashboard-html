@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeuroPath | WIAT-4 Evaluation - Leo</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <header class="header">
+    <button class="nav-toggle" id="menuToggle" aria-label="Toggle Menu">
+      <i data-lucide="menu"></i>
+    </button>
+    <a href="index.html" class="logo">
+      <i data-lucide="brain"></i>
+      <h1>NeuroPath</h1>
+    </a>
+    <div class="header-actions">
+      <a href="accounts.html" class="profile-pill">
+        <span style="font-size: 12px; font-weight: 500;">Sarah Jenkins</span>
+        <div class="profile-img">
+          <img src="https://picsum.photos/seed/parent/100/100" alt="Profile" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <nav class="sidebar">
+      <div class="nav-group">
+        <p class="nav-group-label">Dashboard</p>
+        <a href="index.html" class="nav-link">
+          <i data-lucide="layout-dashboard" size="18"></i>
+          <span>Overview</span>
+        </a>
+        <a href="probability.html" class="nav-link">
+          <i data-lucide="percent" size="18"></i>
+          <span>Probability Index</span>
+        </a>
+
+        <details class="nav-accordion" open>
+          <summary>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <i data-lucide="clipboard-check" size="18"></i>
+              <span>Evaluations</span>
+            </div>
+            <i data-lucide="chevron-down" size="14" class="chevron"></i>
+          </summary>
+          <div class="nav-accordion-content">
+            <a href="dyslexia-evaluation.html" class="nav-link">
+              <i data-lucide="book-open" size="14"></i>
+              <span>Dyslexia Subtypes</span>
+            </a>
+            <a href="kaufman-evaluation.html" class="nav-link">
+              <i data-lucide="search" size="14"></i>
+              <span>Kaufman Dyslexia</span>
+            </a>
+            <a href="adhd-evaluation.html" class="nav-link">
+              <i data-lucide="zap" size="14"></i>
+              <span>ADHD</span>
+            </a>
+            <a href="dyscalculia-evaluation.html" class="nav-link">
+              <i data-lucide="calculator" size="14"></i>
+              <span>Dyscalculia</span>
+            </a>
+            <a href="wiat-evaluation.html" class="nav-link active">
+              <i data-lucide="graduation-cap" size="14"></i>
+              <span>WIAT-4</span>
+            </a>
+            <a href="ctopp-evaluation.html" class="nav-link">
+              <i data-lucide="mic-2" size="14"></i>
+              <span>CTOPP-2</span>
+            </a>
+            <a href="neurodiversity.html" class="nav-link">
+              <i data-lucide="activity" size="14"></i>
+              <span>Neurodiversity Scale</span>
+            </a>
+          </div>
+        </details>
+
+        <details class="nav-accordion">
+          <summary>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <i data-lucide="bar-chart-2" size="18"></i>
+              <span>Analysis</span>
+            </div>
+            <i data-lucide="chevron-down" size="14" class="chevron"></i>
+          </summary>
+          <div class="nav-accordion-content">
+            <a href="phonology-analysis.html" class="nav-link">
+              <i data-lucide="mic-2" size="14"></i>
+              <span>Phonology</span>
+            </a>
+            <a href="phonological-memory-analysis.html" class="nav-link">
+              <i data-lucide="brain" size="14"></i>
+              <span>Phonological Memory</span>
+            </a>
+            <a href="word-recognition-analysis.html" class="nav-link">
+              <i data-lucide="eye" size="14"></i>
+              <span>Word Recognition</span>
+            </a>
+            <a href="rapid-naming-analysis.html" class="nav-link">
+              <i data-lucide="zap" size="14"></i>
+              <span>Rapid Naming</span>
+            </a>
+            <a href="visual-processing-analysis.html" class="nav-link">
+              <i data-lucide="scan" size="14"></i>
+              <span>Visual Processing</span>
+            </a>
+            <a href="working-memory-analysis.html" class="nav-link">
+              <i data-lucide="database" size="14"></i>
+              <span>Working Memory</span>
+            </a>
+            <a href="executive-function-analysis.html" class="nav-link">
+              <i data-lucide="brain-circuit" size="14"></i>
+              <span>Executive Function</span>
+            </a>
+            <a href="attention-span-analysis.html" class="nav-link">
+              <i data-lucide="timer" size="14"></i>
+              <span>Attention Span</span>
+            </a>
+            <a href="impulse-control-analysis.html" class="nav-link">
+              <i data-lucide="target" size="14"></i>
+              <span>Impulse Control</span>
+            </a>
+            <a href="processing-speed-analysis.html" class="nav-link">
+              <i data-lucide="gauge" size="14"></i>
+              <span>Processing Speed</span>
+            </a>
+            <a href="motor-speed-analysis.html" class="nav-link">
+              <i data-lucide="activity" size="14"></i>
+              <span>Motor Speed</span>
+            </a>
+            <a href="text-tracing-analysis.html" class="nav-link">
+              <i data-lucide="pen-tool" size="14"></i>
+              <span>Text Tracing</span>
+            </a>
+            <a href="analysis.html" class="nav-link">
+              <i data-lucide="bar-chart-horizontal" size="14"></i>
+              <span>Frequency</span>
+            </a>
+          </div>
+        </details>
+
+        <a href="kirkpatrick.html" class="nav-link">
+          <i data-lucide="layers" size="18"></i>
+          <span>Kirkpatrick Model</span>
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <p class="nav-group-label">Wards</p>
+        <a href="wards-list.html" class="nav-link">
+          <i data-lucide="users" size="18"></i>
+          <span>Wards List</span>
+        </a>
+        <a href="ward.html" class="nav-link">
+          <i data-lucide="user-plus" size="18"></i>
+          <span>Registration</span>
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <p class="nav-group-label">Resources</p>
+        <a href="professionals.html" class="nav-link">
+          <i data-lucide="stethoscope" size="18"></i>
+          <span>Professional Directory</span>
+        </a>
+        <a href="book-appointment.html" class="nav-link">
+          <i data-lucide="calendar-plus" size="18"></i>
+          <span>Book Appointment</span>
+        </a>
+        <a href="billing.html" class="nav-link">
+          <i data-lucide="credit-card" size="18"></i>
+          <span>Billing & Payments</span>
+        </a>
+        <a href="payment.html" class="nav-link">
+          <i data-lucide="receipt" size="18"></i>
+          <span>Payment Portal</span>
+        </a>
+        <a href="settings.html" class="nav-link">
+          <i data-lucide="settings" size="18"></i>
+          <span>Settings</span>
+        </a>
+      </div>
+
+      <div style="margin-top: auto; border-top: 1px solid var(--border); padding-top: 16px;">
+        <a href="login.html" class="nav-link" style="color: #ef4444;">
+          <i data-lucide="log-out" size="18"></i>
+          <span>Sign Out</span>
+        </a>
+      </div>
+    </nav>
+
+    <main class="content animate-fade">
+      <header class="mb-32">
+        <h2 style="font-size: 30px; margin-bottom: 4px;">WIAT-4 Achievement Profile</h2>
+        <p class="text-muted" style="font-size: 14px;">Wechsler Individual Achievement Test, 4th Edition analysis for Leo Jenkins.</p>
+      </header>
+
+      <div class="ward-selector">
+        <a href="wiat-evaluation.html" class="ward-tab active">Leo Jenkins</a>
+        <a href="#" class="ward-tab">Maya Jenkins</a>
+      </div>
+
+      <!-- Test Uniqueness Section -->
+      <div class="card p-24 mb-32" style="background: rgba(59, 130, 246, 0.05); border: 1px solid rgba(59, 130, 246, 0.2);">
+        <h3 style="font-size: 18px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+          <i data-lucide="info" size="20" style="color: #3b82f6;"></i>
+          What makes WIAT-4 Unique?
+        </h3>
+        <p style="font-size: 13px; color: var(--text-main); line-height: 1.6; margin-bottom: 16px;">
+          The **WIAT-4** is the gold standard for measuring academic achievement. Unlike other tests, it includes unique components like **Oral Expression** and **Sentence Composition**, providing a holistic view of how a student applies their knowledge in real-world academic tasks.
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+          <div style="background: white; padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
+            <p style="font-size: 12px; font-weight: bold; margin-bottom: 4px;">Integrated Literacy</p>
+            <p style="font-size: 11px; color: var(--text-muted);">Connects reading, writing, and oral language skills seamlessly.</p>
+          </div>
+          <div style="background: white; padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
+            <p style="font-size: 12px; font-weight: bold; margin-bottom: 4px;">Dyslexia Screening</p>
+            <p style="font-size: 11px; color: var(--text-muted);">Includes specialized subtests that are sensitive to dyslexic patterns.</p>
+          </div>
+          <div style="background: white; padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
+            <p style="font-size: 12px; font-weight: bold; margin-bottom: 4px;">Problem Solving</p>
+            <p style="font-size: 11px; color: var(--text-muted);">Evaluates mathematical reasoning beyond simple calculation.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-grid" style="margin-bottom: 32px;">
+        <div class="stat-card" style="border-left: 4px solid var(--accent-sage);">
+          <span class="stat-label">Total Achievement</span>
+          <div style="display: flex; align-items: baseline; gap: 8px;">
+            <span class="stat-value">84</span>
+            <span class="badge badge-professional">Lower Range</span>
+          </div>
+          <p style="font-size: 10px; color: var(--text-muted); margin-top: 8px;">Combined academic performance index.</p>
+        </div>
+        <div class="stat-card" style="border-left: 4px solid var(--accent-blue);">
+          <span class="stat-label">Oral Language</span>
+          <div style="display: flex; align-items: baseline; gap: 8px;">
+            <span class="stat-value">112</span>
+            <span class="badge badge-psych">High Average</span>
+          </div>
+          <p style="font-size: 10px; color: var(--text-muted); margin-top: 8px;">A significant strength for Leo.</p>
+        </div>
+        <div class="stat-card" style="border-left: 4px solid #ef4444;">
+          <span class="stat-label">Writing Expression</span>
+          <div style="display: flex; align-items: baseline; gap: 8px;">
+            <span class="stat-value">68</span>
+            <span class="badge badge-professional">Critical Zone</span>
+          </div>
+          <p style="font-size: 10px; color: var(--text-muted); margin-top: 8px;">Primary area for intervention.</p>
+        </div>
+      </div>
+
+      <!-- Graphical Analysis -->
+      <div class="card p-32 mb-32">
+        <h3 style="font-size: 18px; margin-bottom: 8px;">Achievement Profile Comparison</h3>
+        <p class="text-muted" style="font-size: 12px; margin-bottom: 32px;">Comparing standard scores across academic composites. Note the high "Oral Language" vs low "Written Expression."</p>
+        
+        <div style="height: 300px; position: relative;">
+          <!-- Grid Lines -->
+          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: space-between; pointer-events: none;">
+            <div style="border-top: 1px dashed var(--border); position: relative;"><span style="position: absolute; left: -30px; top: -8px; font-size: 10px; color: var(--text-muted);">130</span></div>
+            <div style="border-top: 1px dashed var(--border); position: relative;"><span style="position: absolute; left: -30px; top: -8px; font-size: 10px; color: var(--text-muted);">115</span></div>
+            <div style="border-top: 1px solid var(--accent-sage); position: relative;"><span style="position: absolute; left: -30px; top: -8px; font-size: 10px; color: var(--accent-sage); font-weight: bold;">100</span></div>
+            <div style="border-top: 1px dashed var(--border); position: relative;"><span style="position: absolute; left: -30px; top: -8px; font-size: 10px; color: var(--text-muted);">85</span></div>
+            <div style="border-top: 1px dashed #ef4444; position: relative;"><span style="position: absolute; left: -30px; top: -8px; font-size: 10px; color: #ef4444;">70</span></div>
+          </div>
+
+          <div style="display: flex; align-items: flex-end; justify-content: space-around; height: 100%; padding: 0 40px; position: relative; z-index: 2;">
+            <!-- Oral Language -->
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; width: 80px;">
+              <div style="height: 112px; width: 40px; background: var(--accent-blue); border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"></div>
+              <span style="font-size: 10px; text-align: center; font-weight: bold; color: var(--text-muted); text-transform: uppercase;">Oral Lang</span>
+            </div>
+            <!-- Reading -->
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; width: 80px;">
+              <div style="height: 82px; width: 40px; background: var(--accent-sand); border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"></div>
+              <span style="font-size: 10px; text-align: center; font-weight: bold; color: var(--text-muted); text-transform: uppercase;">Reading</span>
+            </div>
+            <!-- Written Expression -->
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; width: 80px;">
+              <div style="height: 68px; width: 40px; background: #ef4444; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"></div>
+              <span style="font-size: 10px; text-align: center; font-weight: bold; color: var(--text-muted); text-transform: uppercase;">Writing</span>
+            </div>
+            <!-- Math -->
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; width: 80px;">
+              <div style="height: 78px; width: 40px; background: var(--accent-sage); border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"></div>
+              <span style="font-size: 10px; text-align: center; font-weight: bold; color: var(--text-muted); text-transform: uppercase;">Math</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <!-- Subtest Breakdown -->
+          <div class="card p-24">
+            <h3 style="font-size: 18px; margin-bottom: 24px;">Detailed Subtest Analysis</h3>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <div style="padding: 16px; border: 1px solid var(--border); border-radius: 12px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                  <h4 style="font-size: 14px; font-weight: bold;">Problem Solving vs Calculation</h4>
+                  <span class="badge badge-professional">Discrepancy Detected</span>
+                </div>
+                <p style="font-size: 12px; color: var(--text-muted); line-height: 1.6;">
+                  Leo scored **86 in Mathematical Reasoning** but only **72 in Numerical Operations**. This suggests he understands math concepts well but struggles with the mechanical execution and math facts recall.
+                </p>
+              </div>
+
+              <div style="padding: 16px; border: 1px solid var(--border); border-radius: 12px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                  <h4 style="font-size: 14px; font-weight: bold;">Sentence Composition</h4>
+                  <span class="badge badge-psych" style="background: rgba(239, 68, 68, 0.1); color: #ef4444;">Significant Deficit</span>
+                </div>
+                <p style="font-size: 12px; color: var(--text-muted); line-height: 1.6;">
+                  Score: **64**. Leo shows difficulty translating his advanced oral ideas into written sentences. His handwriting speed is slow, and punctuation/capitalization are inconsistent.
+                </p>
+              </div>
+
+              <div style="padding: 16px; border: 1px solid var(--border); border-radius: 12px; background: rgba(142, 151, 117, 0.05);">
+                <h4 style="font-size: 14px; font-weight: bold; margin-bottom: 12px;">Oral Expression (Strength)</h4>
+                <p style="font-size: 12px; color: var(--text-muted); line-height: 1.6;">
+                  Score: **115**. This is Leo's highest achievement area. He can explain complex stories and vocabulary verbally far beyond his grade level. This is a crucial "compensatory skill" for him.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <!-- Clinical Summary -->
+          <div class="card p-24" style="background: #1e293b; color: white;">
+            <h3 style="font-size: 16px; margin-bottom: 16px;">Clinician's Summary</h3>
+            <p style="font-size: 12px; line-height: 1.7; opacity: 0.9;">
+              Leo exhibits a classic **IQ-Achievement Discrepancy**. His high verbal intelligence (Oral Expression 115) is not translating into written output (Sentence Composition 64). 
+              <br><br>
+              This gap is a primary indicator of a Specific Learning Disorder (SLD) in writing.
+            </p>
+          </div>
+
+          <!-- Recommendations -->
+          <div class="card p-24">
+            <h3 style="font-size: 16px; margin-bottom: 16px;">Interventions</h3>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div style="display: flex; gap: 10px; align-items: flex-start;">
+                <i data-lucide="check-circle" size="16" style="color: var(--accent-sage); margin-top: 2px;"></i>
+                <p style="font-size: 11px; color: var(--text-muted);">Speech-to-Text software for writing tasks.</p>
+              </div>
+              <div style="display: flex; gap: 10px; align-items: flex-start;">
+                <i data-lucide="check-circle" size="16" style="color: var(--accent-sage); margin-top: 2px;"></i>
+                <p style="font-size: 11px; color: var(--text-muted);">Explicit instruction in sentence structure.</p>
+              </div>
+              <div style="display: flex; gap: 10px; align-items: flex-start;">
+                <i data-lucide="check-circle" size="16" style="color: var(--accent-sage); margin-top: 2px;"></i>
+                <p style="font-size: 11px; color: var(--text-muted);">Scaffolded math worksheets focusing on concepts over calculations.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    // Mobile Menu Toggle Logic
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.querySelector('.sidebar');
+    
+    if (menuToggle && sidebar) {
+      menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sidebar.classList.toggle('open');
+      });
+      
+      document.addEventListener('click', (e) => {
+        if (!sidebar.contains(e.target) && sidebar.classList.contains('open')) {
+          sidebar.classList.remove('open');
+        }
+      });
+    }
+  </script>
+</body>
+</html>

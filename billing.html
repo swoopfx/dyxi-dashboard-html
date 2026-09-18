@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeuroPath | Billing</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <header class="header">
+    <button class="nav-toggle" id="menuToggle" aria-label="Toggle Menu">
+      <i data-lucide="menu"></i>
+    </button>
+    <a href="index.html" class="logo">
+      <i data-lucide="brain"></i>
+      <h1>NeuroPath</h1>
+    </a>
+    <div class="header-actions">
+      <div class="search-bar">
+        <i data-lucide="search" size="16"></i>
+        <input type="text" placeholder="Search records...">
+      </div>
+      <a href="accounts.html" class="profile-pill">
+        <span style="font-size: 12px; font-weight: 500;">Sarah Jenkins</span>
+        <div class="profile-img">
+          <img src="https://picsum.photos/seed/parent/100/100" alt="Profile" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <nav class="sidebar">
+      <div class="nav-group">
+        <p class="nav-group-label">Dashboard</p>
+        <a href="index.html" class="nav-link">
+          <i data-lucide="layout-dashboard" size="18"></i>
+          <span>Overview</span>
+        </a>
+        <a href="probability.html" class="nav-link">
+          <i data-lucide="percent" size="18"></i>
+          <span>Probability Index</span>
+        </a>
+
+        <details class="nav-accordion">
+          <summary>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <i data-lucide="clipboard-check" size="18"></i>
+              <span>Evaluations</span>
+            </div>
+            <i data-lucide="chevron-down" size="14" class="chevron"></i>
+          </summary>
+          <div class="nav-accordion-content">
+            <a href="dyslexia-evaluation.html" class="nav-link">
+              <i data-lucide="book-open" size="14"></i>
+              <span>Dyslexia Subtypes</span>
+            </a>
+            <a href="adhd-evaluation.html" class="nav-link">
+              <i data-lucide="zap" size="14"></i>
+              <span>ADHD</span>
+            </a>
+            <a href="dyscalculia-evaluation.html" class="nav-link">
+              <i data-lucide="calculator" size="14"></i>
+              <span>Dyscalculia</span>
+            </a>
+          </div>
+        </details>
+
+        <details class="nav-accordion">
+          <summary>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <i data-lucide="bar-chart-2" size="18"></i>
+              <span>Analysis</span>
+            </div>
+            <i data-lucide="chevron-down" size="14" class="chevron"></i>
+          </summary>
+          <div class="nav-accordion-content">
+            <a href="phonology-analysis.html" class="nav-link">
+              <i data-lucide="mic-2" size="14"></i>
+              <span>Phonology</span>
+            </a>
+            <a href="word-recognition-analysis.html" class="nav-link">
+              <i data-lucide="eye" size="14"></i>
+              <span>Word Recognition</span>
+            </a>
+            <a href="text-tracing-analysis.html" class="nav-link">
+              <i data-lucide="pen-tool" size="14"></i>
+              <span>Text Tracing</span>
+            </a>
+            <a href="attention-span-analysis.html" class="nav-link">
+              <i data-lucide="timer" size="14"></i>
+              <span>Attention Span</span>
+            </a>
+            <a href="impulse-control-analysis.html" class="nav-link">
+              <i data-lucide="target" size="14"></i>
+              <span>Impulse Control</span>
+            </a>
+            <a href="analysis.html" class="nav-link">
+              <i data-lucide="bar-chart-horizontal" size="14"></i>
+              <span>Frequency</span>
+            </a>
+          </div>
+        </details>
+
+        <a href="kirkpatrick.html" class="nav-link">
+          <i data-lucide="layers" size="18"></i>
+          <span>Kirkpatrick Model</span>
+        </a>
+        <a href="neurodiversity.html" class="nav-link">
+          <i data-lucide="activity" size="18"></i>
+          <span>Neurodiversity Scale</span>
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <p class="nav-group-label">Wards</p>
+        <a href="wards-list.html" class="nav-link">
+          <i data-lucide="users" size="18"></i>
+          <span>Wards List</span>
+        </a>
+        <a href="ward.html" class="nav-link">
+          <i data-lucide="user-plus" size="18"></i>
+          <span>Registration</span>
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <p class="nav-group-label">Resources</p>
+        <a href="professionals.html" class="nav-link">
+          <i data-lucide="stethoscope" size="18"></i>
+          <span>Professional Directory</span>
+        </a>
+        <a href="book-appointment.html" class="nav-link">
+          <i data-lucide="calendar-plus" size="18"></i>
+          <span>Book Appointment</span>
+        </a>
+        <a href="billing.html" class="nav-link active">
+          <i data-lucide="credit-card" size="18"></i>
+          <span>Billing & Payments</span>
+        </a>
+        <a href="payment.html" class="nav-link">
+          <i data-lucide="receipt" size="18"></i>
+          <span>Payment Portal (Stateful)</span>
+        </a>
+        <a href="payment-stateless.html" class="nav-link">
+          <i data-lucide="zap" size="18"></i>
+          <span>Direct Checkout (Stateless)</span>
+        </a>
+        <a href="settings.html" class="nav-link">
+          <i data-lucide="settings" size="18"></i>
+          <span>Settings</span>
+        </a>
+      </div>
+
+      <div style="margin-top: auto; border-top: 1px solid var(--border); padding-top: 16px;">
+        <a href="login.html" class="nav-link" style="color: #ef4444;">
+          <i data-lucide="log-out" size="18"></i>
+          <span>Sign Out</span>
+        </a>
+      </div>
+    </nav>
+
+    <main class="content animate-fade">
+      <header style="margin-bottom: 32px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px;">
+        <div>
+          <h2 style="font-size: 30px; margin-bottom: 4px;">Billing & Subscription</h2>
+          <p class="text-muted" style="font-size: 14px;">Manage your payment methods and view transaction history.</p>
+        </div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <a href="payment.html" class="btn btn-outline" style="display: flex; align-items: center; gap: 8px; font-size: 12px; padding: 10px 16px;">
+            <i data-lucide="receipt" size="14"></i>
+            <span>Stateful Portal & Ledger</span>
+          </a>
+          <a href="payment-stateless.html" class="btn btn-primary" style="display: flex; align-items: center; gap: 8px; font-size: 12px; padding: 10px 16px;">
+            <i data-lucide="zap" size="14"></i>
+            <span>Stateless Direct Checkout</span>
+          </a>
+        </div>
+      </header>
+
+      <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 32px;">
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <div class="card">
+            <div class="card-header">
+              <h3 style="font-size: 18px;">Payment Methods</h3>
+              <a href="add-card.html" class="btn btn-primary" style="font-size: 10px; padding: 8px 16px;">+ Add Card</a>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+              <div class="payment-card">
+                <div class="chip"></div>
+                <div>
+                  <p style="font-size: 18px; letter-spacing: 2px; margin-bottom: 8px;">**** **** **** 4242</p>
+                  <div style="display: flex; justify-content: space-between; font-size: 10px; text-transform: uppercase; opacity: 0.8;">
+                    <span>Sarah Jenkins</span>
+                    <span>12/25</span>
+                  </div>
+                </div>
+              </div>
+              <div style="border: 2px dashed var(--border); border-radius: 16px; display: flex; align-items: center; justify-content: center;">
+                <a href="add-card.html" class="text-muted" style="text-decoration: none; font-size: 12px; font-weight: bold;">Add New Method</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 style="font-size: 18px; margin-bottom: 24px;">Billing History</h3>
+            <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+              <thead>
+                <tr style="text-align: left; border-bottom: 1px solid var(--border);">
+                  <th style="padding: 12px 0; color: var(--text-muted); font-weight: bold; text-transform: uppercase; font-size: 10px;">Date</th>
+                  <th style="padding: 12px 0; color: var(--text-muted); font-weight: bold; text-transform: uppercase; font-size: 10px;">Description</th>
+                  <th style="padding: 12px 0; color: var(--text-muted); font-weight: bold; text-transform: uppercase; font-size: 10px;">Amount</th>
+                  <th style="padding: 12px 0; color: var(--text-muted); font-weight: bold; text-transform: uppercase; font-size: 10px;">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid var(--border);">
+                  <td style="padding: 16px 0;">Oct 24, 2023</td>
+                  <td style="padding: 16px 0;">Premium Monthly Plan</td>
+                  <td style="padding: 16px 0; font-weight: 600;"><span data-amount-usd="24.00">$24.00</span></td>
+                  <td style="padding: 16px 0;"><span style="color: #16a34a; font-weight: bold;">Paid</span></td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border);">
+                  <td style="padding: 16px 0;">Sep 24, 2023</td>
+                  <td style="padding: 16px 0;">Premium Monthly Plan</td>
+                  <td style="padding: 16px 0; font-weight: 600;"><span data-amount-usd="24.00">$24.00</span></td>
+                  <td style="padding: 16px 0;"><span style="color: #16a34a; font-weight: bold;">Paid</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card" style="background: var(--sidebar-bg); border-color: var(--accent-sand);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h3 style="font-size: 18px;">Current Plan</h3>
+            <div class="currency-switch-global" style="background: white;">
+              <button type="button" class="curr-toggle-btn active" data-currency="USD" title="US Dollar ($)">
+                <span class="curr-symbol">$</span><span class="curr-code">USD</span>
+              </button>
+              <button type="button" class="curr-toggle-btn" data-currency="NGN" title="Nigerian Naira (₦)">
+                <span class="curr-symbol">₦</span><span class="curr-code">NGN</span>
+              </button>
+            </div>
+          </div>
+          <div style="padding: 20px; background: white; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 24px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+              <p style="font-size: 12px; font-weight: bold; color: var(--accent-sage); text-transform: uppercase;">Premium</p>
+              <span class="active-currency-code badge badge-consultant" style="font-size: 10px; padding: 2px 6px;">USD</span>
+            </div>
+            <p style="font-size: 24px; font-family: var(--f-serif);"><span data-amount-usd="24" data-decimals="0">$24</span><span style="font-size: 14px; color: var(--text-muted);">/mo</span></p>
+            <ul style="margin-top: 16px; font-size: 12px; list-style: none; display: flex; flex-direction: column; gap: 8px;">
+              <li style="display: flex; align-items: center; gap: 8px;"><i data-lucide="check" size="14" class="text-sage"></i> Unlimited Wards</li>
+              <li style="display: flex; align-items: center; gap: 8px;"><i data-lucide="check" size="14" class="text-sage"></i> Advanced Analysis</li>
+              <li style="display: flex; align-items: center; gap: 8px;"><i data-lucide="check" size="14" class="text-sage"></i> Kirkpatrick Reports</li>
+            </ul>
+          </div>
+          <button class="btn btn-outline" style="width: 100%; margin-bottom: 12px;">Change Plan</button>
+          <p style="font-size: 11px; text-align: center; color: var(--text-muted); margin-bottom: 8px;">Next billing date: <strong>Nov 24, 2023</strong></p>
+          <p class="currency-rate-info" style="font-size: 10px; text-align: center; color: var(--text-muted); font-style: italic;">Exchange Rate: 1 USD ($) = ₦1,600 NGN</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="currency-manager.js"></script>
+  <script>
+    lucide.createIcons();
+
+    // Mobile Menu Toggle Logic
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.querySelector('.sidebar');
+    
+    if (menuToggle && sidebar) {
+      menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sidebar.classList.toggle('open');
+      });
+      
+      document.addEventListener('click', (e) => {
+        if (!sidebar.contains(e.target) && sidebar.classList.contains('open')) {
+          sidebar.classList.remove('open');
+        }
+      });
+    }
+  </script>
+</body>
+</html>

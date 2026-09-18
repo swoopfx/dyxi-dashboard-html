@@ -1,0 +1,4594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeuroPath Clinic | Secure Service Payment Portal</title>
+  <meta name="description" content="Stateless, secure payment portal for clinical dyslexia assessments, phonological interventions, and neurodiversity diagnostic reports.">
+  
+  <!-- Standalone Self-Encompassing Styling -->
+  <style>
+    /* ==========================================================================
+       RESET & TYPOGRAPHY
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --font-serif: "Newsreader", "Georgia", "Cambria", serif;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+      /* Primary Clinical Palette */
+      --primary-900: #1B2B22;
+      --primary-800: #263E32;
+      --primary-700: #335343;
+      --primary-600: #426A56;
+      --primary-500: #55856D;
+      --primary-100: #E3EDE7;
+      --primary-50:  #F2F7F4;
+
+      /* Warm Healthcare Neutrals */
+      --bg-page: #F6F5F0;
+      --surface-card: #FFFFFF;
+      --surface-subtle: #FAF9F6;
+      --surface-accent: #EFECE4;
+      --border-subtle: #E2DEC9;
+      --border-strong: #C9C4AB;
+
+      /* Text Hierarchy */
+      --text-main: #24221D;
+      --text-muted: #5F5B53;
+      --text-light: #8A857B;
+
+      /* Accents & Status */
+      --accent-gold: #C5A869;
+      --accent-gold-subtle: #FBF6EC;
+      --status-success: #15803D;
+      --status-success-bg: #ECFDF5;
+      --status-error: #B91C1C;
+      --status-error-bg: #FEF2F2;
+      --status-badge: #0F766E;
+
+      /* Shadows & Radii */
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 22px;
+      --shadow-sm: 0 1px 3px rgba(36, 34, 29, 0.05);
+      --shadow-card: 0 4px 20px -4px rgba(36, 34, 29, 0.07), 0 1px 3px rgba(36, 34, 29, 0.03);
+      --shadow-lg: 0 12px 36px -8px rgba(36, 34, 29, 0.12);
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Subtle geometric grid texture for high-trust clinical authority */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: 
+        radial-gradient(var(--border-subtle) 1px, transparent 1px);
+      background-size: 28px 28px;
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ==========================================================================
+       STANDALONE HEADER (NO AUTH / NO SIDEBAR)
+       ========================================================================== */
+    .portal-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .portal-header-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-cluster {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--primary-700), var(--primary-900));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(38, 62, 50, 0.25);
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--primary-900);
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+    }
+
+    .brand-subtitle {
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .header-security-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: var(--primary-50);
+      border: 1px solid var(--primary-100);
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--primary-700);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .currency-pill-selector {
+      display: flex;
+      background: var(--surface-accent);
+      padding: 3px;
+      border-radius: var(--radius-sm);
+      gap: 2px;
+    }
+
+    .currency-btn {
+      background: transparent;
+      border: none;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .currency-btn.active {
+      background: #FFFFFF;
+      color: var(--primary-800);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-exit-portal {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background: #FFFFFF;
+      transition: all 0.15s ease;
+    }
+
+    .btn-exit-portal:hover {
+      background: var(--surface-subtle);
+      color: var(--text-main);
+      border-color: var(--border-strong);
+    }
+
+    /* ==========================================================================
+       MAIN CONTENT CONTAINER
+       ========================================================================== */
+    .portal-main {
+      flex: 1;
+      max-width: 1240px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 32px 24px 64px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==========================================================================
+       STATEFUL PORTAL NAVIGATION BAR
+       ========================================================================== */
+    .portal-nav-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .portal-tab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius-md);
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-decoration: none;
+    }
+
+    .portal-tab-btn:hover {
+      background: rgba(38, 62, 50, 0.05);
+      color: var(--primary-900);
+    }
+
+    .portal-tab-btn.active {
+      background: #FFFFFF;
+      color: var(--primary-900);
+      border-color: var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .tab-badge-pending {
+      background: #F59E0B;
+      color: #FFFFFF;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 1px 7px;
+      border-radius: 10px;
+      line-height: 1.3;
+    }
+
+    /* Stateful Info Banner */
+    .stateful-banner {
+      background: linear-gradient(135deg, #FFFFFF 0%, #FAF8F5 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .stateful-banner-main {
+      max-width: 620px;
+    }
+
+    .state-indicator-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.12);
+      color: #065F46;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.4);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+      70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    .state-npi-tag, .state-audit-tag {
+      font-size: 11px;
+      color: var(--text-muted);
+      background: var(--surface-subtle);
+      border: 1px solid var(--border-subtle);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+    }
+
+    .stateful-banner-title {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--primary-900);
+      margin: 8px 0 4px;
+      letter-spacing: -0.02em;
+    }
+
+    .stateful-banner-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .stateful-summary-chips {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .state-chip-box {
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 10px 16px;
+      display: flex;
+      flex-direction: column;
+      min-width: 140px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .state-chip-box.pending-box {
+      border-left: 3.5px solid #F59E0B;
+    }
+
+    .state-chip-box.settled-box {
+      border-left: 3.5px solid #10B981;
+    }
+
+    .chip-kicker {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-light);
+      margin-bottom: 2px;
+    }
+
+    .chip-value {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary-900);
+    }
+
+    .chip-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* INVOICE SOURCE TOGGLE */
+    .invoice-source-toggle {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      background: var(--surface-subtle);
+      padding: 4px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .source-toggle-btn {
+      flex: 1;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      background: transparent;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.15s ease;
+    }
+
+    .source-toggle-btn.active {
+      background: #FFFFFF;
+      color: var(--primary-900);
+      border-color: var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .pending-inv-card {
+      padding: 14px 18px;
+      border: 1.5px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      background: #FFFFFF;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.15s ease;
+      margin-bottom: 10px;
+    }
+
+    .pending-inv-card:hover {
+      border-color: var(--accent-sage);
+      background: rgba(142, 151, 117, 0.03);
+    }
+
+    .pending-inv-card.selected {
+      border-color: var(--accent-sage);
+      background: rgba(142, 151, 117, 0.07);
+      box-shadow: 0 0 0 2px rgba(142, 151, 117, 0.25);
+    }
+
+    /* SAVED METHODS SELECTOR */
+    .saved-method-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border: 1.5px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      background: #FFFFFF;
+      transition: all 0.15s ease;
+      margin-bottom: 10px;
+    }
+
+    .saved-method-option:hover {
+      border-color: var(--accent-sage);
+    }
+
+    .saved-method-option.selected {
+      border-color: var(--accent-sage);
+      background: rgba(142, 151, 117, 0.07);
+    }
+
+    /* LEDGER TABLE & STATS */
+    .ledger-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .ledger-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .ledger-stat-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .ledger-stat-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-light);
+      margin-bottom: 6px;
+    }
+
+    .ledger-stat-num {
+      font-family: var(--font-mono);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary-900);
+      margin-bottom: 4px;
+    }
+
+    .ledger-stat-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .ledger-filter-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      background: #FFFFFF;
+      padding: 16px 20px;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .ledger-tabs {
+      display: flex;
+      gap: 4px;
+      background: var(--surface-subtle);
+      padding: 3px;
+      border-radius: var(--radius-sm);
+    }
+
+    .ledger-tab-pill {
+      border: none;
+      background: transparent;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .ledger-tab-pill.active {
+      background: #FFFFFF;
+      color: var(--primary-900);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .ledger-search-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 6px 12px;
+      min-width: 260px;
+    }
+
+    .ledger-search-box input {
+      border: none;
+      background: transparent;
+      font-size: 13px;
+      color: var(--text-main);
+      width: 100%;
+      outline: none;
+    }
+
+    .ledger-table-wrap {
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow-x: auto;
+      box-shadow: var(--shadow-card);
+    }
+
+    .ledger-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      text-align: left;
+    }
+
+    .ledger-table th {
+      background: var(--surface-subtle);
+      padding: 12px 18px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .ledger-table td {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--border-subtle);
+      vertical-align: middle;
+    }
+
+    .ledger-table tr:hover td {
+      background: rgba(38, 62, 50, 0.02);
+    }
+
+    .badge-paid {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(16, 185, 129, 0.12);
+      color: #065F46;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .badge-pending {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(245, 158, 11, 0.12);
+      color: #92400E;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* Modal Backdrop */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(36, 34, 29, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-content-card {
+      background: #FFFFFF;
+      border-radius: var(--radius-lg);
+      max-width: 780px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    /* ==========================================================================
+       TWO-COLUMN PAYMENT GRID
+       ========================================================================== */
+    .payment-layout-grid {
+      display: grid;
+      grid-template-columns: 1.45fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .payment-layout-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Cards */
+    .payment-card-box {
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--primary-900);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .section-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--primary-100);
+      color: var(--primary-800);
+      font-size: 12px;
+      font-family: var(--font-sans);
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    /* ==========================================================================
+       SERVICE SELECTION
+       ========================================================================== */
+    .service-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .service-option-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px;
+      border: 1.5px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      background: #FFFFFF;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .service-option-item:hover {
+      border-color: var(--primary-500);
+      background: var(--surface-subtle);
+    }
+
+    .service-option-item.selected {
+      border-color: var(--primary-600);
+      background: var(--primary-50);
+      box-shadow: 0 0 0 1px var(--primary-600);
+    }
+
+    .radio-circle {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--border-strong);
+      margin-top: 2px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+
+    .service-option-item.selected .radio-circle {
+      border-color: var(--primary-700);
+      background: var(--primary-700);
+    }
+
+    .radio-circle::after {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      display: none;
+    }
+
+    .service-option-item.selected .radio-circle::after {
+      display: block;
+    }
+
+    .service-content {
+      flex: 1;
+    }
+
+    .service-head-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 4px;
+    }
+
+    .service-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .service-price {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary-800);
+      font-family: var(--font-mono);
+      white-space: nowrap;
+    }
+
+    .service-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .service-cpt-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--text-light);
+      background: var(--surface-accent);
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-top: 6px;
+    }
+
+    /* Custom Invoice Service Inputs */
+    .custom-service-fields {
+      margin-top: 14px;
+      padding: 16px;
+      background: #FFFFFF;
+      border: 1px dashed var(--border-strong);
+      border-radius: var(--radius-sm);
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 14px;
+    }
+
+    /* Add-ons list */
+    .add-ons-heading {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-light);
+      margin: 20px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .add-on-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      margin-bottom: 8px;
+      background: var(--surface-subtle);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .add-on-row:hover {
+      background: #FFFFFF;
+      border-color: var(--border-strong);
+    }
+
+    .add-on-row.checked {
+      border-color: var(--primary-500);
+      background: var(--primary-50);
+    }
+
+    .add-on-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .add-on-price {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--primary-800);
+    }
+
+    /* ==========================================================================
+       FORM CONTROLS & INPUTS
+       ========================================================================== */
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .form-grid-3 {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 640px) {
+      .form-grid-2, .form-grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .input-group.no-margin {
+      margin-bottom: 0;
+    }
+
+    .input-label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-main);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .input-hint {
+      font-size: 11px;
+      color: var(--text-light);
+      font-weight: 400;
+    }
+
+    .text-input, .select-input {
+      width: 100%;
+      height: 44px;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-family: var(--font-sans);
+      color: var(--text-main);
+      background: #FFFFFF;
+      border: 1.5px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      outline: none;
+      transition: all 0.15s ease;
+    }
+
+    .text-input:focus, .select-input:focus {
+      border-color: var(--primary-600);
+      box-shadow: 0 0 0 3px rgba(66, 106, 86, 0.15);
+    }
+
+    .text-input.has-error {
+      border-color: var(--status-error);
+      background: var(--status-error-bg);
+    }
+
+    .input-error-msg {
+      font-size: 11.5px;
+      color: var(--status-error);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    /* ==========================================================================
+       PAYMENT METHODS (TABS & INTERACTIVE CARD)
+       ========================================================================== */
+    .payment-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 600px) {
+      .payment-tabs {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .payment-tab-btn {
+      padding: 12px 8px;
+      border: 1.5px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      background: var(--surface-subtle);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+    }
+
+    .payment-tab-btn:hover {
+      border-color: var(--border-strong);
+      background: #FFFFFF;
+    }
+
+    .payment-tab-btn.active {
+      background: var(--primary-50);
+      border-color: var(--primary-700);
+      color: var(--primary-900);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Live Interactive Credit Card Preview */
+    .card-visual-wrapper {
+      margin-bottom: 24px;
+      perspective: 1000px;
+    }
+
+    .card-visual {
+      background: linear-gradient(135deg, #1C2E25 0%, #294638 50%, #15241C 100%);
+      color: #FFFFFF;
+      padding: 24px;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 16px 36px -10px rgba(22, 38, 30, 0.45);
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 1.58 / 1;
+      max-width: 380px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .card-visual::before {
+      content: "";
+      position: absolute;
+      top: -30%;
+      right: -20%;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(197, 168, 105, 0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .card-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-chip {
+      width: 44px;
+      height: 32px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #E6C875 0%, #C29F47 100%);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.15);
+    }
+
+    .card-chip::after {
+      content: "";
+      position: absolute;
+      inset: 4px;
+      border: 1px solid rgba(0,0,0,0.2);
+      border-radius: 3px;
+    }
+
+    .card-brand-badge {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      font-style: italic;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .card-number-display {
+      font-family: var(--font-mono);
+      font-size: 19px;
+      letter-spacing: 2px;
+      word-spacing: 4px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+      margin: 14px 0 8px;
+    }
+
+    .card-bottom-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-holder-col {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .card-meta-label {
+      font-size: 8.5px;
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 600;
+    }
+
+    .card-holder-name {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      max-width: 220px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-expiry-val {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    /* Test Preset Fast-Fill Bar */
+    .preset-demo-bar {
+      background: var(--surface-accent);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .preset-demo-text {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .preset-chips {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .preset-btn {
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--primary-800);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .preset-btn:hover {
+      background: var(--primary-50);
+      border-color: var(--primary-500);
+    }
+
+    /* ==========================================================================
+       ORDER SUMMARY SIDEBAR
+       ========================================================================== */
+    .summary-sticky-box {
+      position: sticky;
+      top: 94px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .summary-header {
+      background: linear-gradient(to bottom, #FFFFFF, var(--surface-subtle));
+      padding: 22px 24px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .summary-title {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--primary-900);
+    }
+
+    .summary-body {
+      padding: 24px;
+    }
+
+    .summary-item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      padding-bottom: 14px;
+      margin-bottom: 14px;
+      border-bottom: 1px dashed var(--border-subtle);
+    }
+
+    .summary-item-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .summary-item-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .summary-item-price {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--primary-900);
+    }
+
+    .summary-addons-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .summary-addon-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    .summary-addon-price {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Coupon / Voucher Field */
+    .coupon-box {
+      display: flex;
+      gap: 8px;
+      margin: 18px 0;
+    }
+
+    .coupon-input {
+      flex: 1;
+      height: 38px;
+      padding: 8px 12px;
+      border: 1.5px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+      outline: none;
+    }
+
+    .coupon-input:focus {
+      border-color: var(--primary-600);
+    }
+
+    .coupon-btn {
+      height: 38px;
+      padding: 0 14px;
+      background: var(--surface-subtle);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .coupon-btn:hover {
+      background: var(--surface-accent);
+    }
+
+    .coupon-badge-active {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--status-success-bg);
+      border: 1px solid var(--status-success);
+      color: var(--status-success);
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .btn-remove-coupon {
+      background: none;
+      border: none;
+      color: var(--status-success);
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    /* Pricing Totals Rows */
+    .totals-breakdown {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13.5px;
+      color: var(--text-muted);
+    }
+
+    .total-row.discount-row {
+      color: var(--status-success);
+      font-weight: 600;
+    }
+
+    .total-row.grand-total-row {
+      margin-top: 8px;
+      padding-top: 12px;
+      border-top: 2px solid var(--text-main);
+      color: var(--primary-900);
+      font-size: 19px;
+      font-weight: 700;
+      align-items: baseline;
+    }
+
+    .grand-total-amount {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--primary-900);
+    }
+
+    /* Big Submit Button */
+    .btn-submit-payment {
+      width: 100%;
+      height: 52px;
+      margin-top: 24px;
+      background: var(--primary-700);
+      color: #FFFFFF;
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 14px rgba(38, 62, 50, 0.35);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-submit-payment:hover:not(:disabled) {
+      background: var(--primary-800);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(38, 62, 50, 0.45);
+    }
+
+    .btn-submit-payment:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    .btn-submit-payment:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    /* Trust seals */
+    .trust-seals-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-subtle);
+      text-align: center;
+    }
+
+    .trust-seal-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .trust-seal-icon {
+      color: var(--primary-700);
+    }
+
+    .trust-seal-text {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      font-weight: 600;
+      line-height: 1.25;
+    }
+
+    /* ==========================================================================
+       PROCESSING OVERLAY MODAL
+       ========================================================================== */
+    .processing-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(27, 43, 34, 0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    .processing-card {
+      background: #FFFFFF;
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      max-width: 460px;
+      width: 100%;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .spinner-ring {
+      width: 58px;
+      height: 58px;
+      margin: 0 auto 24px;
+      border: 4px solid var(--primary-100);
+      border-top-color: var(--primary-700);
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+
+    .processing-title {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      color: var(--primary-900);
+      margin-bottom: 8px;
+    }
+
+    .processing-sub {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .processing-steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+      background: var(--surface-subtle);
+      padding: 16px 20px;
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .processing-step-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-light);
+    }
+
+    .processing-step-row.completed {
+      color: var(--status-success);
+      font-weight: 600;
+    }
+
+    .processing-step-row.active {
+      color: var(--primary-800);
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       SUCCESS RECEIPT SCREEN (STATELESS)
+       ========================================================================== */
+    .receipt-container {
+      max-width: 720px;
+      margin: 0 auto;
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .receipt-header-hero {
+      background: linear-gradient(135deg, var(--primary-900), var(--primary-800));
+      color: #FFFFFF;
+      padding: 40px 32px;
+      text-align: center;
+      position: relative;
+    }
+
+    .receipt-check-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 16px;
+      background: var(--status-success);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 8px rgba(21, 128, 61, 0.25);
+    }
+
+    .receipt-hero-title {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .receipt-hero-subtitle {
+      font-size: 14px;
+      opacity: 0.85;
+    }
+
+    .receipt-body {
+      padding: 36px 32px;
+    }
+
+    .receipt-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      background: var(--surface-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-bottom: 28px;
+    }
+
+    .receipt-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .receipt-meta-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--text-light);
+      letter-spacing: 0.05em;
+    }
+
+    .receipt-meta-val {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+      font-family: var(--font-mono);
+    }
+
+    .receipt-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 28px;
+    }
+
+    .receipt-table th {
+      text-align: left;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-light);
+      padding-bottom: 12px;
+      border-bottom: 1.5px solid var(--border-subtle);
+    }
+
+    .receipt-table td {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 14px;
+    }
+
+    .receipt-table td.amount-col {
+      text-align: right;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--primary-900);
+    }
+
+    .receipt-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .btn-receipt {
+      padding: 12px 22px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .btn-receipt.primary {
+      background: var(--primary-700);
+      color: #FFFFFF;
+      border: none;
+    }
+
+    .btn-receipt.primary:hover {
+      background: var(--primary-800);
+    }
+
+    .btn-receipt.secondary {
+      background: #FFFFFF;
+      color: var(--text-main);
+      border: 1.5px solid var(--border-strong);
+    }
+
+    .btn-receipt.secondary:hover {
+      background: var(--surface-subtle);
+    }
+
+    /* ==========================================================================
+       ANIMATIONS & PRINT STYLES
+       ========================================================================== */
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media print {
+      body {
+        background: #FFFFFF !important;
+      }
+      body::before, .portal-header, .receipt-actions, .stateless-banner {
+        display: none !important;
+      }
+      .portal-main {
+        padding: 0 !important;
+      }
+      .receipt-container {
+        border: none !important;
+        box-shadow: none !important;
+        max-width: 100% !important;
+      }
+      .receipt-header-hero {
+        background: #1B2B22 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+
+    /* ==========================================================================
+       PORTAL ARCHITECTURE MODE SWITCHER
+       ========================================================================== */
+    .portal-mode-toggle-bar {
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--border);
+      padding: 10px 24px;
+      font-size: 12px;
+      position: sticky;
+      top: 65px;
+      z-index: 90;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+
+    .mode-toggle-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .mode-toggle-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 11px;
+    }
+
+    .mode-toggle-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .mode-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+      transition: all 0.2s ease;
+    }
+
+    .mode-nav-btn:hover {
+      background: #FFFFFF;
+      color: var(--text-main);
+      border-color: var(--border-strong);
+    }
+
+    .mode-nav-btn.active {
+      background: #E8F3EE;
+      color: #1B4D3E;
+      border-color: #A3D1BE;
+      font-weight: 700;
+    }
+
+    .mode-status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .mode-status-dot.green {
+      background: #1B4D3E;
+      box-shadow: 0 0 0 2px rgba(27, 77, 62, 0.25);
+    }
+
+    .mode-status-dot.gray {
+      background: #94A3B8;
+    }
+
+    .mode-badge-tag {
+      font-size: 10px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: #1B4D3E;
+      color: #FFFFFF;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .mode-badge-tag.subtle {
+      background: #E2E8F0;
+      color: #475569;
+    }
+
+    /* ==========================================================================
+       SIMULATED BACKGROUND TASK LOADING SCREEN OVERLAY
+       ========================================================================== */
+    .bg-task-loading-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(248, 250, 248, 0.96);
+      backdrop-filter: blur(8px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    .loading-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: 0 24px 48px -12px rgba(27, 43, 34, 0.12), 0 0 0 1px rgba(0,0,0,0.02);
+      width: 100%;
+      max-width: 480px;
+      padding: 36px 32px;
+      text-align: center;
+    }
+
+    .loading-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      background: #E8F3EE;
+      color: #1B4D3E;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 20px;
+    }
+
+    .loading-badge-pulse {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #1B4D3E;
+      animation: pulse 1.5s infinite;
+    }
+
+    .loading-icon-wrapper {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 20px;
+      border-radius: 20px;
+      background: #E8F3EE;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .loading-pulse-ring {
+      position: absolute;
+      inset: -4px;
+      border-radius: 24px;
+      border: 2px solid #1B4D3E;
+      opacity: 0.3;
+      animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+
+    .loading-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .loading-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      min-height: 20px;
+    }
+
+    .loading-progress-track {
+      height: 8px;
+      background: var(--surface-subtle);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .loading-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #1B4D3E 0%, #2D8A68 100%);
+      border-radius: 999px;
+      transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .loading-progress-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .loading-tasks-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      text-align: left;
+    }
+
+    .loading-task-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: var(--surface-subtle);
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .loading-task-item.active {
+      background: #FFFFFF;
+      border-color: #A3D1BE;
+      box-shadow: 0 4px 12px rgba(27, 77, 62, 0.06);
+    }
+
+    .loading-task-item.done {
+      background: #F8FAF9;
+      opacity: 0.9;
+    }
+
+    .task-status-icon {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #1B4D3E;
+    }
+
+    .task-spinner {
+      width: 14px;
+      height: 14px;
+      border: 2px solid #D1E5DC;
+      border-top-color: #1B4D3E;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    .task-pending-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #CBD5E1;
+    }
+
+    .task-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .task-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.3;
+    }
+
+    .task-detail {
+      font-size: 11px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.9); }
+    }
+
+    @keyframes ping {
+      75%, 100% { transform: scale(1.15); opacity: 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app" v-cloak>
+    
+    <!-- ====================================================================
+         SIMULATED BACKGROUND TASK LOADING PAGE
+         ==================================================================== -->
+    <div v-if="isLoadingData" class="bg-task-loading-overlay">
+      <div class="loading-card animate-fade">
+        <div class="loading-badge">
+          <span class="loading-badge-pulse"></span>
+          <span>Background Data Synchronization</span>
+        </div>
+
+        <div class="loading-icon-wrapper">
+          <div class="loading-pulse-ring"></div>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1B4D3E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" x2="8" y1="13" y2="13"/>
+            <line x1="16" x2="8" y1="17" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </div>
+
+        <h3 class="loading-title">Initializing Stateful Clinical Ledger</h3>
+        <p class="loading-subtitle">{{ loadingStatusText }}</p>
+
+        <!-- Progress Bar -->
+        <div class="loading-progress-track">
+          <div class="loading-progress-bar" :style="{ width: loadingProgress + '%' }"></div>
+        </div>
+        <div class="loading-progress-meta">
+          <span>Target: /api/portal/state</span>
+          <span>{{ loadingProgress }}% Complete</span>
+        </div>
+
+        <!-- Stepped background task checklist -->
+        <div class="loading-tasks-list">
+          <div class="loading-task-item" :class="{ active: loadingStep === 1, done: loadingStep > 1 }">
+            <div class="task-status-icon">
+              <svg v-if="loadingStep > 1" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              <div v-else-if="loadingStep === 1" class="task-spinner"></div>
+              <div v-else class="task-pending-dot"></div>
+            </div>
+            <div class="task-text">
+              <div class="task-title">Connect to Accounting Registry</div>
+              <div class="task-detail">Calling /api/portal/state endpoint to establish connection</div>
+            </div>
+          </div>
+
+          <div class="loading-task-item" :class="{ active: loadingStep === 2, done: loadingStep > 2 }">
+            <div class="task-status-icon">
+              <svg v-if="loadingStep > 2" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              <div v-else-if="loadingStep === 2" class="task-spinner"></div>
+              <div v-else class="task-pending-dot"></div>
+            </div>
+            <div class="task-text">
+              <div class="task-title">Load Itemized Invoices & Balances</div>
+              <div class="task-detail">Querying outstanding diagnostic evaluations & CPT claims</div>
+            </div>
+          </div>
+
+          <div class="loading-task-item" :class="{ active: loadingStep === 3, done: loadingStep > 3 }">
+            <div class="task-status-icon">
+              <svg v-if="loadingStep > 3" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              <div v-else-if="loadingStep === 3" class="task-spinner"></div>
+              <div v-else class="task-pending-dot"></div>
+            </div>
+            <div class="task-text">
+              <div class="task-title">Sync Vaulted Cards & NPI Verification</div>
+              <div class="task-detail">Decoupled zero-knowledge tokenization & provider #1942801928 audit</div>
+            </div>
+          </div>
+
+          <div class="loading-task-item" :class="{ active: loadingStep === 4, done: loadingStep >= 4 }">
+            <div class="task-status-icon">
+              <svg v-if="loadingStep >= 4" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              <div v-else class="task-pending-dot"></div>
+            </div>
+            <div class="task-text">
+              <div class="task-title">Ready for Settlement</div>
+              <div class="task-detail">Ledger unlocked with real-time multi-currency support</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         STANDALONE PUBLIC PORTAL HEADER (NO AUTH / NO SIDEBAR)
+         ==================================================================== -->
+    <header class="portal-header">
+      <div class="portal-header-inner">
+        <a href="index.html" class="brand-cluster" title="NeuroPath Clinic">
+          <div class="brand-mark">
+            <!-- Medical / Neurological Brain Leaf Icon -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a5 5 0 0 0-5 5c0 .74.16 1.44.45 2.08A5 5 0 0 0 4 14a5 5 0 0 0 3.78 4.88A5 5 0 0 0 12 22a5 5 0 0 0 4.22-3.12A5 5 0 0 0 20 14a5 5 0 0 0-3.45-4.92A5 5 0 0 0 17 7a5 5 0 0 0-5-5Z"/>
+              <path d="M12 2v20"/>
+            </svg>
+          </div>
+          <div>
+            <div class="brand-title">NeuroPath Clinic</div>
+            <div class="brand-subtitle">Clinical Diagnostic & Intervention Billing</div>
+          </div>
+        </a>
+
+        <div class="header-actions">
+          <div class="header-security-badge" title="Stateless 256-Bit SSL Encryption">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            <span>256-Bit Encrypted Portal</span>
+          </div>
+
+          <!-- Currency Selector -->
+          <div class="currency-pill-selector">
+            <button 
+              type="button" 
+              class="currency-btn" 
+              :class="{ active: currentCurrency === 'USD' }"
+              @click="setCurrency('USD')">USD $</button>
+            <button 
+              type="button" 
+              class="currency-btn" 
+              :class="{ active: currentCurrency === 'NGN' }"
+              @click="setCurrency('NGN')">NGN ₦</button>
+            <button 
+              type="button" 
+              class="currency-btn" 
+              :class="{ active: currentCurrency === 'GBP' }"
+              @click="setCurrency('GBP')">GBP £</button>
+            <button 
+              type="button" 
+              class="currency-btn" 
+              :class="{ active: currentCurrency === 'EUR' }"
+              @click="setCurrency('EUR')">EUR €</button>
+          </div>
+
+          <a href="index.html" class="btn-exit-portal" title="Return to parent dashboard">
+            <span>Portal Home</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m9 18 6-6-6-6"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- ====================================================================
+         PORTAL ARCHITECTURE MODE SWITCHER (STATEFUL vs STATELESS)
+         ==================================================================== -->
+    <div class="portal-mode-toggle-bar">
+      <div class="mode-toggle-container">
+        <div class="mode-toggle-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" x2="22" y1="12" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          <span>Payment Gateway Mode:</span>
+        </div>
+        <div class="mode-toggle-actions">
+          <a href="payment.html" class="mode-nav-btn active" title="Stateful clinical ledger with persistent invoice tracking">
+            <span class="mode-status-dot green"></span>
+            <span class="mode-btn-text">Stateful Portal & Ledger</span>
+            <span class="mode-badge-tag">Active Mode</span>
+          </a>
+          <a href="payment-stateless.html" class="mode-nav-btn" title="Stateless direct checkout gateway with zero account storage">
+            <span class="mode-status-dot gray"></span>
+            <span class="mode-btn-text">Stateless Direct Checkout</span>
+            <span class="mode-badge-tag subtle">Zero-Footprint</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         MAIN VIEWPORT
+         ==================================================================== -->
+    <main class="portal-main">
+
+      <!-- ================================================================
+           STATEFUL PORTAL NAVIGATION TABS
+           ================================================================ -->
+      <nav class="portal-nav-bar">
+        <button 
+          type="button" 
+          class="portal-tab-btn" 
+          :class="{ active: currentTab === 'checkout' }"
+          @click="switchTab('checkout')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <span>Pay / Settle Invoice</span>
+        </button>
+
+        <button 
+          type="button" 
+          class="portal-tab-btn" 
+          :class="{ active: currentTab === 'ledger' }"
+          @click="switchTab('ledger')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" x2="8" y1="13" y2="13"/>
+            <line x1="16" x2="8" y1="17" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+          <span>Invoices & Ledger</span>
+          <span v-if="pendingInvoicesCount > 0" class="tab-badge-pending">{{ pendingInvoicesCount }}</span>
+        </button>
+
+        <button 
+          type="button" 
+          class="portal-tab-btn" 
+          :class="{ active: currentTab === 'saved_methods' }"
+          @click="switchTab('saved_methods')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="20" height="14" x="2" y="5" rx="2"/>
+            <line x1="2" x2="22" y1="10" y2="10"/>
+          </svg>
+          <span>Saved Payment Profiles ({{ savedPaymentMethods.length }})</span>
+        </button>
+
+        <button 
+          type="button" 
+          class="portal-tab-btn" 
+          :class="{ active: currentTab === 'lookup' }"
+          @click="switchTab('lookup')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" x2="16.65" y1="21" y2="16.65"/>
+          </svg>
+          <span>Receipt & Invoice Verification</span>
+        </button>
+      </nav>
+
+      <!-- ================================================================
+           STATEFUL CLINICAL ACCOUNT BANNER (GLOBAL)
+           ================================================================ -->
+      <div class="stateful-banner">
+        <div class="stateful-banner-main">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap;">
+            <span class="state-indicator-pill">
+              <span class="pulse-dot"></span>
+              <span>Stateful Cloud Sync Active</span>
+            </span>
+            <span class="state-npi-tag">Clinic NPI: #1942801928</span>
+            <span class="state-audit-tag">IRS Code 213(d) Eligible</span>
+          </div>
+          <h1 class="stateful-banner-title">Stateful Clinical Billing Portal & Ledger</h1>
+          <p class="stateful-banner-desc">
+            Directly connected to NeuroPath Clinic's persistent ledger. All itemized diagnostic invoices, settled transaction receipts, and client billing profiles are safely synchronized.
+          </p>
+        </div>
+
+        <div class="stateful-summary-chips">
+          <div class="state-chip-box">
+            <span class="chip-kicker">Active Account</span>
+            <span class="chip-value" style="font-size: 13.5px;">{{ client.payerName || 'Patient Payer' }}</span>
+            <span class="chip-sub">Ward: {{ client.patientName || 'Clinical Patient' }}</span>
+          </div>
+          <div class="state-chip-box pending-box">
+            <span class="chip-kicker">Pending Invoices</span>
+            <span class="chip-value">{{ formatPrice(totalPendingUsd) }}</span>
+            <span class="chip-sub" style="color: #B45309; font-weight: 600;">
+              {{ pendingInvoicesCount }} invoice{{ pendingInvoicesCount === 1 ? '' : 's' }} awaiting payment
+            </span>
+          </div>
+          <div class="state-chip-box settled-box">
+            <span class="chip-kicker">Settled to Date</span>
+            <span class="chip-value">{{ formatPrice(totalSettledUsd) }}</span>
+            <span class="chip-sub" style="color: #047857; font-weight: 600;">
+              {{ settledInvoicesCount }} verified receipt{{ settledInvoicesCount === 1 ? '' : 's' }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================================
+           TAB 1: CHECKOUT & PAYMENT FLOW
+           ================================================================ -->
+      <div v-if="currentTab === 'checkout'">
+        
+        <!-- Inner View State: Checkout Form -->
+        <div v-if="viewState === 'checkout'">
+          
+          <div class="payment-layout-grid">
+            
+            <!-- LEFT COLUMN: FORM CONTROLS -->
+            <div>
+              
+              <!-- SECTION 1: SERVICE / INVOICE SELECTION -->
+              <div class="payment-card-box">
+                <div class="section-title">
+                  <span class="section-num">1</span>
+                  <span>Select Clinical Invoice or Diagnostic Service</span>
+                </div>
+                <p class="section-subtitle">Settle an outstanding clinical invoice from your records or order a new comprehensive evaluation.</p>
+
+                <!-- Invoice Source Switcher -->
+                <div class="invoice-source-toggle">
+                  <button 
+                    type="button" 
+                    class="source-toggle-btn" 
+                    :class="{ active: invoiceSource === 'existing' }"
+                    @click="setInvoiceSource('existing')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                      <polyline points="14 2 14 8 20 8"/>
+                      <line x1="16" x2="8" y1="13" y2="13"/>
+                      <line x1="16" x2="8" y1="17" y2="17"/>
+                    </svg>
+                    <span>Settle Pending Invoice ({{ pendingInvoices.length }})</span>
+                  </button>
+                  <button 
+                    type="button" 
+                    class="source-toggle-btn" 
+                    :class="{ active: invoiceSource === 'new' }"
+                    @click="setInvoiceSource('new')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"/>
+                      <line x1="12" x2="12" y1="8" y2="16"/>
+                      <line x1="8" x2="16" y1="12" y2="12"/>
+                    </svg>
+                    <span>New Evaluation Package / Retainer</span>
+                  </button>
+                </div>
+
+                <!-- OPTION A: PENDING INVOICE SELECTOR -->
+                <div v-if="invoiceSource === 'existing'">
+                  <div v-if="pendingInvoices.length === 0" style="padding: 24px; text-align: center; background: var(--surface-subtle); border-radius: var(--radius-md); border: 1px dashed var(--border-subtle); margin-bottom: 20px;">
+                    <div style="font-weight: 700; color: var(--primary-900); margin-bottom: 4px;">No Pending Invoices on File</div>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">All clinical evaluations for this account are fully settled and verified.</p>
+                    <button type="button" class="btn-receipt secondary" style="font-size: 12px; padding: 6px 14px;" @click="setInvoiceSource('new')">
+                      Order New Diagnostic Service Package
+                    </button>
+                  </div>
+
+                  <div v-else style="margin-bottom: 20px;">
+                    <div style="font-size: 12.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px;">
+                      Select Pending Invoice to Settle:
+                    </div>
+                    <div 
+                      v-for="inv in pendingInvoices" 
+                      :key="inv.id"
+                      class="pending-inv-card"
+                      :class="{ selected: selectedPendingInvoiceId === inv.id }"
+                      @click="selectPendingInvoice(inv)">
+                      <div style="display: flex; align-items: center; gap: 12px;">
+                        <div class="radio-circle"></div>
+                        <div>
+                          <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="font-family: var(--font-mono); font-weight: 700; color: var(--primary-900); font-size: 13.5px;">{{ inv.id }}</span>
+                            <span class="badge-pending">DUE: {{ inv.dueDate }}</span>
+                          </div>
+                          <div style="font-weight: 600; font-size: 13px; color: var(--text-main); margin-top: 2px;">
+                            {{ inv.serviceName }}
+                          </div>
+                          <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 2px;">
+                            Patient: <strong>{{ inv.patientName }}</strong> &bull; Payer: {{ inv.payerName }} &bull; CPT: {{ inv.cptCode }}
+                          </div>
+                        </div>
+                      </div>
+                      <div style="text-align: right;">
+                        <div style="font-family: var(--font-mono); font-size: 18px; font-weight: 800; color: var(--primary-900);">
+                          {{ formatPrice(inv.amountUsd) }}
+                        </div>
+                        <div style="font-size: 11px; color: var(--text-muted);">
+                          {{ currentCurrency === 'USD' ? 'USD $' : currentCurrencyConfig.code + ' ' + currentCurrencyConfig.symbol }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- OPTION B: SERVICE CATALOG (when invoiceSource === 'new') -->
+                <div v-if="invoiceSource === 'new'" class="service-options">
+                  <div 
+                    v-for="srv in serviceCatalog" 
+                    :key="srv.id"
+                    class="service-option-item"
+                    :class="{ selected: selectedServiceId === srv.id }"
+                    @click="selectService(srv.id)">
+                    <div class="radio-circle"></div>
+                    <div class="service-content">
+                      <div class="service-head-row">
+                        <div class="service-name">{{ srv.name }}</div>
+                        <div class="service-price">{{ formatPrice(srv.priceUsd) }}</div>
+                      </div>
+                      <div class="service-desc">{{ srv.description }}</div>
+                      <span class="service-cpt-tag">{{ srv.code }}</span>
+                    </div>
+                  </div>
+
+                  <!-- Custom Direct Invoice Option -->
+                  <div 
+                    class="service-option-item"
+                    :class="{ selected: selectedServiceId === 'custom' }"
+                    @click="selectService('custom')">
+                    <div class="radio-circle"></div>
+                    <div class="service-content">
+                      <div class="service-head-row">
+                        <div class="service-name">Custom Clinical Invoice / Retainer Balance</div>
+                        <div class="service-price">{{ formatPrice(customAmount) }}</div>
+                      </div>
+                      <div class="service-desc">Direct payment for ad-hoc specialist hours, school district IEP reviews, or customized clinician contracts.</div>
+                      <span class="service-cpt-tag">CUSTOM-DIRECT-PAY</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Custom Invoice Input Drawer -->
+              <div v-if="selectedServiceId === 'custom'" class="custom-service-fields">
+                <div class="input-group no-margin">
+                  <label class="input-label">Service Description / Reason</label>
+                  <input 
+                    type="text" 
+                    v-model="customDescription" 
+                    class="text-input" 
+                    placeholder="e.g., Clinical Observation & School Meeting">
+                </div>
+                <div class="input-group no-margin">
+                  <label class="input-label">Invoice Amount ({{ currentCurrencyConfig.symbol }} {{ currentCurrency }})</label>
+                  <input 
+                    type="number" 
+                    v-model.number="customAmount" 
+                    min="10" 
+                    step="5" 
+                    class="text-input" 
+                    :placeholder="currentCurrency === 'NGN' ? '400,000' : '250.00'">
+                </div>
+              </div>
+
+              <!-- Optional Add-ons -->
+              <div class="add-ons-heading">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 5v14M5 12h14"/>
+                </svg>
+                <span>Optional Service Enhancements</span>
+              </div>
+
+              <div 
+                v-for="addon in availableAddons" 
+                :key="addon.id"
+                class="add-on-row"
+                :class="{ checked: isAddonSelected(addon.id) }"
+                @click="toggleAddon(addon.id)">
+                <div class="add-on-label">
+                  <input type="checkbox" :checked="isAddonSelected(addon.id)" style="pointer-events: none;">
+                  <div>
+                    <span>{{ addon.name }}</span>
+                    <div style="font-size: 11px; color: var(--text-muted); font-weight: 400;">{{ addon.description }}</div>
+                  </div>
+                </div>
+                <div class="add-on-price">+{{ formatPrice(addon.priceUsd) }}</div>
+              </div>
+            </div>
+
+            <!-- SECTION 2: PATIENT & PAYER DETAILS -->
+            <div class="payment-card-box">
+              <div class="section-title">
+                <span class="section-num">2</span>
+                <span>Patient & Billing Contact</span>
+              </div>
+              <p class="section-subtitle">Enter contact details for verifiable receipt generation and clinical accounting records.</p>
+
+              <div class="form-grid-2">
+                <div class="input-group no-margin">
+                  <label class="input-label">Payer / Guardian Full Name *</label>
+                  <input 
+                    type="text" 
+                    v-model="client.payerName" 
+                    class="text-input" 
+                    :class="{ 'has-error': errors.payerName }"
+                    placeholder="e.g., Sarah Jenkins">
+                  <span v-if="errors.payerName" class="input-error-msg">{{ errors.payerName }}</span>
+                </div>
+
+                <div class="input-group no-margin">
+                  <label class="input-label">Patient / Ward Full Name *</label>
+                  <input 
+                    type="text" 
+                    v-model="client.patientName" 
+                    class="text-input" 
+                    :class="{ 'has-error': errors.patientName }"
+                    placeholder="e.g., Leo Jenkins">
+                  <span v-if="errors.patientName" class="input-error-msg">{{ errors.patientName }}</span>
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="input-group no-margin">
+                  <label class="input-label">Email for Tax-Deductible Receipt *</label>
+                  <input 
+                    type="email" 
+                    v-model="client.email" 
+                    class="text-input" 
+                    :class="{ 'has-error': errors.email }"
+                    placeholder="parent@example.com">
+                  <span v-if="errors.email" class="input-error-msg">{{ errors.email }}</span>
+                </div>
+
+                <div class="input-group no-margin">
+                  <label class="input-label">Phone Number <span class="input-hint">Optional</span></label>
+                  <input 
+                    type="tel" 
+                    v-model="client.phone" 
+                    class="text-input" 
+                    placeholder="+1 (555) 234-5678">
+                </div>
+              </div>
+
+              <div class="input-group">
+                <label class="input-label">Billing Street Address *</label>
+                <input 
+                  type="text" 
+                  v-model="client.address" 
+                  class="text-input" 
+                  :class="{ 'has-error': errors.address }"
+                  placeholder="742 Evergreen Terrace, Suite 100">
+                <span v-if="errors.address" class="input-error-msg">{{ errors.address }}</span>
+              </div>
+
+              <div class="form-grid-3">
+                <div class="input-group no-margin">
+                  <label class="input-label">City *</label>
+                  <input type="text" v-model="client.city" class="text-input" placeholder="Springfield">
+                </div>
+                <div class="input-group no-margin">
+                  <label class="input-label">State / Prov *</label>
+                  <input type="text" v-model="client.state" class="text-input" placeholder="OR">
+                </div>
+                <div class="input-group no-margin">
+                  <label class="input-label">Postal Code *</label>
+                  <input 
+                    type="text" 
+                    v-model="client.zip" 
+                    class="text-input" 
+                    :class="{ 'has-error': errors.zip }"
+                    placeholder="97477">
+                  <span v-if="errors.zip" class="input-error-msg">{{ errors.zip }}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 3: PAYMENT METHOD -->
+            <div class="payment-card-box">
+              <div class="section-title">
+                <span class="section-num">3</span>
+                <span>Payment Method & Authorization</span>
+              </div>
+              <p class="section-subtitle">All transactions are tokenized via zero-knowledge PCI-DSS Level 1 encryption and recorded to the patient ledger.</p>
+
+              <!-- SAVED PROFILES SELECTOR (if profiles exist on file) -->
+              <div v-if="savedPaymentMethods.length > 0" style="margin-bottom: 20px;">
+                <div style="font-size: 12.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px;">
+                  Saved Clinical Payment Profiles:
+                </div>
+                <div class="saved-methods-selector">
+                  <div 
+                    v-for="m in savedPaymentMethods" 
+                    :key="m.id"
+                    class="saved-method-option"
+                    :class="{ selected: selectedSavedMethodId === m.id }"
+                    @click="selectSavedMethod(m)">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                      <div class="radio-circle"></div>
+                      <div>
+                        <div style="font-weight: 600; font-size: 13.5px; color: var(--primary-900);">
+                          {{ m.brand }} •••• {{ m.last4 }}
+                          <span v-if="m.isDefault" style="background: rgba(38,62,50,0.1); color: var(--primary-800); font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 6px;">DEFAULT</span>
+                        </div>
+                        <div style="font-size: 11.5px; color: var(--text-muted);">
+                          {{ m.holderName }} &bull; Expires {{ m.expiry }}
+                        </div>
+                      </div>
+                    </div>
+                    <div style="font-size: 12px; font-weight: 600; color: var(--accent-sage);">
+                      Verified Token
+                    </div>
+                  </div>
+
+                  <!-- New Method Option -->
+                  <div 
+                    class="saved-method-option"
+                    :class="{ selected: selectedSavedMethodId === 'new' }"
+                    @click="selectSavedMethod('new')">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                      <div class="radio-circle"></div>
+                      <div>
+                        <div style="font-weight: 600; font-size: 13.5px; color: var(--primary-900);">
+                          + Enter New Card or Alternative Payment Method
+                        </div>
+                        <div style="font-size: 11.5px; color: var(--text-muted);">
+                          Use a different card, digital wallet, or local bank transfer
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Payment Form (visible if 'new' is selected or no saved methods) -->
+              <div v-if="selectedSavedMethodId === 'new'">
+                <!-- Payment Tabs -->
+                <div class="payment-tabs">
+                <button 
+                  type="button" 
+                  class="payment-tab-btn" 
+                  :class="{ active: paymentMethod === 'card' }"
+                  @click="paymentMethod = 'card'">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="20" height="14" x="2" y="5" rx="2"/>
+                    <line x1="2" x2="22" y1="10" y2="10"/>
+                  </svg>
+                  <span>Credit / Debit</span>
+                </button>
+
+                <button 
+                  type="button" 
+                  class="payment-tab-btn" 
+                  :class="{ active: paymentMethod === 'hsa' }"
+                  @click="paymentMethod = 'hsa'">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                  </svg>
+                  <span>HSA / FSA Card</span>
+                </button>
+
+                <button 
+                  type="button" 
+                  class="payment-tab-btn" 
+                  :class="{ active: paymentMethod === 'wallet' }"
+                  @click="paymentMethod = 'wallet'">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="18" height="18" x="3" y="3" rx="2"/>
+                    <path d="M7 12h10M12 7v10"/>
+                  </svg>
+                  <span>Digital Wallet</span>
+                </button>
+
+                <button 
+                  type="button" 
+                  class="payment-tab-btn" 
+                  :class="{ active: paymentMethod === 'ach' }"
+                  @click="paymentMethod = 'ach'">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <polyline points="9 22 9 12 15 12 15 22"/>
+                  </svg>
+                  <span>Bank Wire/ACH</span>
+                </button>
+              </div>
+
+              <!-- DEMO TEST CREDENTIALS BAR -->
+              <div class="preset-demo-bar">
+                <span class="preset-demo-text">Quick Test Fill:</span>
+                <div class="preset-chips">
+                  <button type="button" class="preset-btn" @click="fillDemo('visa')">Test Visa</button>
+                  <button type="button" class="preset-btn" @click="fillDemo('mastercard')">Test Mastercard</button>
+                  <button type="button" class="preset-btn" v-if="currentCurrency === 'NGN'" @click="fillDemo('verve')" style="color: #263E32; font-weight: 700;">Test Verve (NGN)</button>
+                  <button type="button" class="preset-btn" v-if="currentCurrency === 'NGN'" @click="fillDemo('ngn_transfer')" style="color: #263E32; font-weight: 700;">Test Zenith (NUBAN)</button>
+                  <button type="button" class="preset-btn" @click="fillDemo('hsa')">Test HSA Health</button>
+                  <button type="button" class="preset-btn" @click="clearDemo()">Clear</button>
+                </div>
+              </div>
+
+              <!-- METHOD: CARD OR HSA -->
+              <div v-if="paymentMethod === 'card' || paymentMethod === 'hsa'">
+                <!-- Live Interactive Card Preview -->
+                <div class="card-visual-wrapper">
+                  <div class="card-visual">
+                    <div class="card-top-row">
+                      <div class="card-chip"></div>
+                      <div class="card-brand-badge">{{ detectedBrandName }}</div>
+                    </div>
+                    
+                    <div class="card-number-display">
+                      {{ displayCardNumber }}
+                    </div>
+
+                    <div class="card-bottom-row">
+                      <div class="card-holder-col">
+                        <span class="card-meta-label">Cardholder</span>
+                        <span class="card-holder-name">{{ client.payerName || 'YOUR FULL NAME' }}</span>
+                      </div>
+                      <div class="card-holder-col" style="align-items: flex-end;">
+                        <span class="card-meta-label">Expires</span>
+                        <span class="card-expiry-val">{{ card.expiry || 'MM/YY' }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div v-if="paymentMethod === 'hsa'" style="margin-bottom: 16px; padding: 12px 14px; background: var(--status-success-bg); border-left: 3px solid var(--status-success); border-radius: var(--radius-sm); font-size: 12.5px; color: var(--status-success);">
+                  <strong>HSA/FSA Eligible Service:</strong> NeuroPath diagnostic evaluations & intervention therapies are eligible medical expenses under IRS Code 213(d). Clinical NPI: #1942801928.
+                </div>
+
+                <!-- Card Number Input -->
+                <div class="input-group">
+                  <label class="input-label">
+                    <span>Card Number *</span>
+                    <span class="input-hint">{{ detectedBrandName }}</span>
+                  </label>
+                  <div style="position: relative;">
+                    <input 
+                      type="text" 
+                      v-model="card.number" 
+                      @input="handleCardNumberInput"
+                      maxlength="19"
+                      class="text-input" 
+                      :class="{ 'has-error': errors.cardNumber }"
+                      placeholder="4242 •••• •••• 4242"
+                      style="font-family: var(--font-mono); font-size: 15px; letter-spacing: 1px;">
+                  </div>
+                  <span v-if="errors.cardNumber" class="input-error-msg">{{ errors.cardNumber }}</span>
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="input-group no-margin">
+                    <label class="input-label">Expiration Date (MM/YY) *</label>
+                    <input 
+                      type="text" 
+                      v-model="card.expiry" 
+                      @input="handleExpiryInput"
+                      maxlength="5"
+                      class="text-input" 
+                      :class="{ 'has-error': errors.cardExpiry }"
+                      placeholder="MM/YY"
+                      style="font-family: var(--font-mono);">
+                    <span v-if="errors.cardExpiry" class="input-error-msg">{{ errors.cardExpiry }}</span>
+                  </div>
+
+                  <div class="input-group no-margin">
+                    <label class="input-label">
+                      <span>CVV / CVC *</span>
+                      <span class="input-hint">3 or 4 digits</span>
+                    </label>
+                    <input 
+                      type="password" 
+                      v-model="card.cvv" 
+                      maxlength="4"
+                      class="text-input" 
+                      :class="{ 'has-error': errors.cardCvv }"
+                      placeholder="•••"
+                      style="font-family: var(--font-mono); letter-spacing: 2px;">
+                    <span v-if="errors.cardCvv" class="input-error-msg">{{ errors.cardCvv }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- METHOD: DIGITAL WALLET -->
+              <div v-else-if="paymentMethod === 'wallet'" style="padding: 20px; background: var(--surface-subtle); border-radius: var(--radius-md); text-align: center; border: 1px dashed var(--border-subtle);">
+                <div style="font-size: 14px; font-weight: 600; margin-bottom: 6px;">Express Checkout with Mobile & Digital Gateways</div>
+                <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 16px;">
+                  Authorize instantly using your biometric passkey or selected local payment network.
+                </p>
+                <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+                  <button v-if="currentCurrency === 'NGN'" type="button" class="btn-receipt secondary" @click="handleWalletPay('Paystack')" style="background:#0BA4DB; color:#FFFFFF; border:none; border-radius: 8px; font-weight:600;">
+                    <span>Pay with Paystack</span>
+                  </button>
+                  <button v-if="currentCurrency === 'NGN'" type="button" class="btn-receipt secondary" @click="handleWalletPay('Flutterwave')" style="background:#F5A623; color:#FFFFFF; border:none; border-radius: 8px; font-weight:600;">
+                    <span>Pay with Flutterwave</span>
+                  </button>
+                  <button type="button" class="btn-receipt secondary" @click="handleWalletPay('Apple Pay')" style="background:#000000; color:#FFFFFF; border:none; border-radius: 8px;">
+                    <span>Pay with Apple Pay</span>
+                  </button>
+                  <button type="button" class="btn-receipt secondary" @click="handleWalletPay('Google Pay')" style="background:#FFFFFF; color:#24221D; border: 1.5px solid var(--border-strong); border-radius: 8px;">
+                    <span>Pay with GPay</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- METHOD: ACH BANK WIRE -->
+              <div v-else-if="paymentMethod === 'ach'" style="padding: 16px; background: var(--surface-subtle); border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+                <div v-if="currentCurrency === 'NGN'" style="margin-bottom: 12px; padding: 10px 12px; background: rgba(38, 62, 50, 0.08); border-radius: 8px; font-size: 11.5px; color: #263E32; line-height: 1.4;">
+                  <strong>NIBSS Instant Payment (NIP) / Nigerian Bank Wire:</strong> Direct instant electronic settlement via Central Bank of Nigeria approved clearing network.
+                </div>
+                <div class="input-group">
+                  <label class="input-label">{{ currentCurrency === 'NGN' ? 'Nigerian Commercial Bank Name' : 'Financial Institution Name' }}</label>
+                  <input type="text" v-model="ach.bankName" class="text-input" :placeholder="currentCurrency === 'NGN' ? 'Zenith Bank, GTBank, Access Bank, First Bank' : 'JPMorgan Chase, Bank of America, etc.'">
+                </div>
+                <div class="form-grid-2">
+                  <div class="input-group no-margin">
+                    <label class="input-label">{{ currentCurrency === 'NGN' ? 'Sort / CBN Clearing Code' : 'Routing Transit Number (9 Digits)' }}</label>
+                    <input type="text" v-model="ach.routingNumber" maxlength="9" class="text-input" :placeholder="currentCurrency === 'NGN' ? '057150013' : '021000021'" style="font-family: var(--font-mono);">
+                  </div>
+                  <div class="input-group no-margin">
+                    <label class="input-label">{{ currentCurrency === 'NGN' ? 'NUBAN Account Number (10 Digits)' : 'Account Number' }}</label>
+                    <input type="password" v-model="ach.accountNumber" class="text-input" :placeholder="currentCurrency === 'NGN' ? '1018294012' : '••••••••9812'" style="font-family: var(--font-mono);">
+                  </div>
+                </div>
+
+                <!-- Option to save card -->
+                <label style="display: flex; align-items: center; gap: 8px; margin-top: 16px; font-size: 13px; color: var(--text-main); cursor: pointer;">
+                  <input type="checkbox" v-model="saveNewMethodOnPay" style="accent-color: var(--primary-700); width: 16px; height: 16px;">
+                  <span>Securely store this payment method on file for future clinical evaluations</span>
+                </label>
+              </div>
+
+              <!-- Vaulted Token Summary (when existing saved method is chosen) -->
+              <div v-else style="padding: 18px 20px; background: rgba(142, 151, 117, 0.08); border-left: 3.5px solid var(--accent-sage); border-radius: var(--radius-sm); margin-bottom: 16px;">
+                <div style="display: flex; align-items: center; gap: 8px; font-weight: 700; color: var(--primary-900); font-size: 13.5px;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                  <span>Zero-Knowledge Tokenized Settlement</span>
+                </div>
+                <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 4px; line-height: 1.4;">
+                  Payment will be authorized using {{ currentSelectedSavedMethod ? currentSelectedSavedMethod.brand + ' ending in •••• ' + currentSelectedSavedMethod.last4 : 'saved card' }} on file for {{ client.payerName }}.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- RIGHT COLUMN: ORDER & INVOICE SUMMARY -->
+          <div>
+            <div class="summary-sticky-box">
+              <div class="summary-header">
+                <div class="summary-title">Invoice Summary</div>
+                <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">
+                  Itemized clinical accounting summary
+                </div>
+              </div>
+
+              <div class="summary-body">
+                
+                <!-- Main Service Row -->
+                <div class="summary-item-row">
+                  <div>
+                    <div class="summary-item-name">{{ currentServiceName }}</div>
+                    <div class="summary-item-desc">{{ currentServiceCode }}</div>
+                  </div>
+                  <div class="summary-item-price">{{ formatPrice(baseServicePrice) }}</div>
+                </div>
+
+                <!-- Active Addons -->
+                <div v-if="selectedAddons.length > 0" class="summary-addons-list">
+                  <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-light); letter-spacing: 0.05em; margin-bottom: 4px;">
+                    Selected Enhancements:
+                  </div>
+                  <div v-for="addon in selectedAddons" :key="addon.id" class="summary-addon-item">
+                    <span>+ {{ addon.name }}</span>
+                    <span class="summary-addon-price">{{ formatPrice(addon.priceUsd) }}</span>
+                  </div>
+                </div>
+
+                <!-- Discount Promo Voucher Code -->
+                <div v-if="!appliedDiscount">
+                  <div class="coupon-box">
+                    <input 
+                      type="text" 
+                      v-model="discountInput" 
+                      class="coupon-input" 
+                      placeholder="PROMO / VOUCHER CODE" 
+                      @keyup.enter="applyDiscountCode">
+                    <button type="button" class="coupon-btn" @click="applyDiscountCode">Apply</button>
+                  </div>
+                  <div v-if="discountError" style="font-size: 11.5px; color: var(--status-error); margin-top: -12px; margin-bottom: 12px;">
+                    {{ discountError }}
+                  </div>
+                  <div style="font-size: 11px; color: var(--text-light); margin-top: -10px; margin-bottom: 14px;">
+                    Try sample code: <strong style="cursor:pointer; color:var(--primary-700);" @click="setDiscountSample('NEURO20')">NEURO20</strong> (20% off) or <strong style="cursor:pointer; color:var(--primary-700);" @click="setDiscountSample('CLINIC15')">CLINIC15</strong> ($15 off)
+                  </div>
+                </div>
+
+                <div v-else class="coupon-badge-active">
+                  <span>Voucher Applied: <strong>{{ appliedDiscount.code }}</strong> ({{ appliedDiscount.label }})</span>
+                  <button type="button" class="btn-remove-coupon" @click="removeDiscount" title="Remove voucher">&times;</button>
+                </div>
+
+                <!-- Totals Breakdown -->
+                <div class="totals-breakdown">
+                  <div class="total-row">
+                    <span>Subtotal</span>
+                    <span style="font-family: var(--font-mono);">{{ formatPrice(calculatedSubtotal) }}</span>
+                  </div>
+
+                  <div v-if="appliedDiscount" class="total-row discount-row">
+                    <span>Voucher Savings</span>
+                    <span style="font-family: var(--font-mono);">-{{ formatPrice(discountAmount) }}</span>
+                  </div>
+
+                  <div class="total-row">
+                    <span>Clinical Gateway Fee</span>
+                    <span style="font-size: 12px; color: var(--status-success); font-weight: 600;">Waived ($0.00)</span>
+                  </div>
+
+                  <div class="total-row">
+                    <span>Medical Services Tax</span>
+                    <span style="font-size: 12px; color: var(--text-muted);">$0.00 (Exempt)</span>
+                  </div>
+
+                  <div class="total-row grand-total-row">
+                    <span>Total Due</span>
+                    <span class="grand-total-amount">{{ formatPrice(finalGrandTotal) }}</span>
+                  </div>
+                </div>
+
+                <!-- Pay Button -->
+                <button 
+                  type="button" 
+                  class="btn-submit-payment" 
+                  :disabled="isProcessing"
+                  @click="initiatePayment">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                  </svg>
+                  <span>Pay {{ formatPrice(finalGrandTotal) }} Securely</span>
+                </button>
+
+                <p style="font-size: 11px; text-align: center; color: var(--text-muted); margin-top: 14px; line-height: 1.4;">
+                  By authorizing this payment, you confirm agreement to NeuroPath Clinic's diagnostic services terms. Tax-deductible healthcare receipt will be delivered instantly.
+                </p>
+
+                <!-- Trust Badges -->
+                <div class="trust-seals-grid">
+                  <div class="trust-seal-item">
+                    <svg class="trust-seal-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+                    </svg>
+                    <span class="trust-seal-text">PCI-DSS Level 1 Encrypted</span>
+                  </div>
+
+                  <div class="trust-seal-item">
+                    <svg class="trust-seal-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                      <circle cx="9" cy="7" r="4"/>
+                      <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    <span class="trust-seal-text">HIPAA Patient Privacy</span>
+                  </div>
+
+                  <div class="trust-seal-item">
+                    <svg class="trust-seal-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"/>
+                      <path d="m9 12 2 2 4-4"/>
+                    </svg>
+                    <span class="trust-seal-text">100% Quality Guaranteed</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ================================================================
+           STATE 2: PROCESSING OVERLAY MODAL
+           ================================================================ -->
+      <div v-if="viewState === 'processing'" class="processing-overlay">
+        <div class="processing-card">
+          <div class="spinner-ring"></div>
+          <h2 class="processing-title">Authorizing Payment</h2>
+          <p class="processing-sub">Please hold while our clinical gateway secures your transaction.</p>
+
+          <div class="processing-steps-list">
+            <div class="processing-step-row" :class="{ completed: processingStep > 1, active: processingStep === 1 }">
+              <span v-if="processingStep > 1">&#10003;</span>
+              <span v-else>&bull;</span>
+              <span>1. Performing SHA-256 Tokenization</span>
+            </div>
+            <div class="processing-step-row" :class="{ completed: processingStep > 2, active: processingStep === 2 }">
+              <span v-if="processingStep > 2">&#10003;</span>
+              <span v-else>&bull;</span>
+              <span>2. Routing via Medical Merchant Clearinghouse</span>
+            </div>
+            <div class="processing-step-row" :class="{ completed: processingStep > 3, active: processingStep === 3 }">
+              <span v-if="processingStep > 3">&#10003;</span>
+              <span v-else>&bull;</span>
+              <span>3. Verifying Clinician Billing NPI #1942801928</span>
+            </div>
+            <div class="processing-step-row" :class="{ completed: processingStep >= 4, active: processingStep === 4 }">
+              <span v-if="processingStep >= 4">&#10003;</span>
+              <span v-else>&bull;</span>
+              <span>4. Finalizing Official Settled Receipt</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================================
+           STATE 3: SETTLED INVOICE & CLINICAL RECEIPT
+           ================================================================ -->
+      <div v-if="viewState === 'success'" class="receipt-container">
+        
+        <div class="receipt-header-hero">
+          <div class="receipt-check-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <h1 class="receipt-hero-title">Payment Settled Successfully</h1>
+          <p class="receipt-hero-subtitle">Official Clinical Diagnostic Invoice Receipt & Authorization Voucher</p>
+        </div>
+
+        <div class="receipt-body">
+          
+          <div class="receipt-meta-grid">
+            <div class="receipt-meta-item">
+              <span class="receipt-meta-label">Transaction Reference</span>
+              <span class="receipt-meta-val">{{ receiptData.transactionId }}</span>
+            </div>
+            <div class="receipt-meta-item">
+              <span class="receipt-meta-label">Date & Time</span>
+              <span class="receipt-meta-val">{{ receiptData.timestamp }}</span>
+            </div>
+            <div class="receipt-meta-item">
+              <span class="receipt-meta-label">Payer Account</span>
+              <span class="receipt-meta-val">{{ receiptData.payerName }}</span>
+            </div>
+            <div class="receipt-meta-item">
+              <span class="receipt-meta-label">Patient / Ward</span>
+              <span class="receipt-meta-val">{{ receiptData.patientName }}</span>
+            </div>
+            <div class="receipt-meta-item">
+              <span class="receipt-meta-label">Payment Method</span>
+              <span class="receipt-meta-val">{{ receiptData.methodMask }}</span>
+            </div>
+            <div class="receipt-meta-item">
+              <span class="receipt-meta-label">Gateway Authorization Code</span>
+              <span class="receipt-meta-val">{{ receiptData.authCode }}</span>
+            </div>
+          </div>
+
+          <!-- Itemized Breakdown Table -->
+          <table class="receipt-table">
+            <thead>
+              <tr>
+                <th>Service Item / Description</th>
+                <th style="text-align: right;">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <strong>{{ receiptData.serviceName }}</strong>
+                  <div style="font-size: 12px; color: var(--text-muted);">{{ receiptData.serviceCode }}</div>
+                </td>
+                <td class="amount-col">{{ formatPrice(receiptData.basePrice) }}</td>
+              </tr>
+              <tr v-for="addon in receiptData.addons" :key="addon.id">
+                <td>
+                  <span>+ {{ addon.name }}</span>
+                  <div style="font-size: 11px; color: var(--text-muted);">{{ addon.description }}</div>
+                </td>
+                <td class="amount-col">{{ formatPrice(addon.priceUsd) }}</td>
+              </tr>
+              <tr v-if="receiptData.discountAmount > 0">
+                <td>
+                  <span style="color: var(--status-success); font-weight: 600;">Voucher Discount ({{ receiptData.discountCode }})</span>
+                </td>
+                <td class="amount-col" style="color: var(--status-success);">-{{ formatPrice(receiptData.discountAmount) }}</td>
+              </tr>
+              <tr>
+                <td style="font-size: 16px; font-weight: 700; color: var(--primary-900);">Total Settled Amount</td>
+                <td class="amount-col" style="font-size: 20px; font-weight: 800; color: var(--primary-900);">
+                  {{ formatPrice(receiptData.totalPaid) }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="padding: 16px; background: var(--surface-subtle); border-radius: var(--radius-sm); border: 1px dashed var(--border-subtle); font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+            <strong>Tax & Insurance Filing Notice:</strong> This verified receipt serves as proof of clinical payment for private healthcare flexible spending (FSA/HSA) reimbursement or tax deduction claims under medical education accommodations. Keep for your tax records.
+          </div>
+
+          <!-- Printable & Downloadable Actions -->
+          <div class="receipt-actions">
+            <button type="button" class="btn-receipt primary" @click="printReceipt">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 6 2 18 2 18 9"/>
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                <rect width="12" height="8" x="6" y="14"/>
+              </svg>
+              <span>Print Official Receipt</span>
+            </button>
+
+            <button type="button" class="btn-receipt secondary" @click="downloadReceiptData">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" x2="12" y1="15" y2="3"/>
+              </svg>
+              <span>Download Record (.TXT)</span>
+            </button>
+
+            <button type="button" class="btn-receipt secondary" @click="switchTab('ledger')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" x2="8" y1="13" y2="13"/>
+                <line x1="16" x2="8" y1="17" y2="17"/>
+              </svg>
+              <span>View Updated Invoice Ledger</span>
+            </button>
+
+            <button type="button" class="btn-receipt secondary" @click="resetToNewPayment">
+              <span>Pay Another Service Invoice</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ================================================================
+           TAB 2: INVOICES & TRANSACTION LEDGER
+           ================================================================ -->
+      <div v-else-if="currentTab === 'ledger'" class="ledger-container">
+        
+        <!-- Summary Metric Cards -->
+        <div class="ledger-stats-grid">
+          <div class="ledger-stat-card">
+            <div class="ledger-stat-title">Total Invoiced (All Time)</div>
+            <div class="ledger-stat-num">{{ formatPrice(totalInvoicedUsd) }}</div>
+            <div class="ledger-stat-sub">{{ invoices.length }} clinical evaluation records</div>
+          </div>
+
+          <div class="ledger-stat-card" style="border-left: 3.5px solid #10B981;">
+            <div class="ledger-stat-title">Settled & Verified Receipts</div>
+            <div class="ledger-stat-num" style="color: #047857;">{{ formatPrice(totalSettledUsd) }}</div>
+            <div class="ledger-stat-sub">{{ settledInvoicesCount }} accounts fully settled</div>
+          </div>
+
+          <div class="ledger-stat-card" style="border-left: 3.5px solid #F59E0B;">
+            <div class="ledger-stat-title">Outstanding Receivables</div>
+            <div class="ledger-stat-num" style="color: #B45309;">{{ formatPrice(totalPendingUsd) }}</div>
+            <div class="ledger-stat-sub">{{ pendingInvoicesCount }} pending diagnostic invoices</div>
+          </div>
+        </div>
+
+        <!-- Filter & Search Toolbar -->
+        <div class="ledger-filter-bar">
+          <div class="ledger-tabs">
+            <button 
+              type="button" 
+              class="ledger-tab-pill" 
+              :class="{ active: ledgerStatusFilter === 'all' }"
+              @click="ledgerStatusFilter = 'all'">
+              All Invoices ({{ invoices.length }})
+            </button>
+            <button 
+              type="button" 
+              class="ledger-tab-pill" 
+              :class="{ active: ledgerStatusFilter === 'pending' }"
+              @click="ledgerStatusFilter = 'pending'">
+              Pending Unpaid ({{ pendingInvoices.length }})
+            </button>
+            <button 
+              type="button" 
+              class="ledger-tab-pill" 
+              :class="{ active: ledgerStatusFilter === 'paid' }"
+              @click="ledgerStatusFilter = 'paid'">
+              Settled / Paid ({{ settledInvoices.length }})
+            </button>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+            <div class="ledger-search-box">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--text-muted);">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" x2="16.65" y1="21" y2="16.65"/>
+              </svg>
+              <input 
+                type="text" 
+                v-model="ledgerSearchQuery" 
+                placeholder="Search by invoice ID, patient, service...">
+            </div>
+
+            <button 
+              type="button" 
+              class="btn-receipt primary" 
+              style="padding: 8px 14px; font-size: 12.5px;"
+              @click="switchTab('checkout')">
+              <span>+ Pay Invoice</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="ledger-table-wrap">
+          <table class="ledger-table">
+            <thead>
+              <tr>
+                <th>Invoice / Ref</th>
+                <th>Patient & Payer</th>
+                <th>Clinical Diagnostic Service</th>
+                <th>Due / Settle Date</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th style="text-align: right;">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-if="filteredInvoices.length === 0">
+                <td colspan="7" style="text-align: center; padding: 40px 20px; color: var(--text-muted);">
+                  No invoices matched your filter criteria.
+                </td>
+              </tr>
+              <tr v-for="inv in filteredInvoices" :key="inv.id">
+                <td>
+                  <div style="font-family: var(--font-mono); font-weight: 700; color: var(--primary-900);">
+                    {{ inv.id }}
+                  </div>
+                  <div style="font-size: 11px; color: var(--text-light); font-family: var(--font-mono);">
+                    {{ inv.cptCode }}
+                  </div>
+                </td>
+                <td>
+                  <div style="font-weight: 600; color: var(--text-main);">{{ inv.patientName }}</div>
+                  <div style="font-size: 11.5px; color: var(--text-muted);">{{ inv.payerName }}</div>
+                </td>
+                <td>
+                  <div style="font-weight: 600; color: var(--primary-800);">{{ inv.serviceName }}</div>
+                  <div v-if="inv.addons && inv.addons.length > 0" style="font-size: 11px; color: var(--accent-sage);">
+                    + {{ inv.addons.map(a => a.name).join(', ') }}
+                  </div>
+                </td>
+                <td>
+                  <div v-if="inv.status === 'PAID'" style="font-size: 12px; color: #047857;">
+                    Settled: {{ inv.settledAt || 'Verified' }}
+                  </div>
+                  <div v-else style="font-size: 12px; color: #B45309;">
+                    Due: {{ inv.dueDate }}
+                  </div>
+                </td>
+                <td>
+                  <div style="font-family: var(--font-mono); font-weight: 700; font-size: 14.5px; color: var(--primary-900);">
+                    {{ formatPrice(inv.amountUsd) }}
+                  </div>
+                  <div style="font-size: 10.5px; color: var(--text-light);">
+                    {{ currentCurrency === 'USD' ? 'Base USD' : currentCurrencyConfig.code + ' Equiv' }}
+                  </div>
+                </td>
+                <td>
+                  <span v-if="inv.status === 'PAID'" class="badge-paid">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    <span>PAID</span>
+                  </span>
+                  <span v-else class="badge-pending">
+                    <span style="display:inline-block; width:6px; height:6px; border-radius:50%; background:#F59E0B;"></span>
+                    <span>PENDING</span>
+                  </span>
+                </td>
+                <td style="text-align: right;">
+                  <button 
+                    v-if="inv.status === 'PENDING'"
+                    type="button" 
+                    class="btn-receipt primary" 
+                    style="padding: 6px 12px; font-size: 12px;"
+                    @click="loadInvoiceIntoCheckout(inv)">
+                    <span>Settle Now &rarr;</span>
+                  </button>
+                  <button 
+                    v-else
+                    type="button" 
+                    class="btn-receipt secondary" 
+                    style="padding: 6px 12px; font-size: 12px;"
+                    @click="viewReceiptFromLedger(inv)">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                      <polyline points="14 2 14 8 20 8"/>
+                    </svg>
+                    <span>View Receipt</span>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+      <!-- ================================================================
+           TAB 3: SAVED PAYMENT PROFILES
+           ================================================================ -->
+      <div v-else-if="currentTab === 'saved_methods'" class="ledger-container">
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <h2 style="font-family: var(--font-serif); font-size: 22px; color: var(--primary-900); margin-bottom: 4px;">
+              Saved Clinical Payment Profiles
+            </h2>
+            <p style="font-size: 13.5px; color: var(--text-muted);">
+              Tokenized vaulted methods for Leo Jenkins' diagnostic and developmental therapy sessions.
+            </p>
+          </div>
+
+          <button 
+            type="button" 
+            class="btn-receipt primary" 
+            style="padding: 9px 16px; font-size: 13px;"
+            @click="showAddMethodModal = true">
+            <span>+ Add Payment Method</span>
+          </button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px;">
+          <div 
+            v-for="m in savedPaymentMethods" 
+            :key="m.id"
+            class="ledger-stat-card"
+            style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                <span style="font-family: var(--font-mono); font-size: 13px; font-weight: 800; background: var(--surface-subtle); padding: 4px 8px; border-radius: 6px; color: var(--primary-900);">
+                  {{ m.brand }}
+                </span>
+                <span v-if="m.isDefault" style="background: rgba(16, 185, 129, 0.12); color: #065F46; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px;">
+                  DEFAULT
+                </span>
+              </div>
+              <div style="font-family: var(--font-mono); font-size: 18px; font-weight: 700; color: var(--primary-900); margin-bottom: 6px; letter-spacing: 1px;">
+                •••• •••• •••• {{ m.last4 }}
+              </div>
+              <div style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 2px;">
+                Holder: <strong>{{ m.holderName }}</strong>
+              </div>
+              <div style="font-size: 12px; color: var(--text-light);">
+                Expires: {{ m.expiry }} &bull; Token: #{{ m.id }}
+              </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--border-subtle);">
+              <button 
+                type="button" 
+                class="btn-receipt secondary" 
+                style="padding: 5px 12px; font-size: 11.5px;"
+                @click="useSavedMethodForCheckout(m)">
+                <span>Use for Checkout &rarr;</span>
+              </button>
+              <button 
+                type="button" 
+                style="border: none; background: transparent; color: #DC2626; font-size: 12px; cursor: pointer; font-weight: 600;"
+                @click="deleteSavedMethod(m.id)">
+                Remove
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================================================================
+           TAB 4: RECEIPT & INVOICE VERIFICATION LOOKUP
+           ================================================================ -->
+      <div v-else-if="currentTab === 'lookup'" class="ledger-container">
+        
+        <div style="max-width: 680px; margin: 0 auto; width: 100%;">
+          <div style="text-align: center; margin-bottom: 28px;">
+            <h2 style="font-family: var(--font-serif); font-size: 24px; color: var(--primary-900); margin-bottom: 6px;">
+              Clinical Accounting & Receipt Verification
+            </h2>
+            <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.5;">
+              Verify official tax-deductible healthcare receipts and pending invoices against NeuroPath's persistent audit registry.
+            </p>
+          </div>
+
+          <div style="background: #FFFFFF; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow-sm); margin-bottom: 24px;">
+            <label style="display: block; font-size: 12.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">
+              Enter Invoice Reference ID or Transaction Auth Code:
+            </label>
+            <div style="display: flex; gap: 10px;">
+              <input 
+                type="text" 
+                v-model="lookupQuery" 
+                placeholder="e.g., NP-INV-8921, NP-INV-1029, or TXN-NP-..."
+                class="text-input" 
+                style="font-family: var(--font-mono); font-size: 14px;"
+                @keyup.enter="performLookup">
+              <button 
+                type="button" 
+                class="btn-receipt primary" 
+                style="white-space: nowrap;"
+                @click="performLookup">
+                <span>Verify Record</span>
+              </button>
+            </div>
+            <div style="font-size: 11.5px; color: var(--text-light); margin-top: 8px;">
+              Try sample records: 
+              <span style="color: var(--primary-700); cursor: pointer; text-decoration: underline; margin-right: 8px;" @click="lookupQuery = 'NP-INV-8921'; performLookup();">NP-INV-8921 (Pending)</span>
+              <span style="color: var(--primary-700); cursor: pointer; text-decoration: underline;" @click="lookupQuery = 'NP-INV-1029'; performLookup();">NP-INV-1029 (Paid)</span>
+            </div>
+          </div>
+
+          <!-- Lookup Result -->
+          <div v-if="lookupSearched">
+            <div v-if="lookupResult" style="background: #FFFFFF; border: 1.5px solid var(--border-subtle); border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow-card);">
+              <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 14px; margin-bottom: 16px;">
+                <div>
+                  <span :class="lookupResult.status === 'PAID' ? 'badge-paid' : 'badge-pending'">
+                    {{ lookupResult.status === 'PAID' ? 'VERIFIED & SETTLED' : 'PENDING PAYMENT' }}
+                  </span>
+                  <div style="font-family: var(--font-mono); font-size: 17px; font-weight: 800; color: var(--primary-900); margin-top: 4px;">
+                    {{ lookupResult.id }}
+                  </div>
+                </div>
+                <div style="text-align: right;">
+                  <div style="font-family: var(--font-mono); font-size: 20px; font-weight: 800; color: var(--primary-900);">
+                    {{ formatPrice(lookupResult.amountUsd) }}
+                  </div>
+                  <div style="font-size: 11px; color: var(--text-muted);">IRS 213(d) Eligible</div>
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; font-size: 13px;">
+                <div>
+                  <span style="color: var(--text-light); font-size: 11px; text-transform: uppercase;">Patient / Ward:</span>
+                  <div style="font-weight: 600; color: var(--text-main);">{{ lookupResult.patientName }}</div>
+                </div>
+                <div>
+                  <span style="color: var(--text-light); font-size: 11px; text-transform: uppercase;">Payer Name:</span>
+                  <div style="font-weight: 600; color: var(--text-main);">{{ lookupResult.payerName }}</div>
+                </div>
+                <div>
+                  <span style="color: var(--text-light); font-size: 11px; text-transform: uppercase;">Clinical Service:</span>
+                  <div style="font-weight: 600; color: var(--primary-900);">{{ lookupResult.serviceName }}</div>
+                </div>
+                <div>
+                  <span style="color: var(--text-light); font-size: 11px; text-transform: uppercase;">CPT Insurance Code:</span>
+                  <div style="font-family: var(--font-mono); font-weight: 600;">{{ lookupResult.cptCode }}</div>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                <button 
+                  v-if="lookupResult.status === 'PENDING'"
+                  type="button" 
+                  class="btn-receipt primary" 
+                  @click="loadInvoiceIntoCheckout(lookupResult)">
+                  <span>Settle Invoice Now &rarr;</span>
+                </button>
+                <button 
+                  v-else
+                  type="button" 
+                  class="btn-receipt secondary" 
+                  @click="viewReceiptFromLedger(lookupResult)">
+                  <span>Open Full Official Receipt</span>
+                </button>
+              </div>
+            </div>
+
+            <div v-else style="padding: 24px; text-align: center; background: var(--surface-subtle); border-radius: var(--radius-md); border: 1px dashed var(--border-subtle);">
+              <div style="font-weight: 700; color: var(--primary-900); margin-bottom: 4px;">Record Not Found</div>
+              <p style="font-size: 13px; color: var(--text-muted);">No invoice or transaction matched reference "{{ lookupQuery }}". Please check your reference code.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================================================================
+           OFFICIAL RECEIPT MODAL VIEW (from Ledger or Lookup)
+           ================================================================ -->
+      <div v-if="activeModalReceipt" class="modal-backdrop" @click.self="closeModalReceipt">
+        <div class="modal-content-card">
+          <div style="padding: 16px 24px; background: #1B2B22; color: #FFFFFF; display: flex; justify-content: space-between; align-items: center; border-radius: var(--radius-lg) var(--radius-lg) 0 0;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="background: rgba(255,255,255,0.2); font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; font-family: var(--font-mono);">
+                VERIFIED LEDGER RECORD
+              </span>
+              <span style="font-size: 14px; font-weight: 600;">{{ activeModalReceipt.transactionId || activeModalReceipt.id }}</span>
+            </div>
+            <button type="button" @click="closeModalReceipt" style="background: transparent; border: none; color: #FFFFFF; font-size: 22px; cursor: pointer; line-height: 1;">&times;</button>
+          </div>
+
+          <div style="padding: 28px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
+              <div>
+                <div style="font-family: var(--font-serif); font-size: 20px; font-weight: 700; color: var(--primary-900);">NeuroPath Clinic</div>
+                <div style="font-size: 12px; color: var(--text-muted);">Clinical Neurodiversity & Diagnostic Evaluation Services</div>
+                <div style="font-size: 11px; color: var(--text-light); margin-top: 2px;">Provider NPI: #1942801928 &bull; Tax ID: 82-1928401</div>
+              </div>
+              <div style="text-align: right;">
+                <span class="badge-paid" style="font-size: 12px; padding: 4px 10px;">SETTLED & CONFIRMED</span>
+                <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">{{ activeModalReceipt.timestamp || activeModalReceipt.settledAt }}</div>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 24px; padding: 14px; background: var(--surface-subtle); border-radius: var(--radius-sm);">
+              <div>
+                <span style="font-size: 10.5px; font-weight: 700; text-transform: uppercase; color: var(--text-light);">Payer</span>
+                <div style="font-weight: 600; font-size: 13px;">{{ activeModalReceipt.payerName }}</div>
+              </div>
+              <div>
+                <span style="font-size: 10.5px; font-weight: 700; text-transform: uppercase; color: var(--text-light);">Patient</span>
+                <div style="font-weight: 600; font-size: 13px;">{{ activeModalReceipt.patientName }}</div>
+              </div>
+              <div>
+                <span style="font-size: 10.5px; font-weight: 700; text-transform: uppercase; color: var(--text-light);">Payment Method</span>
+                <div style="font-weight: 600; font-size: 13px;">{{ activeModalReceipt.methodMask || 'Card on File' }}</div>
+              </div>
+              <div>
+                <span style="font-size: 10.5px; font-weight: 700; text-transform: uppercase; color: var(--text-light);">Authorization Code</span>
+                <div style="font-family: var(--font-mono); font-weight: 600; font-size: 13px;">{{ activeModalReceipt.authCode || 'AUTH-VERIFIED' }}</div>
+              </div>
+            </div>
+
+            <table class="receipt-table" style="margin-bottom: 20px;">
+              <thead>
+                <tr>
+                  <th>Clinical Item / Description</th>
+                  <th style="text-align: right;">Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>{{ activeModalReceipt.serviceName }}</strong>
+                    <div style="font-size: 11.5px; color: var(--text-muted);">{{ activeModalReceipt.serviceCode || activeModalReceipt.cptCode }}</div>
+                  </td>
+                  <td class="amount-col">{{ formatPrice(activeModalReceipt.basePrice || activeModalReceipt.amountUsd) }}</td>
+                </tr>
+                <tr v-if="activeModalReceipt.addons && activeModalReceipt.addons.length > 0" v-for="a in activeModalReceipt.addons" :key="a.name">
+                  <td>+ {{ a.name }}</td>
+                  <td class="amount-col">{{ formatPrice(a.priceUsd) }}</td>
+                </tr>
+                <tr v-if="activeModalReceipt.discountAmount > 0">
+                  <td style="color: var(--status-success);">Voucher Discount</td>
+                  <td class="amount-col" style="color: var(--status-success);">-{{ formatPrice(activeModalReceipt.discountAmount) }}</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 700; font-size: 15px; color: var(--primary-900);">Total Settled Amount</td>
+                  <td class="amount-col" style="font-size: 18px; font-weight: 800; color: var(--primary-900);">
+                    {{ formatPrice(activeModalReceipt.totalPaid || activeModalReceipt.amountUsd) }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div style="display: flex; justify-content: flex-end; gap: 10px;">
+              <button type="button" class="btn-receipt secondary" @click="closeModalReceipt">Close</button>
+              <button type="button" class="btn-receipt primary" @click="printReceipt">Print Receipt</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Saved Method Modal -->
+      <div v-if="showAddMethodModal" class="modal-backdrop" @click.self="showAddMethodModal = false">
+        <div class="modal-content-card" style="max-width: 520px; padding: 24px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h3 style="font-family: var(--font-serif); font-size: 19px; color: var(--primary-900);">Add Payment Method</h3>
+            <button type="button" @click="showAddMethodModal = false" style="background: transparent; border: none; font-size: 20px; cursor: pointer;">&times;</button>
+          </div>
+          
+          <div class="input-group">
+            <label class="input-label">Cardholder Full Name</label>
+            <input type="text" v-model="newMethodForm.holderName" class="text-input" placeholder="Sarah Jenkins">
+          </div>
+          <div class="input-group">
+            <label class="input-label">Card Number</label>
+            <input type="text" v-model="newMethodForm.number" class="text-input" placeholder="4242 •••• •••• 4242" maxlength="19">
+          </div>
+          <div class="form-grid-2">
+            <div class="input-group no-margin">
+              <label class="input-label">Expiration (MM/YY)</label>
+              <input type="text" v-model="newMethodForm.expiry" class="text-input" placeholder="08/28" maxlength="5">
+            </div>
+            <div class="input-group no-margin">
+              <label class="input-label">CVV / CVC</label>
+              <input type="password" v-model="newMethodForm.cvv" class="text-input" placeholder="•••" maxlength="4">
+            </div>
+          </div>
+
+          <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+            <button type="button" class="btn-receipt secondary" @click="showAddMethodModal = false">Cancel</button>
+            <button type="button" class="btn-receipt primary" @click="submitNewSavedMethod">Save to Account</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer style="margin-top: auto; border-top: 1px solid var(--border-subtle); padding: 24px; text-align: center; font-size: 12px; color: var(--text-muted); background: #FFFFFF;">
+      <div style="max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+        <span>NeuroPath Diagnostic Services &copy; 2026. All rights reserved.</span>
+        <span>Clinician Directory NPI Registry: #1942801928 &bull; HIPAA Certified</span>
+        <a href="index.html" style="color: var(--primary-700); text-decoration: none; font-weight: 600;">Parent Dashboard &rarr;</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ====================================================================
+       VUE.JS 3 SCRIPT (LOCAL + CDN FALLBACK)
+       ==================================================================== -->
+  <script src="/node_modules/vue/dist/vue.global.prod.js"></script>
+  <script>
+    if (!window.Vue) {
+      document.write('<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"><\/script>');
+    }
+  </script>
+
+  <script>
+    const { createApp, ref, computed, onMounted } = Vue;
+
+    createApp({
+      setup() {
+        // View State: 'checkout', 'ledger', 'saved_methods', 'lookup'
+        const currentTab = ref('checkout');
+        const viewState = ref('checkout');
+        const currentCurrency = ref('USD');
+
+        // Background Task Simulation & Loading State
+        const isLoadingData = ref(true);
+        const loadingStep = ref(1);
+        const loadingProgress = ref(18);
+        const loadingStatusText = ref('Connecting to secure clinical accounting registry...');
+
+        // Stateful DB Stores from server
+        const invoices = ref([]);
+        const transactions = ref([]);
+        const savedPaymentMethods = ref([]);
+
+        // Invoice Selection Source: 'existing' vs 'new'
+        const invoiceSource = ref('existing');
+        const selectedPendingInvoiceId = ref('');
+        const selectedSavedMethodId = ref('new');
+        const saveNewMethodOnPay = ref(false);
+
+        // Ledger & Lookup Filters
+        const ledgerStatusFilter = ref('all');
+        const ledgerSearchQuery = ref('');
+        const lookupQuery = ref('');
+        const lookupResult = ref(null);
+        const lookupSearched = ref(false);
+        const activeModalReceipt = ref(null);
+        const showAddMethodModal = ref(false);
+        const newMethodForm = ref({ holderName: '', number: '', expiry: '', cvv: '' });
+
+        // Currency Exchange Rates (stateless client conversion)
+        const currencyRates = {
+          USD: { symbol: '$', rate: 1.0, name: 'US Dollar', code: 'USD' },
+          NGN: { symbol: '₦', rate: 1600.0, name: 'Nigerian Naira', code: 'NGN' },
+          GBP: { symbol: '£', rate: 0.78, name: 'British Pound', code: 'GBP' },
+          EUR: { symbol: '€', rate: 0.92, name: 'Euro', code: 'EUR' }
+        };
+
+        // Invoice Reference ID (used when creating a new ad-hoc invoice)
+        const invoiceReference = ref('NP-INV-2026-' + Math.floor(1000 + Math.random() * 9000));
+
+        // Catalog of clinical services
+        const serviceCatalog = [
+          {
+            id: 'eval_full',
+            name: 'Comprehensive Dyslexia & Cognitive Assessment',
+            code: 'CPT-96130 / WIAT-4 & CTOPP-2',
+            priceUsd: 280.00,
+            description: 'Full psychometric evaluation covering single-word decoding, rapid naming (RAN), phoneme deletion, and 18-page certified diagnostic report.'
+          },
+          {
+            id: 'therapy_session',
+            name: 'Speech & Phonological Processing Therapy Session',
+            code: 'CPT-92507 / 50-Min Clinical',
+            priceUsd: 95.00,
+            description: 'One-on-one multisensory Orton-Gillingham phonemic synthesis session with a licensed clinical speech-language pathologist.'
+          },
+          {
+            id: 'coaching_block',
+            name: 'Executive Function & Working Memory Coaching (4 Sessions)',
+            code: 'CPT-96136 / 4-Week Block',
+            priceUsd: 340.00,
+            description: 'Targeted interventions for auditory memory buffering, impulse inhibitory control, and visual task scaffolding.'
+          },
+          {
+            id: 'specialist_review',
+            name: 'Specialist Second-Opinion & IEP Case Consultation',
+            code: 'CPT-99244 / 60-Min Specialist',
+            priceUsd: 160.00,
+            description: 'Direct conference with board-certified pediatric neuropsychologist to review independent educational plan (IEP) testing.'
+          }
+        ];
+
+        // Available Add-ons
+        const availableAddons = [
+          {
+            id: 'expedite',
+            name: 'Expedited 48-Hour Report Sign-Off',
+            priceUsd: 45.00,
+            description: 'Priority clinical review for urgent school placement deadlines'
+          },
+          {
+            id: 'kirkpatrick',
+            name: 'Longitudinal Kirkpatrick Milestone Audit',
+            priceUsd: 35.00,
+            description: 'Detailed Level 1–4 skill retention tracking matrix'
+          },
+          {
+            id: 'audio_recordings',
+            name: 'Raw Acoustic Phoneme Waveform Bundle',
+            priceUsd: 25.00,
+            description: 'High-definition digital recordings of patient response latencies'
+          }
+        ];
+
+        // Selections
+        const selectedServiceId = ref('eval_full');
+        const customDescription = ref('');
+        const customAmount = ref(250.00);
+        const selectedAddonIds = ref(['expedite']);
+
+        // Client / Payer Details
+        const client = ref({
+          payerName: 'Sarah Jenkins',
+          patientName: 'Leo Jenkins',
+          email: 'sarah.jenkins@example.com',
+          phone: '(555) 349-8812',
+          address: '428 Crescent Wood Way',
+          city: 'Portland',
+          state: 'OR',
+          zip: '97201',
+          country: 'United States'
+        });
+
+        // Payment Method ('card', 'hsa', 'wallet', 'ach')
+        const paymentMethod = ref('card');
+
+        // Card Details
+        const card = ref({
+          number: '',
+          expiry: '',
+          cvv: ''
+        });
+
+        // ACH Details
+        const ach = ref({
+          bankName: 'Chase Bank NA',
+          routingNumber: '',
+          accountNumber: ''
+        });
+
+        // Discount / Voucher State
+        const discountInput = ref('');
+        const appliedDiscount = ref(null);
+        const discountError = ref('');
+
+        // Processing & Errors
+        const isProcessing = ref(false);
+        const processingStep = ref(1);
+        const errors = ref({});
+
+        // Receipt Data
+        const receiptData = ref({});
+
+        // --- COMPUTED PROPERTIES ---
+
+        const selectedAddons = computed(() => {
+          return availableAddons.filter(a => selectedAddonIds.value.includes(a.id));
+        });
+
+        const baseServicePrice = computed(() => {
+          if (selectedServiceId.value === 'custom') {
+            const val = Number(customAmount.value) || 0;
+            const rate = currencyRates[currentCurrency.value]?.rate || 1.0;
+            return Math.max(10, val / rate);
+          }
+          const srv = serviceCatalog.find(s => s.id === selectedServiceId.value);
+          return srv ? srv.priceUsd : 0;
+        });
+
+        const currentCurrencyConfig = computed(() => {
+          return currencyRates[currentCurrency.value] || currencyRates.USD;
+        });
+
+        const currentServiceName = computed(() => {
+          if (selectedServiceId.value === 'custom') {
+            return customDescription.value.trim() || 'Custom Clinical Invoice Retainer';
+          }
+          const srv = serviceCatalog.find(s => s.id === selectedServiceId.value);
+          return srv ? srv.name : '';
+        });
+
+        const currentServiceCode = computed(() => {
+          if (selectedServiceId.value === 'custom') {
+            return 'CUSTOM-INVOICE';
+          }
+          const srv = serviceCatalog.find(s => s.id === selectedServiceId.value);
+          return srv ? srv.code : '';
+        });
+
+        const calculatedSubtotal = computed(() => {
+          const addonsSum = selectedAddons.value.reduce((acc, a) => acc + a.priceUsd, 0);
+          return baseServicePrice.value + addonsSum;
+        });
+
+        const discountAmount = computed(() => {
+          if (!appliedDiscount.value) return 0;
+          if (appliedDiscount.value.type === 'percent') {
+            return calculatedSubtotal.value * (appliedDiscount.value.value / 100);
+          }
+          return Math.min(calculatedSubtotal.value, appliedDiscount.value.value);
+        });
+
+        const finalGrandTotal = computed(() => {
+          const total = Math.max(0, calculatedSubtotal.value - discountAmount.value);
+          return total;
+        });
+
+        // Brand Detection from Card Prefix
+        const detectedBrandName = computed(() => {
+          const raw = card.value.number.replace(/\s+/g, '');
+          if (/^(506|650|507)/.test(raw)) return 'VERVE';
+          if (/^4/.test(raw)) return 'VISA';
+          if (/^5[1-5]/.test(raw)) return 'MASTERCARD';
+          if (/^3[47]/.test(raw)) return 'AMEX';
+          if (/^6(?:011|5)/.test(raw)) return 'DISCOVER';
+          return paymentMethod.value === 'hsa' ? 'HSA HEALTH' : 'CARD';
+        });
+
+        const displayCardNumber = computed(() => {
+          const raw = card.value.number.replace(/\s+/g, '');
+          if (!raw) return '••••  ••••  ••••  ••••';
+          let out = '';
+          for (let i = 0; i < 16; i++) {
+            if (i > 0 && i % 4 === 0) out += '  ';
+            out += raw[i] ? raw[i] : '•';
+          }
+          return out;
+        });
+
+        // Stateful DB Computed Queries
+        const pendingInvoices = computed(() => {
+          return invoices.value.filter(i => i.status === 'PENDING');
+        });
+
+        const settledInvoices = computed(() => {
+          return invoices.value.filter(i => i.status === 'PAID');
+        });
+
+        const pendingInvoicesCount = computed(() => pendingInvoices.value.length);
+        const settledInvoicesCount = computed(() => settledInvoices.value.length);
+
+        const totalPendingUsd = computed(() => {
+          return pendingInvoices.value.reduce((acc, i) => acc + (Number(i.amountUsd) || 0), 0);
+        });
+
+        const totalSettledUsd = computed(() => {
+          return settledInvoices.value.reduce((acc, i) => acc + (Number(i.amountUsd) || 0), 0);
+        });
+
+        const totalInvoicedUsd = computed(() => {
+          return invoices.value.reduce((acc, i) => acc + (Number(i.amountUsd) || 0), 0);
+        });
+
+        const currentSelectedSavedMethod = computed(() => {
+          return savedPaymentMethods.value.find(m => m.id === selectedSavedMethodId.value);
+        });
+
+        const filteredInvoices = computed(() => {
+          let list = [...invoices.value];
+          if (ledgerStatusFilter.value === 'pending') {
+            list = list.filter(i => i.status === 'PENDING');
+          } else if (ledgerStatusFilter.value === 'paid') {
+            list = list.filter(i => i.status === 'PAID');
+          }
+
+          if (ledgerSearchQuery.value.trim()) {
+            const q = ledgerSearchQuery.value.trim().toLowerCase();
+            list = list.filter(i => 
+              (i.id && i.id.toLowerCase().includes(q)) ||
+              (i.patientName && i.patientName.toLowerCase().includes(q)) ||
+              (i.payerName && i.payerName.toLowerCase().includes(q)) ||
+              (i.serviceName && i.serviceName.toLowerCase().includes(q)) ||
+              (i.cptCode && i.cptCode.toLowerCase().includes(q))
+            );
+          }
+
+          return list;
+        });
+
+        // --- METHODS ---
+
+        function setCurrency(cur) {
+          if (!currencyRates[cur]) return;
+          const oldRate = currencyRates[currentCurrency.value]?.rate || 1.0;
+          const newRate = currencyRates[cur]?.rate || 1.0;
+          if (selectedServiceId.value === 'custom' && customAmount.value) {
+            customAmount.value = Math.round((customAmount.value / oldRate) * newRate);
+          }
+          currentCurrency.value = cur;
+          try {
+            localStorage.setItem('neuropath_currency', cur);
+            window.dispatchEvent(new CustomEvent('currencyChange', { 
+              detail: { 
+                currency: cur,
+                symbol: currencyRates[cur].symbol,
+                rate: currencyRates[cur].rate
+              } 
+            }));
+          } catch(e) {}
+        }
+
+        function formatPrice(amountUsd) {
+          const cfg = currencyRates[currentCurrency.value] || currencyRates.USD;
+          const converted = Number(amountUsd) * cfg.rate;
+          return `${cfg.symbol}${converted.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        }
+
+        function selectService(id) {
+          selectedServiceId.value = id;
+        }
+
+        function isAddonSelected(id) {
+          return selectedAddonIds.value.includes(id);
+        }
+
+        function toggleAddon(id) {
+          const idx = selectedAddonIds.value.indexOf(id);
+          if (idx > -1) {
+            selectedAddonIds.value.splice(idx, 1);
+          } else {
+            selectedAddonIds.value.push(id);
+          }
+        }
+
+        function handleCardNumberInput(e) {
+          let val = e.target.value.replace(/\D/g, '').slice(0, 16);
+          const parts = [];
+          for (let i = 0; i < val.length; i += 4) {
+            parts.push(val.substring(i, i + 4));
+          }
+          card.value.number = parts.join(' ');
+          if (errors.value.cardNumber) errors.value.cardNumber = '';
+        }
+
+        function handleExpiryInput(e) {
+          let val = e.target.value.replace(/\D/g, '').slice(0, 4);
+          if (val.length >= 3) {
+            val = val.substring(0, 2) + '/' + val.substring(2);
+          }
+          card.value.expiry = val;
+          if (errors.value.cardExpiry) errors.value.cardExpiry = '';
+        }
+
+        function applyDiscountCode() {
+          discountError.value = '';
+          const code = discountInput.value.trim().toUpperCase();
+          if (!code) return;
+
+          if (code === 'NEURO20') {
+            appliedDiscount.value = { code, type: 'percent', value: 20, label: '20% Clinical Discount' };
+            discountInput.value = '';
+          } else if (code === 'CLINIC15') {
+            appliedDiscount.value = { code, type: 'fixed', value: 15, label: '$15.00 Off Voucher' };
+            discountInput.value = '';
+          } else if (code === 'HEALTH10' || code === 'WELCOME') {
+            appliedDiscount.value = { code, type: 'fixed', value: 10, label: '$10.00 Introductory Credit' };
+            discountInput.value = '';
+          } else {
+            discountError.value = 'Invalid or expired voucher code. Use NEURO20 or CLINIC15.';
+          }
+        }
+
+        function setDiscountSample(code) {
+          discountInput.value = code;
+          applyDiscountCode();
+        }
+
+        function removeDiscount() {
+          appliedDiscount.value = null;
+          discountError.value = '';
+        }
+
+        function fillDemo(type) {
+          errors.value = {};
+          if (type === 'visa') {
+            paymentMethod.value = 'card';
+            card.value = { number: '4242 4242 4242 4242', expiry: '08/28', cvv: '782' };
+          } else if (type === 'mastercard') {
+            paymentMethod.value = 'card';
+            card.value = { number: '5424 1800 2931 8812', expiry: '11/27', cvv: '419' };
+          } else if (type === 'verve') {
+            paymentMethod.value = 'card';
+            card.value = { number: '5061 0920 1823 4901', expiry: '06/28', cvv: '392' };
+          } else if (type === 'hsa') {
+            paymentMethod.value = 'hsa';
+            card.value = { number: '4840 9210 3349 1928', expiry: '12/29', cvv: '315' };
+          } else if (type === 'ngn_transfer') {
+            paymentMethod.value = 'ach';
+            ach.value = { bankName: 'Zenith Bank PLC', routingNumber: '057150013', accountNumber: '1018294012' };
+          }
+        }
+
+        function clearDemo() {
+          card.value = { number: '', expiry: '', cvv: '' };
+          ach.value = { bankName: '', routingNumber: '', accountNumber: '' };
+          errors.value = {};
+        }
+
+        function handleWalletPay(walletName) {
+          card.value = { number: '4111 2222 3333 4444', expiry: '09/27', cvv: '999' };
+          initiatePayment();
+        }
+
+        // --- STATEFUL API METHODS ---
+
+        async function fetchPortalState() {
+          try {
+            const res = await fetch('/api/portal/state');
+            if (res.ok) {
+              const data = await res.json();
+              if (data.invoices) invoices.value = data.invoices;
+              if (data.transactions) transactions.value = data.transactions;
+              if (data.savedPaymentMethods) savedPaymentMethods.value = data.savedPaymentMethods;
+              if (data.client) {
+                client.value = { ...client.value, ...data.client };
+              }
+              // Auto-select first pending invoice if none selected
+              const pending = invoices.value.filter(i => i.status === 'PENDING');
+              if (pending.length > 0 && !selectedPendingInvoiceId.value) {
+                selectPendingInvoice(pending[0]);
+              }
+              // Auto-select default saved method if present
+              const def = savedPaymentMethods.value.find(m => m.isDefault);
+              if (def && selectedSavedMethodId.value === 'new' && !card.value.number) {
+                selectedSavedMethodId.value = def.id;
+              }
+            }
+          } catch (e) {
+            console.warn('Failed to load stateful portal data:', e);
+          }
+        }
+
+        function switchTab(tab) {
+          currentTab.value = tab;
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function setInvoiceSource(src) {
+          invoiceSource.value = src;
+          if (src === 'existing') {
+            const pending = invoices.value.filter(i => i.status === 'PENDING');
+            if (pending.length > 0 && !selectedPendingInvoiceId.value) {
+              selectPendingInvoice(pending[0]);
+            }
+          } else {
+            selectedPendingInvoiceId.value = '';
+            invoiceReference.value = 'NP-INV-2026-' + Math.floor(1000 + Math.random() * 9000);
+          }
+        }
+
+        function selectPendingInvoice(inv) {
+          selectedPendingInvoiceId.value = inv.id;
+          invoiceReference.value = inv.id;
+          if (inv.payerName) client.value.payerName = inv.payerName;
+          if (inv.patientName) client.value.patientName = inv.patientName;
+          
+          // Match with catalog service or use custom
+          const match = serviceCatalog.find(s => s.name === inv.serviceName || s.code === inv.cptCode);
+          if (match) {
+            selectedServiceId.value = match.id;
+          } else {
+            selectedServiceId.value = 'custom';
+            customDescription.value = inv.serviceName;
+            customAmount.value = inv.amountUsd;
+          }
+
+          if (inv.addons && Array.isArray(inv.addons)) {
+            selectedAddonIds.value = inv.addons.map(a => a.id).filter(Boolean);
+          }
+        }
+
+        function selectSavedMethod(m) {
+          if (m === 'new') {
+            selectedSavedMethodId.value = 'new';
+          } else {
+            selectedSavedMethodId.value = m.id;
+          }
+        }
+
+        function loadInvoiceIntoCheckout(inv) {
+          invoiceSource.value = 'existing';
+          selectPendingInvoice(inv);
+          currentTab.value = 'checkout';
+          viewState.value = 'checkout';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function useSavedMethodForCheckout(m) {
+          selectedSavedMethodId.value = m.id;
+          currentTab.value = 'checkout';
+          viewState.value = 'checkout';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        async function deleteSavedMethod(id) {
+          if (!confirm('Remove this payment method from your clinical account?')) return;
+          try {
+            const res = await fetch(`/api/portal/saved-methods/${id}`, { method: 'DELETE' });
+            if (res.ok) {
+              savedPaymentMethods.value = savedPaymentMethods.value.filter(m => m.id !== id);
+              if (selectedSavedMethodId.value === id) {
+                selectedSavedMethodId.value = 'new';
+              }
+            }
+          } catch(e) {
+            console.warn('Failed to delete saved method:', e);
+          }
+        }
+
+        async function submitNewSavedMethod() {
+          const { holderName, number, expiry } = newMethodForm.value;
+          if (!holderName.trim() || !number.trim() || !expiry.trim()) {
+            alert('Please fill in cardholder name, card number, and expiration date.');
+            return;
+          }
+          let brand = 'VISA';
+          const raw = number.replace(/\s+/g, '');
+          if (/^5[1-5]/.test(raw)) brand = 'MASTERCARD';
+          else if (/^(506|650|507)/.test(raw)) brand = 'VERVE';
+
+          try {
+            const res = await fetch('/api/portal/saved-methods', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                brand,
+                number,
+                expiry,
+                holderName: holderName.trim(),
+                isDefault: savedPaymentMethods.value.length === 0
+              })
+            });
+            if (res.ok) {
+              const newObj = await res.json();
+              savedPaymentMethods.value.push(newObj);
+              selectedSavedMethodId.value = newObj.id;
+              showAddMethodModal.value = false;
+              newMethodForm.value = { holderName: '', number: '', expiry: '', cvv: '' };
+            }
+          } catch(e) {
+            alert('Could not save payment method: ' + e.message);
+          }
+        }
+
+        async function performLookup() {
+          const q = lookupQuery.value.trim().toUpperCase();
+          if (!q) return;
+          lookupSearched.value = true;
+          lookupResult.value = null;
+
+          // 1. In-memory invoice check
+          const inv = invoices.value.find(i => i.id.toUpperCase() === q);
+          if (inv) {
+            lookupResult.value = inv;
+            return;
+          }
+
+          // 2. In-memory transaction check
+          const txn = transactions.value.find(t => 
+            t.transactionId.toUpperCase() === q || 
+            (t.authCode && t.authCode.toUpperCase() === q) ||
+            (t.invoiceId && t.invoiceId.toUpperCase() === q)
+          );
+          if (txn) {
+            lookupResult.value = {
+              id: txn.transactionId,
+              serviceName: txn.serviceName,
+              cptCode: txn.serviceCode,
+              amountUsd: txn.totalPaid,
+              patientName: txn.patientName,
+              payerName: txn.payerName,
+              status: 'PAID',
+              settledAt: txn.timestamp,
+              addons: txn.addons
+            };
+            return;
+          }
+
+          // 3. Backend API query
+          try {
+            const res = await fetch(`/api/portal/invoices/${encodeURIComponent(q)}`);
+            if (res.ok) {
+              lookupResult.value = await res.json();
+            }
+          } catch(e) {}
+        }
+
+        function viewReceiptFromLedger(inv) {
+          const txn = transactions.value.find(t => t.invoiceId === inv.id);
+          if (txn) {
+            activeModalReceipt.value = txn;
+          } else {
+            activeModalReceipt.value = {
+              transactionId: 'TXN-' + inv.id,
+              id: inv.id,
+              authCode: 'AUTH-VERIFIED',
+              timestamp: inv.settledAt || 'Verified & Settled',
+              payerName: inv.payerName,
+              patientName: inv.patientName,
+              serviceName: inv.serviceName,
+              serviceCode: inv.cptCode,
+              basePrice: inv.amountUsd,
+              addons: inv.addons || [],
+              discountAmount: 0,
+              totalPaid: inv.amountUsd,
+              currency: currentCurrency.value
+            };
+          }
+        }
+
+        function closeModalReceipt() {
+          activeModalReceipt.value = null;
+        }
+
+        function validateInputs() {
+          const errs = {};
+          if (!client.value.payerName.trim()) {
+            errs.payerName = 'Payer full name is required';
+          }
+          if (!client.value.patientName.trim()) {
+            errs.patientName = 'Patient / Ward name is required';
+          }
+          if (!client.value.email.trim() || !client.value.email.includes('@')) {
+            errs.email = 'Valid receipt email is required';
+          }
+          if (!client.value.address.trim()) {
+            errs.address = 'Street address is required';
+          }
+          if (!client.value.zip.trim()) {
+            errs.zip = 'Postal code is required';
+          }
+
+          // Card validation only needed if using 'new' method AND method is card/hsa
+          if (selectedSavedMethodId.value === 'new') {
+            if (paymentMethod.value === 'card' || paymentMethod.value === 'hsa') {
+              const numDigits = card.value.number.replace(/\s+/g, '');
+              if (numDigits.length < 13) {
+                errs.cardNumber = 'Please enter a valid 16-digit card number';
+              }
+              if (!card.value.expiry || card.value.expiry.length < 5) {
+                errs.cardExpiry = 'Enter valid MM/YY';
+              }
+              if (!card.value.cvv || card.value.cvv.length < 3) {
+                errs.cardCvv = 'Enter 3 or 4 digit CVV';
+              }
+            }
+          }
+
+          errors.value = errs;
+          return Object.keys(errs).length === 0;
+        }
+
+        async function initiatePayment() {
+          if (!validateInputs()) {
+            window.scrollTo({ top: 400, behavior: 'smooth' });
+            return;
+          }
+
+          isProcessing.value = true;
+          viewState.value = 'processing';
+          processingStep.value = 1;
+
+          const isUsingSaved = selectedSavedMethodId.value !== 'new';
+          const savedObj = isUsingSaved ? savedPaymentMethods.value.find(m => m.id === selectedSavedMethodId.value) : null;
+          const rawCard = card.value.number.replace(/\s+/g, '');
+          const methodMask = isUsingSaved 
+            ? `${savedObj ? savedObj.brand : 'Vaulted Card'} ending in •••• ${savedObj ? savedObj.last4 : '4242'}`
+            : `${detectedBrandName.value} ending in ••${rawCard.slice(-4) || '4242'}`;
+
+          const activeInvoiceId = (invoiceSource.value === 'existing' && selectedPendingInvoiceId.value) 
+            ? selectedPendingInvoiceId.value 
+            : invoiceReference.value;
+
+          const payload = {
+            invoiceId: activeInvoiceId,
+            serviceName: currentServiceName.value,
+            serviceCode: currentServiceCode.value,
+            basePrice: baseServicePrice.value,
+            addons: JSON.parse(JSON.stringify(selectedAddons.value)),
+            discountAmount: discountAmount.value,
+            discountCode: appliedDiscount.value ? appliedDiscount.value.code : '',
+            totalPaid: finalGrandTotal.value,
+            currency: currentCurrency.value,
+            paymentMethod: paymentMethod.value,
+            methodMask: methodMask,
+            payerName: client.value.payerName,
+            patientName: client.value.patientName,
+            email: client.value.email,
+            savedMethodId: isUsingSaved ? selectedSavedMethodId.value : undefined,
+            saveCard: (!isUsingSaved && saveNewMethodOnPay.value) ? {
+              brand: detectedBrandName.value,
+              number: card.value.number,
+              expiry: card.value.expiry,
+              holderName: client.value.payerName
+            } : undefined
+          };
+
+          try {
+            // Visual step progression
+            setTimeout(() => { processingStep.value = 2; }, 350);
+            setTimeout(() => { processingStep.value = 3; }, 700);
+
+            const resp = await fetch('/api/portal/pay', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+
+            if (!resp.ok) {
+              const errData = await resp.json();
+              throw new Error(errData.error || 'Payment gateway rejection');
+            }
+
+            const result = await resp.json();
+            processingStep.value = 4;
+            await new Promise(r => setTimeout(r, 450));
+
+            receiptData.value = result.transaction;
+            
+            // Reload server state
+            await fetchPortalState();
+
+            isProcessing.value = false;
+            viewState.value = 'success';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          } catch (err) {
+            isProcessing.value = false;
+            viewState.value = 'checkout';
+            alert('Payment authorization failed: ' + err.message);
+          }
+        }
+
+        function printReceipt() {
+          window.print();
+        }
+
+        function downloadReceiptData() {
+          const r = receiptData.value;
+          const currCfg = currencyRates[r.currency] || currencyRates.USD;
+          const fmt = (usd) => {
+            const val = Number(usd) * currCfg.rate;
+            return `${currCfg.symbol}${val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+          };
+          const text = `=====================================================
+NEUROPATH CLINIC - OFFICIAL PAYMENT RECEIPT
+Clinical & Educational Neurodiversity Diagnostic Services
+=====================================================
+TRANSACTION ID : ${r.transactionId}
+AUTH CODE      : ${r.authCode}
+SETTLED DATE   : ${r.timestamp}
+PAYER NAME     : ${r.payerName}
+PATIENT NAME   : ${r.patientName}
+PAYMENT METHOD : ${r.methodMask}
+-----------------------------------------------------
+ITEMIZED SERVICE:
+* ${r.serviceName} (${r.serviceCode})
+  Base Price: ${fmt(r.basePrice)}
+${(r.addons || []).map(a => `* Add-on: ${a.name} (+${fmt(a.priceUsd)})`).join('\n')}
+${r.discountAmount > 0 ? `* Discount (${r.discountCode}): -${fmt(r.discountAmount)}\n` : ''}-----------------------------------------------------
+TOTAL PAID     : ${fmt(r.totalPaid)} (${r.currency})
+STATUS         : SETTLED & VERIFIED (IRS CODE 213(d) ELIGIBLE)
+CLINIC NPI     : #1942801928
+=====================================================
+`;
+          const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = `NeuroPath-Receipt-${r.transactionId}.txt`;
+          link.click();
+          URL.revokeObjectURL(url);
+        }
+
+        function resetToNewPayment() {
+          viewState.value = 'checkout';
+          invoiceSource.value = 'new';
+          selectedPendingInvoiceId.value = '';
+          invoiceReference.value = 'NP-INV-2026-' + Math.floor(1000 + Math.random() * 9000);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Hydrate from URL query parameters, sync with global CurrencyManager, and load initial portal state
+        onMounted(async () => {
+          // 1. Initial State Fetch from persistent backend with Simulated Background Tasks & Delay Timer
+          isLoadingData.value = true;
+          loadingStep.value = 1;
+          loadingProgress.value = 20;
+          loadingStatusText.value = 'Connecting to clinic accounting server & ledger...';
+
+          const timerPromise = (async () => {
+            await new Promise(r => setTimeout(r, 380));
+            loadingStep.value = 2;
+            loadingProgress.value = 55;
+            loadingStatusText.value = 'Fetching active patient invoices & balances (/api/portal/state)...';
+            
+            await new Promise(r => setTimeout(r, 450));
+            loadingStep.value = 3;
+            loadingProgress.value = 85;
+            loadingStatusText.value = 'Synchronizing vaulted payment tokens & NPI verification...';
+            
+            await new Promise(r => setTimeout(r, 400));
+            loadingStep.value = 4;
+            loadingProgress.value = 100;
+            loadingStatusText.value = 'Stateful clinical records synchronized successfully.';
+            await new Promise(r => setTimeout(r, 260));
+          })();
+
+          // Concurrently call backend API endpoint
+          const fetchPromise = fetchPortalState();
+
+          // Wait for both endpoint data arrival and timer simulation
+          await Promise.all([fetchPromise, timerPromise]);
+          isLoadingData.value = false;
+
+          // 2. Currency Sync
+          try {
+            const savedCurr = localStorage.getItem('neuropath_currency');
+            if (savedCurr && currencyRates[savedCurr]) {
+              currentCurrency.value = savedCurr;
+            }
+          } catch(e) {}
+
+          window.addEventListener('currencyChange', (e) => {
+            if (e.detail && e.detail.currency && currencyRates[e.detail.currency]) {
+              currentCurrency.value = e.detail.currency;
+            }
+          });
+
+          window.addEventListener('storage', (e) => {
+            if (e.key === 'neuropath_currency' && e.newValue && currencyRates[e.newValue]) {
+              currentCurrency.value = e.newValue;
+            }
+          });
+
+          // 3. URL Parameters Routing
+          try {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('tab')) {
+              currentTab.value = params.get('tab');
+            }
+            if (params.get('service')) {
+              const s = params.get('service').toLowerCase();
+              if (serviceCatalog.some(item => item.id === s)) {
+                invoiceSource.value = 'new';
+                selectedServiceId.value = s;
+              } else if (s === 'custom') {
+                invoiceSource.value = 'new';
+                selectedServiceId.value = 'custom';
+              }
+            }
+            if (params.get('amount')) {
+              const amt = parseFloat(params.get('amount'));
+              if (!isNaN(amt) && amt > 0) {
+                selectedServiceId.value = 'custom';
+                customAmount.value = amt;
+              }
+            }
+            if (params.get('client')) {
+              client.value.payerName = params.get('client');
+            }
+            if (params.get('patient') || params.get('ward')) {
+              client.value.patientName = params.get('patient') || params.get('ward');
+            }
+            if (params.get('email')) {
+              client.value.email = params.get('email');
+            }
+            if (params.get('invoice')) {
+              const invParam = params.get('invoice');
+              invoiceReference.value = invParam;
+              // Check if matching pending invoice in loaded invoices
+              const matching = invoices.value.find(i => i.id === invParam);
+              if (matching) {
+                selectPendingInvoice(matching);
+              }
+            }
+            if (params.get('discount')) {
+              discountInput.value = params.get('discount');
+              applyDiscountCode();
+            }
+          } catch(e) {
+            console.warn('URL param parse error:', e);
+          }
+        });
+
+        return {
+          isLoadingData,
+          loadingStep,
+          loadingProgress,
+          loadingStatusText,
+          currentTab,
+          viewState,
+          currentCurrency,
+          currentCurrencyConfig,
+          invoices,
+          transactions,
+          savedPaymentMethods,
+          pendingInvoices,
+          settledInvoices,
+          pendingInvoicesCount,
+          settledInvoicesCount,
+          totalPendingUsd,
+          totalSettledUsd,
+          totalInvoicedUsd,
+          currentSelectedSavedMethod,
+          filteredInvoices,
+          invoiceSource,
+          selectedPendingInvoiceId,
+          selectedSavedMethodId,
+          saveNewMethodOnPay,
+          ledgerStatusFilter,
+          ledgerSearchQuery,
+          lookupQuery,
+          lookupResult,
+          lookupSearched,
+          activeModalReceipt,
+          showAddMethodModal,
+          newMethodForm,
+          invoiceReference,
+          serviceCatalog,
+          availableAddons,
+          selectedServiceId,
+          customDescription,
+          customAmount,
+          selectedAddonIds,
+          selectedAddons,
+          client,
+          paymentMethod,
+          card,
+          ach,
+          discountInput,
+          appliedDiscount,
+          discountError,
+          isProcessing,
+          processingStep,
+          errors,
+          receiptData,
+          baseServicePrice,
+          currentServiceName,
+          currentServiceCode,
+          calculatedSubtotal,
+          discountAmount,
+          finalGrandTotal,
+          detectedBrandName,
+          displayCardNumber,
+          setCurrency,
+          formatPrice,
+          switchTab,
+          setInvoiceSource,
+          selectPendingInvoice,
+          selectSavedMethod,
+          loadInvoiceIntoCheckout,
+          useSavedMethodForCheckout,
+          deleteSavedMethod,
+          submitNewSavedMethod,
+          performLookup,
+          viewReceiptFromLedger,
+          closeModalReceipt,
+          selectService,
+          isAddonSelected,
+          toggleAddon,
+          handleCardNumberInput,
+          handleExpiryInput,
+          applyDiscountCode,
+          setDiscountSample,
+          removeDiscount,
+          fillDemo,
+          clearDemo,
+          handleWalletPay,
+          initiatePayment,
+          printReceipt,
+          downloadReceiptData,
+          resetToNewPayment
+        };
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>

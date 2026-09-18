@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeuroPath | Impulse Control Analysis - Leo</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <header class="header">
+    <button class="nav-toggle" id="menuToggle" aria-label="Toggle Menu">
+      <i data-lucide="menu"></i>
+    </button>
+    <a href="index.html" class="logo">
+      <i data-lucide="brain"></i>
+      <h1>NeuroPath</h1>
+    </a>
+    <div class="header-actions">
+      <a href="accounts.html" class="profile-pill">
+        <span style="font-size: 12px; font-weight: 500;">Sarah Jenkins</span>
+        <div class="profile-img">
+          <img src="https://picsum.photos/seed/parent/100/100" alt="Profile" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <nav class="sidebar">
+      <div class="nav-group">
+        <p class="nav-group-label">Dashboard</p>
+        <a href="index.html" class="nav-link">
+          <i data-lucide="layout-dashboard" size="18"></i>
+          <span>Overview</span>
+        </a>
+        <a href="probability.html" class="nav-link">
+          <i data-lucide="percent" size="18"></i>
+          <span>Probability Index</span>
+        </a>
+
+        <details class="nav-accordion" open>
+          <summary>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <i data-lucide="clipboard-check" size="18"></i>
+              <span>Evaluations</span>
+            </div>
+            <i data-lucide="chevron-down" size="14" class="chevron"></i>
+          </summary>
+          <div class="nav-accordion-content">
+            <a href="dyslexia-evaluation.html" class="nav-link">
+              <i data-lucide="book-open" size="14"></i>
+              <span>Dyslexia Subtypes</span>
+            </a>
+            <a href="adhd-evaluation.html" class="nav-link">
+              <i data-lucide="zap" size="14"></i>
+              <span>ADHD</span>
+            </a>
+            <a href="dyscalculia-evaluation.html" class="nav-link">
+              <i data-lucide="calculator" size="14"></i>
+              <span>Dyscalculia</span>
+            </a>
+          </div>
+        </details>
+
+        <details class="nav-accordion" open>
+          <summary>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <i data-lucide="bar-chart-2" size="18"></i>
+              <span>Analysis</span>
+            </div>
+            <i data-lucide="chevron-down" size="14" class="chevron"></i>
+          </summary>
+          <div class="nav-accordion-content">
+            <a href="phonology-analysis.html" class="nav-link">
+              <i data-lucide="mic-2" size="14"></i>
+              <span>Phonology</span>
+            </a>
+            <a href="word-recognition-analysis.html" class="nav-link">
+              <i data-lucide="eye" size="14"></i>
+              <span>Word Recognition</span>
+            </a>
+            <a href="text-tracing-analysis.html" class="nav-link">
+              <i data-lucide="pen-tool" size="14"></i>
+              <span>Text Tracing</span>
+            </a>
+            <a href="attention-span-analysis.html" class="nav-link">
+              <i data-lucide="timer" size="14"></i>
+              <span>Attention Span</span>
+            </a>
+            <a href="impulse-control-analysis.html" class="nav-link active">
+              <i data-lucide="target" size="14"></i>
+              <span>Impulse Control</span>
+            </a>
+            <a href="analysis.html" class="nav-link">
+              <i data-lucide="bar-chart-horizontal" size="14"></i>
+              <span>Frequency</span>
+            </a>
+          </div>
+        </details>
+
+        <a href="kirkpatrick.html" class="nav-link">
+          <i data-lucide="layers" size="18"></i>
+          <span>Kirkpatrick Model</span>
+        </a>
+        <a href="neurodiversity.html" class="nav-link">
+          <i data-lucide="activity" size="18"></i>
+          <span>Neurodiversity Scale</span>
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <p class="nav-group-label">Wards</p>
+        <a href="wards-list.html" class="nav-link">
+          <i data-lucide="users" size="18"></i>
+          <span>Wards List</span>
+        </a>
+        <a href="ward.html" class="nav-link">
+          <i data-lucide="user-plus" size="18"></i>
+          <span>Registration</span>
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <p class="nav-group-label">Resources</p>
+        <a href="professionals.html" class="nav-link">
+          <i data-lucide="stethoscope" size="18"></i>
+          <span>Professional Directory</span>
+        </a>
+        <a href="book-appointment.html" class="nav-link">
+          <i data-lucide="calendar-plus" size="18"></i>
+          <span>Book Appointment</span>
+        </a>
+        <a href="settings.html" class="nav-link">
+          <i data-lucide="settings" size="18"></i>
+          <span>Settings</span>
+        </a>
+      </div>
+
+      <div style="margin-top: auto; border-top: 1px solid var(--border); padding-top: 16px;">
+        <a href="login.html" class="nav-link" style="color: #ef4444;">
+          <i data-lucide="log-out" size="18"></i>
+          <span>Sign Out</span>
+        </a>
+      </div>
+    </nav>
+
+    <main class="content animate-fade">
+      <header class="mb-32">
+        <h2 style="font-size: 30px; margin-bottom: 4px;">Impulse Control Analysis</h2>
+        <p class="text-muted" style="font-size: 14px;">Inhibitory control and response inhibition for Leo Jenkins.</p>
+      </header>
+
+      <div class="ward-selector">
+        <a href="impulse-control-analysis.html" class="ward-tab active">Leo Jenkins</a>
+        <a href="#" class="ward-tab">Maya Jenkins</a>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-label">Inhibition Accuracy</span>
+          <div style="display: flex; align-items: baseline; gap: 8px;">
+            <span class="stat-value">82%</span>
+            <span class="trend-indicator trend-up"><i data-lucide="arrow-up-right" size="14"></i> 8%</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">False Alarm Rate</span>
+          <div style="display: flex; align-items: baseline; gap: 8px;">
+            <span class="stat-value">18%</span>
+            <span class="trend-indicator trend-down"><i data-lucide="arrow-down-right" size="14"></i> 5%</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Reaction Consistency</span>
+          <div style="display: flex; align-items: baseline; gap: 8px;">
+            <span class="stat-value">94%</span>
+            <span class="trend-indicator trend-up"><i data-lucide="arrow-up-right" size="14"></i> 2%</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Stop Signal Delay</span>
+          <div style="display: flex; align-items: baseline; gap: 8px;">
+            <span class="stat-value">240ms</span>
+            <span class="trend-indicator trend-up"><i data-lucide="arrow-up-right" size="14"></i> 20ms</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <!-- Impulse Trend -->
+          <div class="card">
+            <h3 style="font-size: 18px; margin-bottom: 20px;">Impulse Control Trend</h3>
+            <div class="chart-container">
+              <svg viewBox="0 0 400 200" class="line-chart-svg">
+                <path d="M0,160 L50,150 L100,155 L150,130 L200,120 L250,100 L300,105 L350,90 L400,80" class="area-path" style="fill: var(--accent-purple); fill-opacity: 0.1;" />
+                <path d="M0,160 L50,150 L100,155 L150,130 L200,120 L250,100 L300,105 L350,90 L400,80" class="line-path" style="stroke: var(--accent-purple);" />
+                <circle cx="0" cy="160" r="4" class="line-point" style="stroke: var(--accent-purple);" />
+                <circle cx="200" cy="120" r="4" class="line-point" style="stroke: var(--accent-purple);" />
+                <circle cx="400" cy="80" r="4" class="line-point" style="stroke: var(--accent-purple);" />
+              </svg>
+              <div style="display: flex; justify-content: space-between; margin-top: 12px; font-size: 10px; color: var(--text-muted); font-weight: bold;">
+                <span>Session 1</span>
+                <span>Session 10</span>
+                <span>Session 20</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Go/No-Go Grid -->
+          <div class="card">
+            <div class="viz-header">
+              <h3 class="viz-title">Go/No-Go Performance (Last 50 Trials)</h3>
+              <span class="badge badge-doctor">Clinical Standard</span>
+            </div>
+            <div class="viz-container" style="background: white; padding: 24px;">
+              <div class="impulse-grid">
+                <div class="impulse-dot dot-go-success"></div>
+                <div class="impulse-dot dot-go-success"></div>
+                <div class="impulse-dot dot-nogo-success"></div>
+                <div class="impulse-dot dot-go-fail"></div>
+                <div class="impulse-dot dot-go-success"></div>
+                <div class="impulse-dot dot-nogo-fail"></div>
+                <div class="impulse-dot dot-go-success"></div>
+                <div class="impulse-dot dot-go-success"></div>
+                <div class="impulse-dot dot-nogo-success"></div>
+                <div class="impulse-dot dot-go-success"></div>
+                
+                <div class="impulse-dot dot-go-success"></div>
+                <div class="impulse-dot dot-nogo-fail"></div>
+                <div class="impulse-dot dot-go-success"></div>
+                <div class="impulse-dot dot-go-success"></div>
+                <div class="impulse-dot dot-nogo-success"></div>
+                <div class="impulse-dot dot-go-fail"></div>
+                <div class="impulse-dot dot-go-success"></div>
+                <div class="impulse-dot dot-go-success"></div>
+                <div class="impulse-dot dot-nogo-success"></div>
+                <div class="impulse-dot dot-go-success"></div>
+
+                <div class="impulse-dot dot-go-success"></div>
+                <div class="impulse-dot dot-go-success"></div>
+                <div class="impulse-dot dot-nogo-success"></div>
+                <div class="impulse-dot dot-go-success"></div>
+                <div class="impulse-dot dot-go-success"></div>
+                <div class="impulse-dot dot-nogo-fail"></div>
+                <div class="impulse-dot dot-go-success"></div>
+                <div class="impulse-dot dot-go-success"></div>
+                <div class="impulse-dot dot-nogo-success"></div>
+                <div class="impulse-dot dot-go-success"></div>
+              </div>
+              <div style="display: flex; justify-content: center; gap: 16px; margin-top: 24px; font-size: 10px; font-weight: bold; text-transform: uppercase;">
+                <div style="display: flex; align-items: center; gap: 4px;"><div style="width: 8px; height: 8px; background: var(--accent-sage); border-radius: 50%;"></div> Go (Success)</div>
+                <div style="display: flex; align-items: center; gap: 4px;"><div style="width: 8px; height: 8px; border: 1px solid #ef4444; border-radius: 50%;"></div> Go (Miss)</div>
+                <div style="display: flex; align-items: center; gap: 4px;"><div style="width: 8px; height: 8px; background: var(--accent-sand); border-radius: 50%;"></div> No-Go (Success)</div>
+                <div style="display: flex; align-items: center; gap: 4px;"><div style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%;"></div> No-Go (Fail)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Response Inhibition -->
+          <div class="card">
+            <h3 style="font-size: 18px; margin-bottom: 16px;">Error Type Distribution</h3>
+            <div class="chart-container" style="height: 180px;">
+              <div class="bar-chart">
+                <div class="bar-group"><div class="bar" style="height: 70%; background: var(--accent-red); opacity: 0.6;" data-value="70%"></div><span class="bar-label">Commission</span></div>
+                <div class="bar-group"><div class="bar" style="height: 30%; background: var(--accent-sand);" data-value="30%"></div><span class="bar-label">Omission</span></div>
+                <div class="bar-group"><div class="bar" style="height: 15%; background: var(--accent-blue);" data-value="15%"></div><span class="bar-label">Anticipatory</span></div>
+                <div class="bar-group"><div class="bar" style="height: 10%; background: var(--accent-sage);" data-value="10%"></div><span class="bar-label">Late</span></div>
+              </div>
+            </div>
+            
+            <div class="metric-grid">
+              <div class="metric-item">
+                <span class="metric-value">12</span>
+                <span class="metric-label">Total Errors</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-value">420ms</span>
+                <span class="metric-label">Avg RT</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-value">15ms</span>
+                <span class="metric-label">RT Variability</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <div class="card">
+            <h3 style="font-size: 16px; margin-bottom: 16px;">Impulse Insights</h3>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <div style="padding: 12px; background: rgba(239, 68, 68, 0.05); border-radius: 8px; border-left: 4px solid #ef4444;">
+                <p style="font-size: 12px; font-weight: bold; margin-bottom: 4px;">Premature Responding</p>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.4;">Leo often responds before the stimulus is fully presented, especially during high-speed trials.</p>
+              </div>
+              <div style="padding: 12px; background: rgba(142, 151, 117, 0.1); border-radius: 8px; border-left: 4px solid var(--accent-sage);">
+                <p style="font-size: 12px; font-weight: bold; margin-bottom: 4px;">Error Awareness</p>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.4;">Leo shows high awareness of errors, often slowing down significantly immediately after a false alarm.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 style="font-size: 16px; margin-bottom: 12px;">Training Progress</h3>
+            <div style="text-align: center; padding: 16px; background: var(--bg-color); border-radius: 12px;">
+              <i data-lucide="shield-check" size="32" style="color: var(--accent-sage); margin-bottom: 12px;"></i>
+              <p style="font-size: 13px; font-weight: bold;">Stop-Signal Training</p>
+              <p style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">Completed 12/20 sessions this month.</p>
+              <div class="scale-bar" style="margin: 12px 0;"><div class="scale-fill" style="width: 60%;"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    // Mobile Menu Toggle Logic
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.querySelector('.sidebar');
+    
+    if (menuToggle && sidebar) {
+      menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sidebar.classList.toggle('open');
+      });
+      
+      document.addEventListener('click', (e) => {
+        if (!sidebar.contains(e.target) && sidebar.classList.contains('open')) {
+          sidebar.classList.remove('open');
+        }
+      });
+    }
+  </script>
+</body>
+</html>

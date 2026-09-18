@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeuroPath | Sign In</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body style="display: flex; align-items: center; justify-content: center; background: var(--bg-color);">
+  <div class="animate-fade" style="width: 100%; max-width: 400px; padding: 20px;">
+    <div class="card" style="text-align: center; padding: 40px;">
+      <div style="color: var(--accent-sage); margin-bottom: 24px; display: flex; justify-content: center;">
+        <i data-lucide="brain" size="48"></i>
+      </div>
+      <h2 style="font-size: 30px; margin-bottom: 8px;">Welcome Back</h2>
+      <p class="text-muted" style="font-size: 14px; margin-bottom: 32px;">Sign in to access your parent dashboard.</p>
+      
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <button class="btn btn-outline" style="width: 100%; padding: 12px; font-size: 14px; font-weight: bold;">
+          <img src="https://www.google.com/favicon.ico" alt="Google" style="width: 16px; height: 16px;">
+          Sign in with Google
+        </button>
+        
+        <div style="display: flex; align-items: center; padding: 16px 0;">
+          <div style="flex: 1; height: 1px; background: var(--border);"></div>
+          <span style="padding: 0 16px; font-size: 10px; font-weight: bold; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">or</span>
+          <div style="flex: 1; height: 1px; background: var(--border);"></div>
+        </div>
+
+        <input type="email" placeholder="Email Address" class="form-control">
+        <input type="password" placeholder="Password" class="form-control">
+        
+        <a href="index.html" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 12px;">Sign In</a>
+      </div>
+
+      <p style="margin-top: 32px; font-size: 12px; color: var(--text-muted);">
+        Don't have an account? <a href="register.html" style="color: var(--accent-sage); font-weight: bold; text-decoration: none;">Create one</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

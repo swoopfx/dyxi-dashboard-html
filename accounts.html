@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeuroPath | Account Details</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <header class="header">
+    <button class="nav-toggle" id="menuToggle" aria-label="Toggle Menu">
+      <i data-lucide="menu"></i>
+    </button>
+    <a href="index.html" class="logo">
+      <i data-lucide="brain"></i>
+      <h1>NeuroPath</h1>
+    </a>
+    <div class="header-actions">
+      <!-- Global Currency Switcher -->
+      <div class="currency-switch-global" title="Toggle Dollar ($) / Naira (₦) currency">
+        <button type="button" class="curr-toggle-btn active" data-currency="USD" title="US Dollar ($)">
+          <span class="curr-symbol">$</span><span class="curr-code">USD</span>
+        </button>
+        <button type="button" class="curr-toggle-btn" data-currency="NGN" title="Nigerian Naira (₦)">
+          <span class="curr-symbol">₦</span><span class="curr-code">NGN</span>
+        </button>
+      </div>
+      <div class="search-bar">
+        <i data-lucide="search" size="16"></i>
+        <input type="text" placeholder="Search records...">
+      </div>
+      <button class="nav-link" style="padding: 8px; border-radius: 50%;">
+        <i data-lucide="bell" size="20"></i>
+      </button>
+      <a href="accounts.html" class="profile-pill">
+        <span style="font-size: 12px; font-weight: 500;">Sarah Jenkins</span>
+        <div class="profile-img">
+          <img src="https://picsum.photos/seed/parent/100/100" alt="Profile" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <nav class="sidebar">
+      <div class="nav-group">
+        <p class="nav-group-label">Dashboard</p>
+        <a href="index.html" class="nav-link">
+          <i data-lucide="layout-dashboard" size="18"></i>
+          <span>Overview</span>
+        </a>
+        <a href="probability.html" class="nav-link">
+          <i data-lucide="percent" size="18"></i>
+          <span>Probability Index</span>
+        </a>
+
+        <details class="nav-accordion">
+          <summary>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <i data-lucide="clipboard-check" size="18"></i>
+              <span>Evaluations</span>
+            </div>
+            <i data-lucide="chevron-down" size="14" class="chevron"></i>
+          </summary>
+          <div class="nav-accordion-content">
+            <a href="dyslexia-evaluation.html" class="nav-link">
+              <i data-lucide="book-open" size="14"></i>
+              <span>Dyslexia Subtypes</span>
+            </a>
+            <a href="adhd-evaluation.html" class="nav-link">
+              <i data-lucide="zap" size="14"></i>
+              <span>ADHD</span>
+            </a>
+            <a href="dyscalculia-evaluation.html" class="nav-link">
+              <i data-lucide="calculator" size="14"></i>
+              <span>Dyscalculia</span>
+            </a>
+          </div>
+        </details>
+
+        <details class="nav-accordion">
+          <summary>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <i data-lucide="bar-chart-2" size="18"></i>
+              <span>Analysis</span>
+            </div>
+            <i data-lucide="chevron-down" size="14" class="chevron"></i>
+          </summary>
+          <div class="nav-accordion-content">
+            <a href="phonology-analysis.html" class="nav-link">
+              <i data-lucide="mic-2" size="14"></i>
+              <span>Phonology</span>
+            </a>
+            <a href="word-recognition-analysis.html" class="nav-link">
+              <i data-lucide="eye" size="14"></i>
+              <span>Word Recognition</span>
+            </a>
+            <a href="text-tracing-analysis.html" class="nav-link">
+              <i data-lucide="pen-tool" size="14"></i>
+              <span>Text Tracing</span>
+            </a>
+            <a href="attention-span-analysis.html" class="nav-link">
+              <i data-lucide="timer" size="14"></i>
+              <span>Attention Span</span>
+            </a>
+            <a href="impulse-control-analysis.html" class="nav-link">
+              <i data-lucide="target" size="14"></i>
+              <span>Impulse Control</span>
+            </a>
+            <a href="analysis.html" class="nav-link">
+              <i data-lucide="bar-chart-horizontal" size="14"></i>
+              <span>Frequency</span>
+            </a>
+          </div>
+        </details>
+
+        <a href="kirkpatrick.html" class="nav-link">
+          <i data-lucide="layers" size="18"></i>
+          <span>Kirkpatrick Model</span>
+        </a>
+        <a href="neurodiversity.html" class="nav-link">
+          <i data-lucide="activity" size="18"></i>
+          <span>Neurodiversity Scale</span>
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <p class="nav-group-label">Wards</p>
+        <a href="wards-list.html" class="nav-link">
+          <i data-lucide="users" size="18"></i>
+          <span>Wards List</span>
+        </a>
+        <a href="ward.html" class="nav-link">
+          <i data-lucide="user-plus" size="18"></i>
+          <span>Registration</span>
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <p class="nav-group-label">Resources</p>
+        <a href="professionals.html" class="nav-link">
+          <i data-lucide="stethoscope" size="18"></i>
+          <span>Professional Directory</span>
+        </a>
+        <a href="book-appointment.html" class="nav-link">
+          <i data-lucide="calendar-plus" size="18"></i>
+          <span>Book Appointment</span>
+        </a>
+        <a href="billing.html" class="nav-link">
+          <i data-lucide="credit-card" size="18"></i>
+          <span>Billing & Payments</span>
+        </a>
+        <a href="payment.html" class="nav-link">
+          <i data-lucide="receipt" size="18"></i>
+          <span>Payment Portal</span>
+        </a>
+        <a href="settings.html" class="nav-link">
+          <i data-lucide="settings" size="18"></i>
+          <span>Settings</span>
+        </a>
+      </div>
+
+      <div style="margin-top: auto; border-top: 1px solid var(--border); padding-top: 16px;">
+        <a href="login.html" class="nav-link" style="color: #ef4444;">
+          <i data-lucide="log-out" size="18"></i>
+          <span>Sign Out</span>
+        </a>
+      </div>
+    </nav>
+
+    <main class="content animate-fade">
+      <header style="margin-bottom: 32px;">
+        <h2 style="font-size: 30px; margin-bottom: 4px;">Account Details</h2>
+        <p class="text-muted" style="font-size: 14px;">Manage your personal information and subscription.</p>
+      </header>
+
+      <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 32px;">
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <div class="card" style="text-align: center;">
+            <div style="width: 128px; height: 128px; margin: 0 auto 16px; border-radius: 50%; border: 4px solid var(--bg-color); overflow: hidden; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);">
+              <img src="https://picsum.photos/seed/parent/200/200" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <h3 style="font-size: 20px; margin-bottom: 4px;">Sarah Jenkins</h3>
+            <p class="text-muted" style="font-size: 12px; margin-bottom: 24px;">sarah.jenkins@example.com</p>
+            <button class="btn btn-outline" style="width: 100%;">Edit Profile</button>
+          </div>
+
+          <div class="card" style="background: var(--accent-sage); color: white; box-shadow: 0 8px 24px rgba(142, 151, 117, 0.2);">
+            <h4 style="font-size: 16px; margin-bottom: 8px;">Premium Member</h4>
+            <p style="font-size: 10px; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; margin-bottom: 16px;">Renews on Nov 24, 2023</p>
+            <a href="billing.html" class="btn" style="width: 100%; background: rgba(255,255,255,0.2); color: white; display: block; text-align: center; text-decoration: none;">Manage Billing</a>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <div class="card" style="padding: 0; overflow: hidden;">
+            <div style="padding: 24px; border-bottom: 1px solid var(--border); background: rgba(234, 231, 220, 0.3);">
+              <h3 style="font-size: 18px;">Personal Information</h3>
+            </div>
+            <div style="padding: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px;">
+              <div>
+                <p class="stat-label">Full Name</p>
+                <p style="font-weight: 500; font-size: 14px;">Sarah Jenkins</p>
+              </div>
+              <div>
+                <p class="stat-label">Email Address</p>
+                <p style="font-weight: 500; font-size: 14px;">sarah.jenkins@example.com</p>
+              </div>
+              <div>
+                <p class="stat-label">Phone Number</p>
+                <p style="font-weight: 500; font-size: 14px;">+1 (555) 123-4567</p>
+              </div>
+              <div>
+                <p class="stat-label">Location</p>
+                <p style="font-weight: 500; font-size: 14px;">San Francisco, CA</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="padding: 0; overflow: hidden;">
+            <div style="padding: 24px; border-bottom: 1px solid var(--border); background: rgba(234, 231, 220, 0.3);">
+              <h3 style="font-size: 18px;">Security</h3>
+            </div>
+            <div style="padding: 24px; display: flex; align-items: center; justify-content: space-between;">
+              <div>
+                <p style="font-weight: 500; font-size: 14px;">Two-Factor Authentication</p>
+                <p class="text-muted" style="font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Extra layer of security</p>
+              </div>
+              <div style="width: 48px; height: 24px; background: var(--accent-sage); border-radius: 12px; position: relative;">
+                <div style="position: absolute; right: 4px; top: 4px; width: 16px; height: 16px; background: white; border-radius: 50%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <nav class="mobile-nav">
+    <a href="index.html" class="text-muted"><i data-lucide="layout-dashboard"></i></a>
+    <a href="neurodiversity.html" class="text-muted"><i data-lucide="activity"></i></a>
+    <a href="ward.html" class="text-muted"><i data-lucide="user-plus"></i></a>
+    <a href="accounts.html" class="text-sage"><i data-lucide="user"></i></a>
+    <a href="settings.html" class="text-muted"><i data-lucide="settings"></i></a>
+  </nav>
+
+  <script src="currency-manager.js"></script>
+  <script>
+    lucide.createIcons();
+
+    // Mobile Menu Toggle Logic
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.querySelector('.sidebar');
+    
+    if (menuToggle && sidebar) {
+      menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sidebar.classList.toggle('open');
+      });
+      
+      document.addEventListener('click', (e) => {
+        if (!sidebar.contains(e.target) && sidebar.classList.contains('open')) {
+          sidebar.classList.remove('open');
+        }
+      });
+    }
+  </script>
+</body>
+</html>

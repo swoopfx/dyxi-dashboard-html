@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeuroPath | Phonological Memory Analysis - Leo</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <header class="header">
+    <button class="nav-toggle" id="menuToggle" aria-label="Toggle Menu">
+      <i data-lucide="menu"></i>
+    </button>
+    <a href="index.html" class="logo">
+      <i data-lucide="brain"></i>
+      <h1>NeuroPath</h1>
+    </a>
+    <div class="header-actions">
+      <a href="accounts.html" class="profile-pill">
+        <span style="font-size: 12px; font-weight: 500;">Sarah Jenkins</span>
+        <div class="profile-img">
+          <img src="https://picsum.photos/seed/parent/100/100" alt="Profile" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <nav class="sidebar">
+      <div class="nav-group">
+        <p class="nav-group-label">Dashboard</p>
+        <a href="index.html" class="nav-link">
+          <i data-lucide="layout-dashboard" size="18"></i>
+          <span>Overview</span>
+        </a>
+        <a href="probability.html" class="nav-link">
+          <i data-lucide="percent" size="18"></i>
+          <span>Probability Index</span>
+        </a>
+        <details class="nav-accordion">
+          <summary>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <i data-lucide="clipboard-check" size="18"></i>
+              <span>Evaluations</span>
+            </div>
+            <i data-lucide="chevron-down" size="14" class="chevron"></i>
+          </summary>
+          <div class="nav-accordion-content">
+            <a href="ctopp-evaluation.html" class="nav-link">
+              <i data-lucide="mic-2" size="14"></i>
+              <span>CTOPP-2</span>
+            </a>
+          </div>
+        </details>
+        <details class="nav-accordion" open>
+          <summary>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <i data-lucide="bar-chart-2" size="18"></i>
+              <span>Analysis</span>
+            </div>
+            <i data-lucide="chevron-down" size="14" class="chevron"></i>
+          </summary>
+          <div class="nav-accordion-content">
+            <a href="phonological-memory-analysis.html" class="nav-link active">
+              <i data-lucide="brain" size="14"></i>
+              <span>Phonological Memory</span>
+            </a>
+            <a href="rapid-naming-analysis.html" class="nav-link">
+              <i data-lucide="zap" size="14"></i>
+              <span>Rapid Naming</span>
+            </a>
+          </div>
+        </details>
+      </div>
+    </nav>
+
+    <main class="content animate-fade">
+      <header class="mb-32">
+        <h2 style="font-size: 30px; margin-bottom: 4px;">Phonological Memory</h2>
+        <p class="text-muted" style="font-size: 14px;">Analyzing Leo's ability to retain and manipulate speech sounds in the phonological loop.</p>
+      </header>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-label">Digit Span Score</span>
+          <div style="display: flex; align-items: baseline; gap: 8px;">
+            <span class="stat-value">5</span>
+            <span class="text-muted" style="font-size: 12px;">(Avg for age: 6-7)</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Non-Word Repetition</span>
+          <div style="display: flex; align-items: baseline; gap: 8px;">
+            <span class="stat-value">48%</span>
+            <span class="trend-indicator trend-down" style="color: #ef4444;">Delayed</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Memory Capacity</span>
+          <div style="display: flex; align-items: baseline; gap: 8px;">
+            <span class="stat-value">Short</span>
+            <span class="text-muted" style="font-size: 11px;">Limited Loop</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px;">
+        <!-- Probabilistic Representation: Error Likelihood -->
+        <div class="card">
+          <h3 style="font-size: 18px; margin-bottom: 20px;">Probabilistic: Error Probability by Syllable Count</h3>
+          <p class="text-muted" style="font-size: 12px; margin-bottom: 24px;">Predicted likelihood of auditory processing errors as word complexity increases.</p>
+          <div class="chart-container" style="height: 250px;">
+            <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
+              <line x1="40" y1="180" x2="360" y2="180" stroke="#ccc" />
+              <line x1="40" y1="180" x2="40" y2="20" stroke="#ccc" />
+              
+              <!-- Probability Curve (Cumulative) -->
+              <path d="M40,170 Q150,165 200,100 T360,20" fill="none" stroke="#ef4444" stroke-width="3" />
+              <circle cx="40" cy="170" r="4" fill="#ef4444" />
+              <circle cx="120" cy="155" r="4" fill="#ef4444" />
+              <circle cx="200" cy="100" r="4" fill="#ef4444" />
+              <circle cx="280" cy="50" r="4" fill="#ef4444" />
+              <circle cx="360" cy="20" r="4" fill="#ef4444" />
+
+              <text x="40" y="195" font-size="9" text-anchor="middle">1 Syl</text>
+              <text x="120" y="195" font-size="9" text-anchor="middle">2 Syl</text>
+              <text x="200" y="195" font-size="9" text-anchor="middle">3 Syl</text>
+              <text x="280" y="195" font-size="9" text-anchor="middle">4 Syl</text>
+              <text x="360" y="195" font-size="9" text-anchor="middle">5+ Syl</text>
+              
+              <text x="30" y="100" font-size="9" transform="rotate(-90 30,100)" text-anchor="middle">Error Prob %</text>
+            </svg>
+          </div>
+          <div style="margin-top: 16px; padding: 12px; background: rgba(66,133,244,0.05); border-radius: 8px;">
+            <p style="font-size: 11px; color: var(--text-muted);">A multi-syllabic word like "pre-med-i-tat-ed" has an 88% probability of being mis-repeated due to phonological memory overflow.</p>
+          </div>
+        </div>
+
+        <!-- Inferential: Spelling Correlation -->
+        <div class="card">
+          <h3 style="font-size: 18px; margin-bottom: 20px;">Inferential: Memory vs. Spelling Accuracy</h3>
+          <div style="margin-bottom: 24px;">
+            <p style="font-size: 12px; color: var(--text-muted); line-height: 1.6;">
+              Phonological memory is the "workbench" where sounds are held before being mapped to letters. For Leo, the inferential link between his memory span (5 digits) and his spelling of multi-syllabic words is nearly direct.
+            </p>
+          </div>
+          
+          <div class="viz-container">
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <span style="font-size: 12px;">Memory Buffer Status</span>
+                <span class="badge badge-doctor">Overloaded</span>
+              </div>
+              <div class="timeline" style="height: 12px;">
+                <div class="timeline-segment focus" style="width: 40%;"></div>
+                <div class="timeline-segment rest" style="width: 10%;"></div>
+                <div class="timeline-segment distraction" style="width: 50%;"></div>
+              </div>
+              <p style="font-size: 10px; color: var(--text-muted);">Red indicates data loss after 4th phoneme in sequence.</p>
+            </div>
+          </div>
+
+          <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border);">
+            <h4 style="font-size: 13px; margin-bottom: 8px;">Intervention Strategy</h4>
+            <p style="font-size: 12px; color: var(--text-muted); line-height: 1.6;">
+              Breaking multi-syllabic words into visual "chunks" can mitigate the auditory memory bottleneck. Inference: Teaching Leo to visualize word roots will bypass his auditory loop deficits.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    lucide.createIcons();
+    // Copy mobile menu logic from index
+    document.getElementById('menuToggle').addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.querySelector('.sidebar').classList.toggle('open');
+    });
+    document.addEventListener('click', (e) => {
+      const sidebar = document.querySelector('.sidebar');
+      if (!sidebar.contains(e.target) && sidebar.classList.contains('open')) {
+        sidebar.classList.remove('open');
+      }
+    });
+  </script>
+</body>
+</html>

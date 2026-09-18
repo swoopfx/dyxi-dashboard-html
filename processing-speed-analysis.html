@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeuroPath | Processing Speed Analysis</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <header class="header">
+    <button class="nav-toggle" id="menuToggle" aria-label="Toggle Menu">
+      <i data-lucide="menu"></i>
+    </button>
+    <a href="index.html" class="logo">
+      <i data-lucide="brain"></i>
+      <h1>NeuroPath</h1>
+    </a>
+    <div class="header-actions">
+      <a href="accounts.html" class="profile-pill">
+        <span style="font-size: 12px; font-weight: 500;">Sarah Jenkins</span>
+        <div class="profile-img">
+          <img src="https://picsum.photos/seed/parent/100/100" alt="Profile" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <nav class="sidebar">
+      <div class="nav-group">
+        <p class="nav-group-label">Dashboard</p>
+        <a href="index.html" class="nav-link">
+          <i data-lucide="layout-dashboard" size="18"></i>
+          <span>Overview</span>
+        </a>
+        <a href="probability.html" class="nav-link">
+          <i data-lucide="percent" size="18"></i>
+          <span>Probability Index</span>
+        </a>
+
+        <details class="nav-accordion" open>
+          <summary>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <i data-lucide="clipboard-check" size="18"></i>
+              <span>Evaluations</span>
+            </div>
+            <i data-lucide="chevron-down" size="14" class="chevron"></i>
+          </summary>
+          <div class="nav-accordion-content">
+            <a href="dyslexia-evaluation.html" class="nav-link">
+              <i data-lucide="book-open" size="14"></i>
+              <span>Dyslexia Subtypes</span>
+            </a>
+            <a href="adhd-evaluation.html" class="nav-link">
+              <i data-lucide="zap" size="14"></i>
+              <span>ADHD</span>
+            </a>
+            <a href="dyscalculia-evaluation.html" class="nav-link">
+              <i data-lucide="calculator" size="14"></i>
+              <span>Dyscalculia</span>
+            </a>
+          </div>
+        </details>
+
+        <details class="nav-accordion" open>
+          <summary>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <i data-lucide="bar-chart-2" size="18"></i>
+              <span>Analysis</span>
+            </div>
+            <i data-lucide="chevron-down" size="14" class="chevron"></i>
+          </summary>
+          <div class="nav-accordion-content">
+            <a href="phonology-analysis.html" class="nav-link">
+              <i data-lucide="mic-2" size="14"></i>
+              <span>Phonology</span>
+            </a>
+            <a href="word-recognition-analysis.html" class="nav-link">
+              <i data-lucide="eye" size="14"></i>
+              <span>Word Recognition</span>
+            </a>
+            <a href="text-tracing-analysis.html" class="nav-link">
+              <i data-lucide="pen-tool" size="14"></i>
+              <span>Text Tracing</span>
+            </a>
+            <a href="attention-span-analysis.html" class="nav-link">
+              <i data-lucide="timer" size="14"></i>
+              <span>Attention Span</span>
+            </a>
+            <a href="impulse-control-analysis.html" class="nav-link">
+              <i data-lucide="target" size="14"></i>
+              <span>Impulse Control</span>
+            </a>
+            <a href="executive-function-analysis.html" class="nav-link">
+              <i data-lucide="brain-circuit" size="14"></i>
+              <span>Executive Function</span>
+            </a>
+            <a href="processing-speed-analysis.html" class="nav-link active">
+              <i data-lucide="gauge" size="14"></i>
+              <span>Processing Speed</span>
+            </a>
+            <a href="analysis.html" class="nav-link">
+              <i data-lucide="bar-chart-horizontal" size="14"></i>
+              <span>Frequency</span>
+            </a>
+          </div>
+        </details>
+
+        <a href="kirkpatrick.html" class="nav-link">
+          <i data-lucide="layers" size="18"></i>
+          <span>Kirkpatrick Model</span>
+        </a>
+        <a href="neurodiversity.html" class="nav-link">
+          <i data-lucide="activity" size="18"></i>
+          <span>Neurodiversity Scale</span>
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <p class="nav-group-label">Wards</p>
+        <a href="wards-list.html" class="nav-link">
+          <i data-lucide="users" size="18"></i>
+          <span>Wards List</span>
+        </a>
+        <a href="ward.html" class="nav-link">
+          <i data-lucide="user-plus" size="18"></i>
+          <span>Registration</span>
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <p class="nav-group-label">Resources</p>
+        <a href="professionals.html" class="nav-link">
+          <i data-lucide="stethoscope" size="18"></i>
+          <span>Professional Directory</span>
+        </a>
+        <a href="book-appointment.html" class="nav-link">
+          <i data-lucide="calendar-plus" size="18"></i>
+          <span>Book Appointment</span>
+        </a>
+        <a href="settings.html" class="nav-link">
+          <i data-lucide="settings" size="18"></i>
+          <span>Settings</span>
+        </a>
+      </div>
+    </nav>
+
+    <main class="content animate-fade">
+      <header class="mb-32">
+        <h2 style="font-size: 30px; margin-bottom: 4px;">Processing Speed Analysis</h2>
+        <p class="text-muted" style="font-size: 14px;">Measuring reaction times and visual-motor integration speed.</p>
+      </header>
+
+      <div class="dashboard-grid">
+        <div class="card">
+          <h3 style="font-size: 18px; margin-bottom: 24px;">Reaction Time Distribution</h3>
+          <div style="height: 200px; display: flex; align-items: flex-end; gap: 4px; padding: 0 10px;">
+            <!-- Simple Bar Chart for Reaction Times -->
+            <div style="flex: 1; background: var(--accent-red); height: 20%; border-radius: 2px 2px 0 0;"></div>
+            <div style="flex: 1; background: var(--accent-red); height: 35%; border-radius: 2px 2px 0 0;"></div>
+            <div style="flex: 1; background: var(--accent-orange); height: 60%; border-radius: 2px 2px 0 0;"></div>
+            <div style="flex: 1; background: var(--accent-orange); height: 85%; border-radius: 2px 2px 0 0;"></div>
+            <div style="flex: 1; background: var(--accent-sage); height: 50%; border-radius: 2px 2px 0 0;"></div>
+            <div style="flex: 1; background: var(--accent-sage); height: 30%; border-radius: 2px 2px 0 0;"></div>
+            <div style="flex: 1; background: var(--accent-blue); height: 15%; border-radius: 2px 2px 0 0;"></div>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-top: 12px; font-size: 10px; color: var(--text-muted);">
+            <span>Fast (< 300ms)</span>
+            <span>Slow (> 800ms)</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="font-size: 18px; margin-bottom: 24px;">Visual-Motor Integration</h3>
+          <div style="padding: 20px; text-align: center;">
+            <div style="font-size: 48px; font-weight: bold; color: var(--accent-red); margin-bottom: 8px;">1.2s</div>
+            <p style="font-size: 12px; color: var(--text-muted);">Average latency on symbol search tasks.</p>
+            <div class="speed-meter" style="margin-top: 32px;">
+              <div class="speed-needle" style="left: 15%;"></div>
+            </div>
+            <p style="font-size: 10px; color: var(--accent-red); font-weight: bold; margin-top: 8px;">15th Percentile (Low)</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-24">
+        <h3 style="font-size: 18px; margin-bottom: 16px;">Clinical Implications</h3>
+        <p style="font-size: 14px; line-height: 1.6; color: var(--text-main);">
+          Leo's processing speed is significantly below age-expected norms. This latency impacts his ability to keep up with rapid verbal instructions and contributes to fatigue during long reading sessions. <strong>Accommodations:</strong> Extended time for assessments and reduced visual clutter in learning materials.
+        </p>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    // Mobile Menu Toggle Logic
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.querySelector('.sidebar');
+    
+    if (menuToggle && sidebar) {
+      menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sidebar.classList.toggle('open');
+      });
+      
+      document.addEventListener('click', (e) => {
+        if (!sidebar.contains(e.target) && sidebar.classList.contains('open')) {
+          sidebar.classList.remove('open');
+        }
+      });
+    }
+  </script>
+</body>
+</html>

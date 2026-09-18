@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Assessment Report | Leo Jenkins</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body { background: white; }
+    .report-container { max-width: 800px; margin: 40px auto; padding: 40px; border: 1px solid var(--border); }
+    .professional-note { background: #f8f9fa; border-left: 4px solid var(--accent-blue); padding: 16px; margin: 24px 0; font-size: 13px; }
+    .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    .data-table th, .data-table td { border: 1px solid var(--border); padding: 12px; text-align: left; font-size: 13px; }
+    .data-table th { background: #f3f4f6; font-weight: bold; }
+    .print-only { display: none; }
+    @media print {
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .report-container { border: none; margin: 0; padding: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="report-container">
+    <header class="report-header">
+      <div>
+        <h1 style="font-size: 28px; color: var(--accent-sage); margin-bottom: 8px;">NeuroPath Assessment Report</h1>
+        <p style="font-size: 14px; color: var(--text-muted);">Longitudinal Cognitive & Behavioral Analysis</p>
+      </div>
+      <div class="qr-code" style="display: block;">
+        <div class="qr-placeholder"></div>
+        <p style="font-size: 8px; text-align: center; margin-top: 4px;">Scan for Full Digital History</p>
+      </div>
+    </header>
+
+    <section class="mb-32">
+      <h2 style="font-size: 18px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 16px;">Subject Information</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 14px;">
+        <p><strong>Name:</strong> Leo Jenkins</p>
+        <p><strong>Age:</strong> 7 years, 4 months</p>
+        <p><strong>Assessment Period:</strong> Jan 2026 - Apr 2026</p>
+        <p><strong>Report ID:</strong> NP-2026-0416-LJ</p>
+      </div>
+    </section>
+
+    <div class="professional-note">
+      <strong>Professional Guidance:</strong> This report is intended for clinical and educational professionals. The indices provided are derived from continuous interaction data and standardized digital assessments. They should serve as a baseline for formal diagnostic evaluation.
+    </div>
+
+    <section class="mb-32">
+      <h2 style="font-size: 18px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 16px;">Executive Function & Processing</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Indicator</th>
+            <th>Percentile Rank</th>
+            <th>Clinical Observation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Processing Speed</td>
+            <td>12th</td>
+            <td>Significant latency in visual-motor integration tasks.</td>
+          </tr>
+          <tr>
+            <td>Working Memory</td>
+            <td>35th</td>
+            <td>Difficulty with multi-step auditory instructions.</td>
+          </tr>
+          <tr>
+            <td>Inhibitory Control</td>
+            <td>28th</td>
+            <td>High rate of commission errors in Go/No-Go tasks.</td>
+          </tr>
+          <tr>
+            <td>Visual-Spatial</td>
+            <td>88th</td>
+            <td>Strong capability in pattern recognition and mental rotation.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="mb-32">
+      <h2 style="font-size: 18px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 16px;">Standardized Literacy & Cognitive Assessments</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Assessment Type</th>
+            <th>Score/Result</th>
+            <th>Interpretation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Single Word Reading Test</td>
+            <td>SS: 82</td>
+            <td>Low Average; difficulty with irregular words.</td>
+          </tr>
+          <tr>
+            <td>Single Word Spelling Test</td>
+            <td>SS: 78</td>
+            <td>Below Average; phonetic spelling attempts.</td>
+          </tr>
+          <tr>
+            <td>Naming Speed (RAN)</td>
+            <td>SS: 72</td>
+            <td>Well Below Average; significant retrieval latency.</td>
+          </tr>
+          <tr>
+            <td>Reading Speed</td>
+            <td>SS: 75</td>
+            <td>Below Average; labored decoding.</td>
+          </tr>
+          <tr>
+            <td>Phoneme Deletion</td>
+            <td>SS: 68</td>
+            <td>Significantly Below Average; core phonological deficit.</td>
+          </tr>
+          <tr>
+            <td>Nonword Reading</td>
+            <td>SS: 70</td>
+            <td>Significantly Below Average; weak decoding skills.</td>
+          </tr>
+          <tr>
+            <td>Recall of Digits – Forward</td>
+            <td>SS: 92</td>
+            <td>Average; short-term auditory memory intact.</td>
+          </tr>
+          <tr>
+            <td>Free Writing or Copying</td>
+            <td>N/A</td>
+            <td>Slow pace, frequent letter reversals (b/d, p/q).</td>
+          </tr>
+          <tr>
+            <td>Phonic Skills</td>
+            <td>N/A</td>
+            <td>Weak correspondence for complex digraphs/trigraphs.</td>
+          </tr>
+          <tr style="background: rgba(59, 130, 246, 0.05);">
+            <td><strong>WIAT-4</strong> Composite</td>
+            <td>SS: 84</td>
+            <td>Overall achievement in lower range; high oral/written discrepancy.</td>
+          </tr>
+          <tr style="background: rgba(245, 158, 11, 0.05);">
+            <td><strong>CTOPP-2</strong> Composite</td>
+            <td>SS: 65</td>
+            <td>Significant phonological awareness and rapid naming deficits.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="mb-32">
+      <h2 style="font-size: 18px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 16px;">Probability Indices</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+        <div class="card" style="text-align: center; border-top: 4px solid var(--accent-red);">
+          <p style="font-size: 10px; font-weight: bold; color: var(--text-muted);">DYSLEXIA</p>
+          <p style="font-size: 24px; font-weight: bold; color: var(--accent-red);">78%</p>
+          <span class="badge badge-psych" style="background: rgba(239, 68, 68, 0.1); color: var(--accent-red);">High Risk</span>
+        </div>
+        <div class="card" style="text-align: center; border-top: 4px solid var(--accent-orange);">
+          <p style="font-size: 10px; font-weight: bold; color: var(--text-muted);">ADHD</p>
+          <p style="font-size: 24px; font-weight: bold; color: var(--accent-orange);">65%</p>
+          <span class="badge badge-consultant" style="background: rgba(230, 126, 34, 0.1); color: var(--accent-orange);">Moderate-High</span>
+        </div>
+        <div class="card" style="text-align: center; border-top: 4px solid var(--accent-blue);">
+          <p style="font-size: 10px; font-weight: bold; color: var(--text-muted);">DYSCALCULIA</p>
+          <p style="font-size: 24px; font-weight: bold; color: var(--accent-blue);">42%</p>
+          <span class="badge badge-professional">Moderate</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-32">
+      <h2 style="font-size: 18px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 16px;">Dyslexia Index (Cognitive Profile)</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+        <div class="card" style="background: #f8fafc; border: 1px solid var(--border);">
+          <h3 style="font-size: 14px; margin-bottom: 12px; color: var(--accent-sage);">BPVS (Verbal Ability)</h3>
+          <div style="display: flex; align-items: baseline; gap: 8px;">
+            <span style="font-size: 24px; font-weight: bold;">105</span>
+            <span class="text-muted" style="font-size: 12px;">Standard Score</span>
+          </div>
+          <p style="font-size: 11px; margin-top: 8px; color: var(--text-muted);">Indicates strong verbal vocabulary and language comprehension potential.</p>
+        </div>
+        <div class="card" style="background: #f8fafc; border: 1px solid var(--border);">
+          <h3 style="font-size: 14px; margin-bottom: 12px; color: var(--accent-sage);">CAT4 NVR (Non-Verbal Reasoning)</h3>
+          <div style="display: flex; align-items: baseline; gap: 8px;">
+            <span style="font-size: 24px; font-weight: bold;">112</span>
+            <span class="text-muted" style="font-size: 12px;">Standard Score</span>
+          </div>
+          <p style="font-size: 11px; margin-top: 8px; color: var(--text-muted);">Strong non-verbal reasoning skills; significant discrepancy with literacy scores.</p>
+        </div>
+      </div>
+      <div style="margin-top: 16px; padding: 12px; background: rgba(142, 151, 117, 0.1); border-radius: 8px; font-size: 12px;">
+        <strong>Discrepancy Analysis:</strong> The significant gap between the CAT4 NVR (112) and Phonological scores (68-70) is a primary indicator of a specific learning difficulty (Dyslexia), as cognitive potential far exceeds current literacy attainment.
+      </div>
+    </section>
+
+    <section class="mb-32">
+      <h2 style="font-size: 18px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 16px;">Kaufman Dyslexia Index (KTEA-3 / KDI)</h2>
+      <div class="data-table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Clinical Indicator</th>
+              <th>Standard Score</th>
+              <th>Evaluation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Dyslexia Index (Composite)</td>
+              <td>72</td>
+              <td>Significantly Below Average</td>
+            </tr>
+            <tr>
+              <td>Phonological Processing</td>
+              <td>70</td>
+              <td>Deficit in sound synthesis & analysis</td>
+            </tr>
+            <tr>
+              <td>Nonsense Word Decoding</td>
+              <td>72</td>
+              <td>Weak grapheme-phoneme mapping</td>
+            </tr>
+            <tr>
+              <td>Letter & Word Recognition</td>
+              <td>78</td>
+              <td>Below Average orthographic mapping</td>
+            </tr>
+            <tr>
+              <td>Reading Fluency</td>
+              <td>74</td>
+              <td>Labored retrieval and processing</td>
+            </tr>
+            <tr>
+              <td>Spelling</td>
+              <td>75</td>
+              <td>Phonetic spelling inaccuracies</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="professional-note" style="background: rgba(239, 68, 68, 0.05); border-left: 4px solid #ef4444;">
+        <strong>KDI Interpretation:</strong> Leo's Kaufman Dyslexia Index score of 72 falls within the "Severe" range for dyslexia. The core deficit is identified in the phonological loop, specifically impacting the ability to accurately decode unfamiliar phonetic structures.
+      </div>
+    </section>
+
+    <section class="mb-32">
+      <h2 style="font-size: 18px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 16px;">Advanced Domain Analysis</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div class="card" style="font-size: 12px; line-height: 1.5;">
+          <h3 style="font-size: 14px; margin-bottom: 8px; color: var(--accent-sage);">Naming & Retrieve Speed</h3>
+          <p><strong>Probabilistic Lapse:</strong> 92% likelihood of retrieval delay under time-pressured literacy tasks.</p>
+          <p><strong>Inferential Impact:</strong> Increasing RAN items/min by 20% is predicted to stabilize reading pace by 25%.</p>
+        </div>
+        <div class="card" style="font-size: 12px; line-height: 1.5;">
+          <h3 style="font-size: 14px; margin-bottom: 8px; color: var(--accent-sage);">Phonological Memory</h3>
+          <p><strong>Memory Buffer:</strong> Limited to 5 digits (Average: 7). 88% error probability on 4+ syllable words.</p>
+          <p><strong>Clinical Note:</strong> Cognitive "workbench" overflows during auditory-only instruction delivery.</p>
+        </div>
+        <div class="card" style="font-size: 12px; line-height: 1.5;">
+          <h3 style="font-size: 14px; margin-bottom: 8px; color: var(--accent-sage);">Visual & Motor Speed</h3>
+          <p><strong>Visual Processing:</strong> High reversal probability (b/d, p/q). Confusability Index: 0.74.</p>
+          <p><strong>Motor Execution:</strong> High variance in finger tapping (3.2/s). Handwriting legibility decays after 5 mins.</p>
+        </div>
+        <div class="card" style="font-size: 12px; line-height: 1.5;">
+          <h3 style="font-size: 14px; margin-bottom: 8px; color: var(--accent-sage);">Cognitive Load Control</h3>
+          <p><strong>Executive Success:</strong> 90% probability on 1-step tasks; 15% probability on 3-step tasks.</p>
+          <p><strong>Interference:</strong> Visual scaffolding (Checklists) reduces cognitive load by 45% (Inferred).</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-32">
+      <h2 style="font-size: 18px; border-bottom: 1px solid #ef4444; padding-bottom: 8px; margin-bottom: 16px; color: #ef4444;">Integrated Clinical Inference</h2>
+      <div style="padding: 20px; background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 12px; line-height: 1.6;">
+        <p style="font-size: 14px; margin-bottom: 12px;"><strong>Summary Findings:</strong> Leo Jenkins presents a "Double Deficit" profile characterized by severe Phonological Processing deficits coupled with significant Rapid Naming (RAN) delays. This is further complicated by Executive Function limitations in auditory working memory manipulation.</p>
+        <p style="font-size: 14px; margin-bottom: 12px;"><strong>Final Inference:</strong> Current data indicates that Leo's primary barrier to literacy is not lack of intelligence (demonstrated by 112 NVR score), but a physiological bottleneck in the phonological loop and visual-motor integration pathways. </p>
+        <p style="font-size: 14px;"><strong>Predictive Outcome:</strong> Without intensive multisensory intervention (Orton-Gillingham based) and visual scaffolding, there is a 95% probability of continued academic frustration and increasing secondary behavioral anxiety. With appropriate scaffolding, however, his strong non-verbal reasoning skills can be leveraged as a primary compensatory mechanism.</p>
+      </div>
+    </section>
+
+    <section class="mb-32">
+      <h2 style="font-size: 18px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 16px;">Professional Recommendation Summary</h2>
+      <div style="font-size: 13px; line-height: 1.6; color: var(--text-main);">
+        <p style="margin-bottom: 12px;"><strong>Phonological Core Deficit:</strong> The subject demonstrates a persistent inability to map phonemes to graphemes in non-word reading tasks. Error patterns suggest a "Double Deficit" (Phonological Awareness + Rapid Naming).</p>
+        <p style="margin-bottom: 12px;"><strong>Attention Variability:</strong> Attention decay curves indicate a sharp drop in focus after 9 minutes of sustained cognitive load. Engagement is highest during gamified visual-spatial tasks.</p>
+        <p><strong>Recommendation:</strong> Referral for comprehensive neuropsychological testing is recommended to confirm Dyslexia (Phonological subtype) and ADHD (Inattentive presentation).</p>
+      </div>
+    </section>
+
+    <footer style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 20px; display: flex; justify-content: space-between; align-items: center;">
+      <p style="font-size: 10px; color: var(--text-muted);">Generated by NeuroPath AI Dashboard &copy; 2026</p>
+      <button onclick="window.print()" class="btn btn-primary no-print">Print Report</button>
+    </footer>
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

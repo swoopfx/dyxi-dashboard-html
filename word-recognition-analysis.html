@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeuroPath | Word Recognition Analysis - Leo</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <header class="header">
+    <button class="nav-toggle" id="menuToggle" aria-label="Toggle Menu">
+      <i data-lucide="menu"></i>
+    </button>
+    <a href="index.html" class="logo">
+      <i data-lucide="brain"></i>
+      <h1>NeuroPath</h1>
+    </a>
+    <div class="header-actions">
+      <a href="accounts.html" class="profile-pill">
+        <span style="font-size: 12px; font-weight: 500;">Sarah Jenkins</span>
+        <div class="profile-img">
+          <img src="https://picsum.photos/seed/parent/100/100" alt="Profile" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <nav class="sidebar">
+      <div class="nav-group">
+        <p class="nav-group-label">Dashboard</p>
+        <a href="index.html" class="nav-link">
+          <i data-lucide="layout-dashboard" size="18"></i>
+          <span>Overview</span>
+        </a>
+        <a href="probability.html" class="nav-link">
+          <i data-lucide="percent" size="18"></i>
+          <span>Probability Index</span>
+        </a>
+
+        <details class="nav-accordion" open>
+          <summary>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <i data-lucide="clipboard-check" size="18"></i>
+              <span>Evaluations</span>
+            </div>
+            <i data-lucide="chevron-down" size="14" class="chevron"></i>
+          </summary>
+          <div class="nav-accordion-content">
+            <a href="dyslexia-evaluation.html" class="nav-link">
+              <i data-lucide="book-open" size="14"></i>
+              <span>Dyslexia Subtypes</span>
+            </a>
+            <a href="adhd-evaluation.html" class="nav-link">
+              <i data-lucide="zap" size="14"></i>
+              <span>ADHD</span>
+            </a>
+            <a href="dyscalculia-evaluation.html" class="nav-link">
+              <i data-lucide="calculator" size="14"></i>
+              <span>Dyscalculia</span>
+            </a>
+          </div>
+        </details>
+
+        <details class="nav-accordion" open>
+          <summary>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <i data-lucide="bar-chart-2" size="18"></i>
+              <span>Analysis</span>
+            </div>
+            <i data-lucide="chevron-down" size="14" class="chevron"></i>
+          </summary>
+          <div class="nav-accordion-content">
+            <a href="phonology-analysis.html" class="nav-link">
+              <i data-lucide="mic-2" size="14"></i>
+              <span>Phonology</span>
+            </a>
+            <a href="word-recognition-analysis.html" class="nav-link active">
+              <i data-lucide="eye" size="14"></i>
+              <span>Word Recognition</span>
+            </a>
+            <a href="text-tracing-analysis.html" class="nav-link">
+              <i data-lucide="pen-tool" size="14"></i>
+              <span>Text Tracing</span>
+            </a>
+            <a href="attention-span-analysis.html" class="nav-link">
+              <i data-lucide="timer" size="14"></i>
+              <span>Attention Span</span>
+            </a>
+            <a href="impulse-control-analysis.html" class="nav-link">
+              <i data-lucide="target" size="14"></i>
+              <span>Impulse Control</span>
+            </a>
+            <a href="analysis.html" class="nav-link">
+              <i data-lucide="bar-chart-horizontal" size="14"></i>
+              <span>Frequency</span>
+            </a>
+          </div>
+        </details>
+
+        <a href="kirkpatrick.html" class="nav-link">
+          <i data-lucide="layers" size="18"></i>
+          <span>Kirkpatrick Model</span>
+        </a>
+        <a href="neurodiversity.html" class="nav-link">
+          <i data-lucide="activity" size="18"></i>
+          <span>Neurodiversity Scale</span>
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <p class="nav-group-label">Wards</p>
+        <a href="wards-list.html" class="nav-link">
+          <i data-lucide="users" size="18"></i>
+          <span>Wards List</span>
+        </a>
+        <a href="ward.html" class="nav-link">
+          <i data-lucide="user-plus" size="18"></i>
+          <span>Registration</span>
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <p class="nav-group-label">Resources</p>
+        <a href="professionals.html" class="nav-link">
+          <i data-lucide="stethoscope" size="18"></i>
+          <span>Professional Directory</span>
+        </a>
+        <a href="book-appointment.html" class="nav-link">
+          <i data-lucide="calendar-plus" size="18"></i>
+          <span>Book Appointment</span>
+        </a>
+        <a href="settings.html" class="nav-link">
+          <i data-lucide="settings" size="18"></i>
+          <span>Settings</span>
+        </a>
+      </div>
+
+      <div style="margin-top: auto; border-top: 1px solid var(--border); padding-top: 16px;">
+        <a href="login.html" class="nav-link" style="color: #ef4444;">
+          <i data-lucide="log-out" size="18"></i>
+          <span>Sign Out</span>
+        </a>
+      </div>
+    </nav>
+
+    <main class="content animate-fade">
+      <header class="mb-32">
+        <h2 style="font-size: 30px; margin-bottom: 4px;">Word Recognition Analysis</h2>
+        <p class="text-muted" style="font-size: 14px;">Sight word fluency and vocabulary acquisition for Leo Jenkins.</p>
+      </header>
+
+      <div class="ward-selector">
+        <a href="word-recognition-analysis.html" class="ward-tab active">Leo Jenkins</a>
+        <a href="#" class="ward-tab">Maya Jenkins</a>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-label">Sight Word Mastery</span>
+          <div style="display: flex; align-items: baseline; gap: 8px;">
+            <span class="stat-value">68%</span>
+            <span class="trend-indicator trend-up"><i data-lucide="arrow-up-right" size="14"></i> 12%</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Avg Recognition Time</span>
+          <div style="display: flex; align-items: baseline; gap: 8px;">
+            <span class="stat-value">0.8s</span>
+            <span class="trend-indicator trend-down"><i data-lucide="arrow-down-right" size="14"></i> 0.3s</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Decoding Accuracy</span>
+          <div style="display: flex; align-items: baseline; gap: 8px;">
+            <span class="stat-value">54%</span>
+            <span class="trend-indicator trend-up"><i data-lucide="arrow-up-right" size="14"></i> 8%</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Vocabulary Size</span>
+          <div style="display: flex; align-items: baseline; gap: 8px;">
+            <span class="stat-value">420</span>
+            <span class="trend-indicator trend-up"><i data-lucide="arrow-up-right" size="14"></i> 45</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <!-- Fluency Trend -->
+          <div class="card">
+            <h3 style="font-size: 18px; margin-bottom: 20px;">Reading Fluency Trend (WPM)</h3>
+            <div class="chart-container">
+              <svg viewBox="0 0 400 200" class="line-chart-svg">
+                <path d="M0,180 L80,160 L160,165 L240,140 L320,130 L400,110" class="area-path" />
+                <path d="M0,180 L80,160 L160,165 L240,140 L320,130 L400,110" class="line-path" />
+                <circle cx="0" cy="180" r="4" class="line-point" />
+                <circle cx="80" cy="160" r="4" class="line-point" />
+                <circle cx="160" cy="165" r="4" class="line-point" />
+                <circle cx="240" cy="140" r="4" class="line-point" />
+                <circle cx="320" cy="130" r="4" class="line-point" />
+                <circle cx="400" cy="110" r="4" class="line-point" />
+              </svg>
+              <div style="display: flex; justify-content: space-between; margin-top: 12px; font-size: 10px; color: var(--text-muted); font-weight: bold;">
+                <span>Week 1</span>
+                <span>Week 2</span>
+                <span>Week 3</span>
+                <span>Week 4</span>
+                <span>Week 5</span>
+                <span>Week 6</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Word Heatmap -->
+          <div class="card">
+            <div class="viz-header">
+              <h3 class="viz-title">Sight Word Mastery Heatmap</h3>
+              <span class="badge badge-consultant">Dolch List (Grade 2)</span>
+            </div>
+            <div class="viz-container" style="background: white;">
+              <div class="word-cloud">
+                <span class="word-tag word-high">always</span>
+                <span class="word-tag word-high">around</span>
+                <span class="word-tag word-med">because</span>
+                <span class="word-tag word-high">been</span>
+                <span class="word-tag word-low">before</span>
+                <span class="word-tag word-high">best</span>
+                <span class="word-tag word-med">both</span>
+                <span class="word-tag word-high">buy</span>
+                <span class="word-tag word-low">call</span>
+                <span class="word-tag word-med">cold</span>
+                <span class="word-tag word-high">does</span>
+                <span class="word-tag word-low">don't</span>
+                <span class="word-tag word-high">fast</span>
+                <span class="word-tag word-med">first</span>
+                <span class="word-tag word-high">five</span>
+                <span class="word-tag word-low">found</span>
+                <span class="word-tag word-high">gave</span>
+                <span class="word-tag word-med">goes</span>
+                <span class="word-tag word-high">green</span>
+                <span class="word-tag word-low">its</span>
+              </div>
+              <div style="display: flex; justify-content: center; gap: 16px; margin-top: 24px; font-size: 10px; font-weight: bold; text-transform: uppercase;">
+                <div style="display: flex; align-items: center; gap: 4px;"><div style="width: 8px; height: 8px; background: var(--accent-sage); border-radius: 2px;"></div> Mastered</div>
+                <div style="display: flex; align-items: center; gap: 4px;"><div style="width: 8px; height: 8px; background: var(--accent-sand); border-radius: 2px;"></div> Emerging</div>
+                <div style="display: flex; align-items: center; gap: 4px;"><div style="width: 8px; height: 8px; background: #ef4444; opacity: 0.2; border-radius: 2px;"></div> Challenging</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recognition Speed -->
+          <div class="card">
+            <h3 style="font-size: 18px; margin-bottom: 16px;">Recognition Latency (ms)</h3>
+            <div class="chart-container" style="height: 200px;">
+              <div class="bar-chart">
+                <div class="bar-group">
+                  <div class="bar" style="height: 40%; background: var(--accent-sage);" data-value="420ms"></div>
+                  <span class="bar-label">Nouns</span>
+                </div>
+                <div class="bar-group">
+                  <div class="bar" style="height: 75%; background: var(--accent-sand);" data-value="780ms"></div>
+                  <span class="bar-label">Verbs</span>
+                </div>
+                <div class="bar-group">
+                  <div class="bar" style="height: 90%; background: var(--accent-red); opacity: 0.6;" data-value="940ms"></div>
+                  <span class="bar-label">Adjectives</span>
+                </div>
+                <div class="bar-group">
+                  <div class="bar" style="height: 30%; background: var(--accent-sage);" data-value="310ms"></div>
+                  <span class="bar-label">Pronouns</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="metric-grid">
+              <div class="metric-item">
+                <span class="metric-value">0.4s</span>
+                <span class="metric-label">Min Latency</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-value">1.2s</span>
+                <span class="metric-label">Max Latency</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-value">0.7s</span>
+                <span class="metric-label">Median</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <div class="card">
+            <h3 style="font-size: 16px; margin-bottom: 16px;">Word Recognition Insights</h3>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <div style="padding: 12px; background: rgba(142, 151, 117, 0.1); border-radius: 8px; border-left: 4px solid var(--accent-sage);">
+                <p style="font-size: 12px; font-weight: bold; margin-bottom: 4px;">Noun Fluency</p>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.4;">Leo recognizes common nouns almost instantly, showing strong visual memory for concrete objects.</p>
+              </div>
+              <div style="padding: 12px; background: rgba(239, 68, 68, 0.05); border-radius: 8px; border-left: 4px solid #ef4444;">
+                <p style="font-size: 12px; font-weight: bold; margin-bottom: 4px;">Adjective Delay</p>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.4;">Abstract adjectives like 'before' and 'found' cause significant hesitation (avg 1.2s delay).</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 style="font-size: 16px; margin-bottom: 12px;">Next Milestone</h3>
+            <div style="text-align: center; padding: 16px; background: var(--bg-color); border-radius: 12px;">
+              <div style="font-size: 24px; font-weight: bold; color: var(--accent-sage); margin-bottom: 4px;">85%</div>
+              <p style="font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Grade 2 Fluency</p>
+              <div class="scale-bar" style="margin: 12px 0;"><div class="scale-fill" style="width: 68%;"></div></div>
+              <p style="font-size: 10px; color: var(--text-muted);">12 more words to master for next level.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px;">
+        <!-- Probabilistic Representation -->
+        <div class="card">
+          <h3 style="font-size: 18px; margin-bottom: 20px;">Probabilistic: Decoding Speed Distribution</h3>
+          <p class="text-muted" style="font-size: 11px; margin-bottom: 20px;">Likelihood of Leo's decoding speed falling within specific performance bands.</p>
+          <div class="chart-container" style="height: 180px;">
+            <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
+              <path d="M0,190 Q100,190 200,50 Q300,190 400,190" fill="rgba(66, 133, 244, 0.05)" stroke="#ccc" stroke-dasharray="4" />
+              <!-- Highlighted Dyslexic Performance Band -->
+              <rect x="50" y="150" width="100" height="40" fill="rgba(239, 68, 68, 0.1)" />
+              <line x1="120" y1="190" x2="120" y2="100" stroke="#ef4444" stroke-width="2" />
+              <text x="125" y="95" font-size="10" font-weight="bold" fill="#ef4444">LEO (Current)</text>
+              <text x="200" y="185" font-size="9" text-anchor="middle">Atypical</text>
+              <text x="350" y="185" font-size="9" text-anchor="middle">Average</text>
+            </svg>
+          </div>
+          <p style="font-size: 11px; color: var(--text-muted); margin-top: 12px;">Statistical projection: 78% probability that Leo's decoding will reach 40 WPM within 6 months with current multisensory support.</p>
+        </div>
+
+        <div class="card">
+          <h3 style="font-size: 18px; margin-bottom: 16px;">Inferential: Multisensory Impact</h3>
+          <div class="viz-container">
+            <h4 style="font-size: 11px; margin-bottom: 12px;">Retrieval Accuracy Improvement</h4>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div style="height: 24px; background: #f1f5f9; border-radius: 4px; overflow: hidden; position: relative;">
+                <div style="width: 35%; height: 100%; background: var(--accent-sand);"></div>
+                <span style="position: absolute; left: 12px; top: 5px; font-size: 10px; font-weight: bold;">Standard Drill: 35%</span>
+              </div>
+              <div style="height: 24px; background: #f1f5f9; border-radius: 4px; overflow: hidden; position: relative;">
+                <div style="width: 72%; height: 100%; background: var(--accent-sage);"></div>
+                <span style="position: absolute; left: 12px; top: 5px; font-size: 10px; font-weight: bold;">Multisensory: 72%</span>
+              </div>
+            </div>
+          </div>
+          <p style="font-size: 11px; color: var(--text-muted); margin-top: 16px;"><strong>Inference:</strong> We infer that auditory-visual coupling is twice as effective for Leo as traditional rote memorization.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    // Mobile Menu Toggle Logic
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.querySelector('.sidebar');
+    
+    if (menuToggle && sidebar) {
+      menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sidebar.classList.toggle('open');
+      });
+      
+      document.addEventListener('click', (e) => {
+        if (!sidebar.contains(e.target) && sidebar.classList.contains('open')) {
+          sidebar.classList.remove('open');
+        }
+      });
+    }
+  </script>
+</body>
+</html>

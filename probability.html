@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeuroPath | Dyslexia Probability - Leo</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <header class="header">
+    <button class="nav-toggle" id="menuToggle" aria-label="Toggle Menu">
+      <i data-lucide="menu"></i>
+    </button>
+    <a href="index.html" class="logo">
+      <i data-lucide="brain"></i>
+      <h1>NeuroPath</h1>
+    </a>
+    <div class="header-actions">
+      <a href="accounts.html" class="profile-pill">
+        <span style="font-size: 12px; font-weight: 500;">Sarah Jenkins</span>
+        <div class="profile-img">
+          <img src="https://picsum.photos/seed/parent/100/100" alt="Profile" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <nav class="sidebar">
+      <div class="nav-group">
+        <p class="nav-group-label">Dashboard</p>
+        <a href="index.html" class="nav-link">
+          <i data-lucide="layout-dashboard" size="18"></i>
+          <span>Overview</span>
+        </a>
+        <a href="probability.html" class="nav-link active">
+          <i data-lucide="percent" size="18"></i>
+          <span>Probability Index</span>
+        </a>
+
+        <details class="nav-accordion" open>
+          <summary>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <i data-lucide="clipboard-check" size="18"></i>
+              <span>Evaluations</span>
+            </div>
+            <i data-lucide="chevron-down" size="14" class="chevron"></i>
+          </summary>
+          <div class="nav-accordion-content">
+            <a href="dyslexia-evaluation.html" class="nav-link">
+              <i data-lucide="book-open" size="14"></i>
+              <span>Dyslexia Subtypes</span>
+            </a>
+            <a href="kaufman-evaluation.html" class="nav-link">
+              <i data-lucide="search" size="14"></i>
+              <span>Kaufman Dyslexia</span>
+            </a>
+            <a href="adhd-evaluation.html" class="nav-link">
+              <i data-lucide="zap" size="14"></i>
+              <span>ADHD</span>
+            </a>
+            <a href="dyscalculia-evaluation.html" class="nav-link">
+              <i data-lucide="calculator" size="14"></i>
+              <span>Dyscalculia</span>
+            </a>
+            <a href="wiat-evaluation.html" class="nav-link">
+              <i data-lucide="graduation-cap" size="14"></i>
+              <span>WIAT-4</span>
+            </a>
+            <a href="ctopp-evaluation.html" class="nav-link">
+              <i data-lucide="mic-2" size="14"></i>
+              <span>CTOPP-2</span>
+            </a>
+            <a href="neurodiversity.html" class="nav-link">
+              <i data-lucide="activity" size="14"></i>
+              <span>Neurodiversity Scale</span>
+            </a>
+          </div>
+        </details>
+
+        <details class="nav-accordion" open>
+          <summary>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <i data-lucide="bar-chart-2" size="18"></i>
+              <span>Analysis</span>
+            </div>
+            <i data-lucide="chevron-down" size="14" class="chevron"></i>
+          </summary>
+          <div class="nav-accordion-content">
+            <a href="phonology-analysis.html" class="nav-link">
+              <i data-lucide="mic-2" size="14"></i>
+              <span>Phonology</span>
+            </a>
+            <a href="phonological-memory-analysis.html" class="nav-link">
+              <i data-lucide="brain" size="14"></i>
+              <span>Phonological Memory</span>
+            </a>
+            <a href="word-recognition-analysis.html" class="nav-link">
+              <i data-lucide="eye" size="14"></i>
+              <span>Word Recognition</span>
+            </a>
+            <a href="rapid-naming-analysis.html" class="nav-link">
+              <i data-lucide="zap" size="14"></i>
+              <span>Rapid Naming</span>
+            </a>
+            <a href="visual-processing-analysis.html" class="nav-link">
+              <i data-lucide="scan" size="14"></i>
+              <span>Visual Processing</span>
+            </a>
+            <a href="working-memory-analysis.html" class="nav-link">
+              <i data-lucide="database" size="14"></i>
+              <span>Working Memory</span>
+            </a>
+            <a href="executive-function-analysis.html" class="nav-link">
+              <i data-lucide="brain-circuit" size="14"></i>
+              <span>Executive Function</span>
+            </a>
+            <a href="attention-span-analysis.html" class="nav-link">
+              <i data-lucide="timer" size="14"></i>
+              <span>Attention Span</span>
+            </a>
+            <a href="impulse-control-analysis.html" class="nav-link">
+              <i data-lucide="target" size="14"></i>
+              <span>Impulse Control</span>
+            </a>
+            <a href="processing-speed-analysis.html" class="nav-link">
+              <i data-lucide="gauge" size="14"></i>
+              <span>Processing Speed</span>
+            </a>
+            <a href="motor-speed-analysis.html" class="nav-link">
+              <i data-lucide="activity" size="14"></i>
+              <span>Motor Speed</span>
+            </a>
+            <a href="text-tracing-analysis.html" class="nav-link">
+              <i data-lucide="pen-tool" size="14"></i>
+              <span>Text Tracing</span>
+            </a>
+            <a href="analysis.html" class="nav-link">
+              <i data-lucide="bar-chart-horizontal" size="14"></i>
+              <span>Frequency</span>
+            </a>
+          </div>
+        </details>
+
+        <a href="kirkpatrick.html" class="nav-link">
+          <i data-lucide="layers" size="18"></i>
+          <span>Kirkpatrick Model</span>
+        </a>
+        <a href="neurodiversity.html" class="nav-link">
+          <i data-lucide="activity" size="18"></i>
+          <span>Neurodiversity Scale</span>
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <p class="nav-group-label">Wards</p>
+        <a href="wards-list.html" class="nav-link">
+          <i data-lucide="users" size="18"></i>
+          <span>Wards List</span>
+        </a>
+        <a href="ward.html" class="nav-link">
+          <i data-lucide="user-plus" size="18"></i>
+          <span>Registration</span>
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <p class="nav-group-label">Resources</p>
+        <a href="professionals.html" class="nav-link">
+          <i data-lucide="stethoscope" size="18"></i>
+          <span>Professional Directory</span>
+        </a>
+        <a href="book-appointment.html" class="nav-link">
+          <i data-lucide="calendar-plus" size="18"></i>
+          <span>Book Appointment</span>
+        </a>
+        <a href="settings.html" class="nav-link">
+          <i data-lucide="settings" size="18"></i>
+          <span>Settings</span>
+        </a>
+      </div>
+
+      <div style="margin-top: auto; border-top: 1px solid var(--border); padding-top: 16px;">
+        <a href="login.html" class="nav-link" style="color: #ef4444;">
+          <i data-lucide="log-out" size="18"></i>
+          <span>Sign Out</span>
+        </a>
+      </div>
+    </nav>
+
+    <main class="content animate-fade">
+      <header class="mb-32" style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <div>
+          <h2 style="font-size: 30px; margin-bottom: 4px;">Probability Index</h2>
+          <p class="text-muted" style="font-size: 14px;">Assessment based on longitudinal data for Leo Jenkins.</p>
+        </div>
+        <a href="report.html" class="btn btn-primary" style="display: flex; align-items: center; gap: 8px;">
+          <i data-lucide="printer" size="18"></i>
+          Generate Professional Report
+        </a>
+      </header>
+
+      <div class="ward-selector">
+        <a href="probability.html" class="ward-tab active">Leo Jenkins</a>
+        <a href="#" class="ward-tab">Maya Jenkins</a>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 32px;">
+        <!-- Cognitive Profile Summary -->
+        <section class="card p-24" style="background: linear-gradient(to right, #ffffff, #f9fafb);">
+          <h3 style="font-size: 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px;">
+            <i data-lucide="brain-circuit" style="color: var(--accent-purple);"></i>
+            Cognitive Indicator Profile
+          </h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+            <div class="radar-container">
+              <svg viewBox="0 0 200 200" style="width: 100%; height: auto;">
+                <!-- Radar Web -->
+                <polygon points="100,20 180,60 180,140 100,180 20,140 20,60" class="radar-web" />
+                <polygon points="100,60 140,80 140,120 100,140 60,120 60,80" class="radar-web" />
+                <!-- Radar Data -->
+                <polygon points="100,40 160,70 150,130 100,160 40,120 50,70" class="radar-area" style="fill: var(--accent-purple); stroke: var(--accent-purple);" />
+                <!-- Labels -->
+                <text x="100" y="15" text-anchor="middle" font-size="8" fill="var(--text-muted)">Phonology</text>
+                <text x="190" y="60" text-anchor="start" font-size="8" fill="var(--text-muted)">Memory</text>
+                <text x="190" y="145" text-anchor="start" font-size="8" fill="var(--text-muted)">Attention</text>
+                <text x="100" y="195" text-anchor="middle" font-size="8" fill="var(--text-muted)">Logic</text>
+                <text x="10" y="145" text-anchor="end" font-size="8" fill="var(--text-muted)">Processing</text>
+                <text x="10" y="60" text-anchor="end" font-size="8" fill="var(--text-muted)">Visual</text>
+              </svg>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 6px;">
+                  <span style="font-weight: bold;">Processing Speed</span>
+                  <span style="color: var(--accent-red);">Low (12th Percentile)</span>
+                </div>
+                <div class="speed-meter">
+                  <div class="speed-needle" style="left: 12%;"></div>
+                </div>
+              </div>
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 6px;">
+                  <span style="font-weight: bold;">Working Memory</span>
+                  <span style="color: var(--accent-orange);">Moderate (35th Percentile)</span>
+                </div>
+                <div class="speed-meter">
+                  <div class="speed-needle" style="left: 35%; background: var(--accent-orange);"></div>
+                </div>
+              </div>
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 6px;">
+                  <span style="font-weight: bold;">Visual-Spatial Reasoning</span>
+                  <span style="color: var(--accent-sage);">High (88th Percentile)</span>
+                </div>
+                <div class="speed-meter">
+                  <div class="speed-needle" style="left: 88%; background: var(--accent-sage);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Dyslexia Section -->
+        <section>
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <div style="width: 32px; height: 32px; background: var(--accent-sage); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white;">
+              <i data-lucide="book-open" size="18"></i>
+            </div>
+            <h3 style="font-size: 20px;">Dyslexia Index</h3>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 24px; margin-bottom: 24px;">
+            <div class="card p-24" style="border-top: 4px solid var(--accent-red);">
+              <div class="probability-meter">
+                <div class="probability-fill" style="width: 78%; background: linear-gradient(90deg, var(--accent-orange), var(--accent-red));"></div>
+                <div class="probability-marker" style="left: 78%;"></div>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 32px; font-family: var(--f-serif); font-weight: bold; color: var(--accent-red);">78%</span>
+                <span class="badge badge-psych" style="background: rgba(239, 68, 68, 0.1); color: var(--accent-red);">High Risk</span>
+              </div>
+            </div>
+            <div class="card p-24">
+              <h4 style="font-size: 14px; margin-bottom: 12px; color: var(--text-muted);">Clinical Observations</h4>
+              <p style="font-size: 13px; line-height: 1.6; margin-bottom: 12px;">
+                <strong>Phonological Awareness:</strong> Severe difficulty with segmenting multi-syllabic words. 
+                <strong>Rapid Naming:</strong> Significant latency in color and object naming (RAN test).
+                <strong>Spiky Profile:</strong> Superior visual reasoning (92nd percentile) contrasted with phonological processing (15th percentile).
+              </p>
+              <p style="font-size: 11px; color: var(--text-muted); font-style: italic;">
+                Ref: IDA Standards - "Discrepancy between cognitive potential and decoding ability is a hallmark of dyslexia."
+              </p>
+            </div>
+          </div>
+
+          <!-- Subtype Breakdown -->
+          <div class="card p-24">
+            <h4 style="font-size: 16px; margin-bottom: 20px;">Subtype Probability Breakdown</h4>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <div style="display: flex; align-items: center; gap: 16px;">
+                <div style="flex: 1;">
+                  <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
+                    <span>Phonological Dyslexia</span>
+                    <span style="font-weight: bold;">88%</span>
+                  </div>
+                  <div class="scale-bar"><div class="scale-fill" style="width: 88%; background: #ef4444;"></div></div>
+                </div>
+                <a href="dyslexia-evaluation.html" class="btn btn-outline" style="padding: 4px 12px; font-size: 10px;">Details</a>
+              </div>
+              <div style="display: flex; align-items: center; gap: 16px;">
+                <div style="flex: 1;">
+                  <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
+                    <span>Surface Dyslexia</span>
+                    <span style="font-weight: bold;">45%</span>
+                  </div>
+                  <div class="scale-bar"><div class="scale-fill" style="width: 45%; background: var(--accent-sand);"></div></div>
+                </div>
+                <a href="dyslexia-evaluation.html" class="btn btn-outline" style="padding: 4px 12px; font-size: 10px;">Details</a>
+              </div>
+              <div style="display: flex; align-items: center; gap: 16px;">
+                <div style="flex: 1;">
+                  <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
+                    <span>Rapid-Naming Dyslexia</span>
+                    <span style="font-weight: bold;">72%</span>
+                  </div>
+                  <div class="scale-bar"><div class="scale-fill" style="width: 72%; background: #e67e22;"></div></div>
+                </div>
+                <a href="dyslexia-evaluation.html" class="btn btn-outline" style="padding: 4px 12px; font-size: 10px;">Details</a>
+              </div>
+              <div style="display: flex; align-items: center; gap: 16px;">
+                <div style="flex: 1;">
+                  <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
+                    <span>Double-Deficit Dyslexia</span>
+                    <span style="font-weight: bold;">92%</span>
+                  </div>
+                  <div class="scale-bar"><div class="scale-fill" style="width: 92%; background: #ef4444;"></div></div>
+                </div>
+                <a href="dyslexia-evaluation.html" class="btn btn-outline" style="padding: 4px 12px; font-size: 10px;">Details</a>
+              </div>
+              <div style="display: flex; align-items: center; gap: 16px;">
+                <div style="flex: 1;">
+                  <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
+                    <span>Visual Dyslexia</span>
+                    <span style="font-weight: bold;">32%</span>
+                  </div>
+                  <div class="scale-bar"><div class="scale-fill" style="width: 32%; background: var(--accent-sage);"></div></div>
+                </div>
+                <a href="dyslexia-evaluation.html" class="btn btn-outline" style="padding: 4px 12px; font-size: 10px;">Details</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ADHD Section -->
+        <section>
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <div style="width: 32px; height: 32px; background: var(--accent-orange); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white;">
+              <i data-lucide="zap" size="18"></i>
+            </div>
+            <h3 style="font-size: 20px;">ADHD Index</h3>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 24px; margin-bottom: 24px;">
+            <div class="card p-24" style="border-top: 4px solid var(--accent-orange);">
+              <div class="probability-meter">
+                <div class="probability-fill" style="width: 65%; background: linear-gradient(90deg, var(--accent-sand), var(--accent-orange));"></div>
+                <div class="probability-marker" style="left: 65%;"></div>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 32px; font-family: var(--f-serif); font-weight: bold; color: var(--accent-orange);">65%</span>
+                <span class="badge badge-consultant" style="background: rgba(230, 126, 34, 0.1); color: var(--accent-orange);">Moderate-High</span>
+              </div>
+            </div>
+            <div class="card p-24">
+              <h4 style="font-size: 14px; margin-bottom: 12px; color: var(--text-muted);">Executive Function Analysis</h4>
+              <div class="ef-grid">
+                <div class="ef-item">
+                  <span style="font-size: 10px; font-weight: bold; color: var(--text-muted);">Inhibition</span>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="flex: 1; height: 4px; background: var(--sidebar-bg); border-radius: 2px;"><div style="width: 40%; height: 100%; background: var(--accent-red); border-radius: 2px;"></div></div>
+                    <span style="font-size: 10px; font-weight: bold;">Low</span>
+                  </div>
+                </div>
+                <div class="ef-item">
+                  <span style="font-size: 10px; font-weight: bold; color: var(--text-muted);">Flexibility</span>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="flex: 1; height: 4px; background: var(--sidebar-bg); border-radius: 2px;"><div style="width: 75%; height: 100%; background: var(--accent-sage); border-radius: 2px;"></div></div>
+                    <span style="font-size: 10px; font-weight: bold;">High</span>
+                  </div>
+                </div>
+              </div>
+              <p style="font-size: 11px; color: var(--text-muted); margin-top: 12px; font-style: italic;">
+                Ref: Barkley (2012) - "ADHD is primarily a disorder of self-regulation and executive function."
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Dyscalculia Section -->
+        <section>
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <div style="width: 32px; height: 32px; background: var(--accent-blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white;">
+              <i data-lucide="calculator" size="18"></i>
+            </div>
+            <h3 style="font-size: 20px;">Dyscalculia Index</h3>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 24px;">
+            <div class="card p-24" style="border-top: 4px solid var(--accent-blue);">
+              <div class="probability-meter">
+                <div class="probability-fill" style="width: 42%; background: linear-gradient(90deg, var(--sidebar-bg), var(--accent-blue));"></div>
+                <div class="probability-marker" style="left: 42%;"></div>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 32px; font-family: var(--f-serif); font-weight: bold; color: var(--accent-blue);">42%</span>
+                <span class="badge badge-professional">Moderate</span>
+              </div>
+            </div>
+            <div class="card p-24">
+              <h4 style="font-size: 14px; margin-bottom: 12px; color: var(--text-muted);">Numerical Cognition</h4>
+              <p style="font-size: 13px; line-height: 1.6; margin-bottom: 12px;">
+                <strong>Subitizing:</strong> Difficulty identifying small quantities (1-4) without counting. 
+                <strong>Magnitude Comparison:</strong> Slower response times on symbolic vs. non-symbolic tasks.
+              </p>
+              <p style="font-size: 11px; color: var(--text-muted); font-style: italic;">
+                Ref: Dehaene (1997) - "The Number Sense: How the Mind Creates Mathematics."
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    // Mobile Menu Toggle Logic
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.querySelector('.sidebar');
+    
+    if (menuToggle && sidebar) {
+      menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sidebar.classList.toggle('open');
+      });
+      
+      document.addEventListener('click', (e) => {
+        if (!sidebar.contains(e.target) && sidebar.classList.contains('open')) {
+          sidebar.classList.remove('open');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
